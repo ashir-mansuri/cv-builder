@@ -1523,16 +1523,6 @@ function matchKeywords(cv, ad) {
   }
   function showWelcome() {
     $('#app').hidden = true; const w = $('#welcome'); w.hidden = false;
-    const feats = [
-      ['Indian, European & Canadian styles', 'Rules for each region applied for you'],
-      ['4 templates, 12+ colours', 'Plus 4 fonts and 3 text sizes'],
-      ['CV score with tips', 'See what to improve before you apply'],
-      ['Job advert checker', 'Find key words your CV is missing'],
-      ['Phrase bank', 'Ready-made bullet points for 10 fields'],
-      ['Cover letter', 'In the same design, with a first draft'],
-      ['Several versions', 'Industry CV, teaching CV, and more'],
-      ['PDF, plain text & backup', 'Works on phone and laptop']
-    ];
     w.innerHTML = `<div class="welcome">
       <div class="brand"><span class="brand-mark">CV</span> CV Builder</div>
       <h1>Make a professional CV in minutes</h1>
@@ -1541,8 +1531,7 @@ function matchKeywords(cv, ad) {
       <button class="btn primary block" data-act="cv-new" style="padding:14px;font-size:16px">Start with a blank CV</button>
       <h3 style="margin:22px 0 8px">Or start from a sample</h3>
       ${samplesHTML()}
-      <div class="features">${feats.map(([a, b]) => `<div><b>${a}</b>${b}</div>`).join('')}</div>
-      <p class="hint" style="text-align:center">Already have a backup file? <label class="btn ghost small">Open backup file<input type="file" id="importInput" accept=".json,application/json" hidden></label></p>
+      <p class="hint" style="text-align:center;margin-top:18px">Already have a backup file? <label class="btn ghost small">Open backup file<input type="file" id="importInput" accept=".json,application/json" hidden></label></p>
     </div>`;
   }
   const samplesHTML = () => Object.entries(SAMPLES).map(([k, s]) =>
