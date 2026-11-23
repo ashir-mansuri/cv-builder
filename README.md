@@ -4,18 +4,28 @@ A free CV and resume maker that works offline. Nothing you type leaves your devi
 
 **Use it here:** https://ashir-mansuri.github.io/cv-builder/
 
-## What it does
-
+## Write
 - Write your details once and the CV builds itself, with a live preview
-- **India, Europe and Canada styles.** Each style shows only what is normal in that region (photo, date of birth, declaration, language levels A1–C2, A4 or Letter paper)
-- 4 templates, 12 colours plus any custom colour, 4 fonts and 3 text sizes
-- Photo with zoom, position and circle, rounded or square frame
-- Sample CVs to start from (Fresher, Experienced, Academic) and a phrase bank with ready-made bullet points for 10 fields
+- **6 regional styles:** India, Europe, UK, USA, Canada and Gulf. Each one shows only what is normal there (photo, date of birth, visa status, declaration, A4 or Letter paper)
+- Sections for experience, education, skills, projects, achievements and awards, positions of responsibility, volunteering, certifications, languages, publications, interests and references, plus **your own sections**
+- 8 sample CVs: fresher, MBA, experienced professional, engineer (Gulf), nurse (UK), accountant, sales (USA) and academic
+- Phrase bank with ready-made bullet points for 10 fields
+- **Weak-phrase finder:** flags phrases like "responsible for" and suggests stronger ones
+- Photo with zoom and crop, plus a signature you can draw or upload
+- Undo, and automatic restore points
+
+## Design
+- 4 templates, 12 colours plus any custom colour, 4 fonts, 3 text sizes, and a black & white print mode
+
+## Download
 - CV score with tips, page counter, and a job advert checker that finds missing key words
-- Matching cover letter with a first draft
-- Several saved CVs, a QR code to LinkedIn, plain-text copy for job portals, and a backup file
-- Download as PDF. Install it on your phone or laptop and it works without internet
+- **PDF and Word (.docx)** for both the CV and the cover letter
+- Plain-text copy for job portals, and backup files
+
+## Jobs
+- **Application tracker:** company, date, CV used, status and follow-up reminders
+- **LinkedIn helper:** headline, About, experience and skills, ready to paste
+- **Interview prep:** common questions plus field-specific ones, with the STAR method
 
 ## Privacy
-
-There's no sign-up, no server and no tracking. Your CVs are saved only in your own browser. Use **Save backup file** to keep a copy.
+There's no sign-up, no server and no tracking. Everything is saved only in your own browser. Use **Save backup file** to keep a copy.

@@ -14,12 +14,12 @@
 <meta name="apple-mobile-web-app-title" content="CV Builder">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <style>
-/* ================= App UI ================= */
+/* ================= App UI — professional & colourful ================= */
 :root{
-  --ui: #4F46E5; --ui-dark:#3730A3; --ui-soft:#EEF2FF;
-  --ink:#1F2433; --muted:#667085; --line:#E4E7EC; --bg:#F3F4F7; --card:#fff;
+  --ui:#4F46E5; --ui-dark:#3730A3; --ui-soft:#EEF2FF;
+  --ink:#172033; --muted:#64708A; --line:#E3E7EF; --bg:#F4F6FB; --card:#fff;
   --ok:#16A34A; --warn:#D97706; --bad:#DC2626;
-  --radius:12px; --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.08);
+  --radius:14px; --shadow:0 1px 2px rgba(16,24,40,.05),0 2px 8px rgba(16,24,40,.05);
 }
 *{box-sizing:border-box}
 html,body{margin:0;height:100%}
@@ -27,77 +27,114 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Noto Sans',
 button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
 [hidden]{display:none!important}
+.ui-ico{width:18px;height:18px;flex:none;display:inline-block;vertical-align:middle}
 
-.topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:10px;padding:10px 16px;background:#fff;border-bottom:1px solid var(--line);padding-top:max(10px,env(safe-area-inset-top))}
-.brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:17px;white-space:nowrap}
-.brand-mark{width:28px;height:28px;border-radius:8px;background:var(--ui);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:800;letter-spacing:.5px}
-.brand small{font-weight:500;color:var(--muted);font-size:12px}
-.cv-switch{margin-left:auto;display:flex;align-items:center;gap:6px;max-width:48vw;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-weight:600;font-size:14px}
+/* top bar */
+.topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:10px;padding:9px 16px;background:#fff;padding-top:max(9px,env(safe-area-inset-top))}
+.rainbow{height:3px;background:linear-gradient(90deg,#4F46E5,#7C3AED 22%,#DB2777 45%,#F59E0B 68%,#10B981 88%,#0EA5E9)}
+.brand{display:flex;align-items:center;gap:9px;font-weight:750;font-size:17px;white-space:nowrap;letter-spacing:-.01em}
+.brand-mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#4F46E5,#9333EA);color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:800;letter-spacing:.5px;box-shadow:0 3px 8px rgba(79,70,229,.3)}
+.brand small{font-weight:500;color:var(--muted);font-size:12px;margin-left:2px}
+.top-actions{margin-left:auto;display:flex;align-items:center;gap:6px;min-width:0}
+.icon-btn.top{width:auto;height:36px;padding:0 10px;gap:5px;display:inline-flex;align-items:center;border-radius:10px;color:#344054}
+.icon-btn.top em{font-style:normal;font-size:13px;font-weight:600}
+.icon-btn.top:disabled{opacity:.35}
+.cv-switch{display:flex;align-items:center;gap:6px;max-width:44vw;border:1px solid var(--line);background:#F8F9FC;border-radius:999px;padding:7px 13px;font-weight:650;font-size:14px;color:var(--ink)}
+.cv-switch .ui-ico{color:var(--ui);width:16px;height:16px}
 .cv-switch span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .save-state{font-size:12px;color:var(--muted);white-space:nowrap}
 .save-state.ok::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin-right:5px;vertical-align:1px}
 .save-state.bad{color:var(--bad)}
 
 #app{display:flex;flex-direction:column;height:100vh;height:100dvh}
-.layout{flex:1;min-height:0;display:grid;grid-template-columns:minmax(380px,500px) 1fr}
-.subhead{margin:16px 0 4px;font-size:14px;color:#344054}
-.paper-sizer{position:relative;margin:0 auto}
-.paper-sizer .paper-scale{position:absolute;top:0;left:0}
+.layout{flex:1;min-height:0;display:grid;grid-template-columns:minmax(390px,520px) 1fr}
 .editor{overflow-y:auto;border-right:1px solid var(--line);background:var(--bg);-webkit-overflow-scrolling:touch}
-.tabs{position:sticky;top:0;z-index:20;display:flex;gap:4px;padding:10px 14px;background:var(--bg)}
-.tab{flex:1;border:0;background:transparent;padding:10px 8px;border-radius:10px;font-weight:600;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px}
-.tab .n{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--line);font-size:12px;color:var(--muted)}
-.tab.active{background:#fff;color:var(--ui);box-shadow:var(--shadow)}
-.tab.active .n{background:var(--ui);color:#fff}
+
+/* tabs */
+.tabs{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:10px 14px;background:var(--bg)}
+.tab{border:0;background:transparent;padding:9px 6px;border-radius:12px;font-weight:650;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:7px;font-size:14.5px;transition:background .15s,color .15s}
+.tab .ui-ico{color:var(--tc);opacity:.75}
+.tab:hover{background:rgba(255,255,255,.6)}
+.tab.active{background:#fff;color:var(--tc);box-shadow:var(--shadow),inset 0 -3px 0 var(--tc)}
+.tab.active .ui-ico{opacity:1}
 .panel{padding:4px 14px 120px}
 
-.privacy{display:flex;gap:10px;align-items:flex-start;background:#ECFDF3;border:1px solid #ABEFC6;color:#05603A;border-radius:var(--radius);padding:10px 12px;font-size:13px;margin:4px 0 12px}
+/* privacy + notes */
+.privacy{display:flex;gap:10px;align-items:flex-start;background:linear-gradient(135deg,#ECFDF3,#F0FDFA);border:1px solid #ABEFC6;color:#05603A;border-radius:var(--radius);padding:11px 13px;font-size:13px;margin:4px 0 12px}
+.privacy .ui-ico{color:#079455;margin-top:1px}
 .privacy b{display:block}
+.note-box{display:flex;gap:8px;align-items:center;background:#F8F9FC;border:1px dashed #D0D5DD;border-radius:10px;padding:9px 11px;font-size:13px;color:var(--muted);margin:0 0 12px}
+.note-box .ui-ico{width:16px;height:16px}
+.good-box{display:flex;gap:8px;align-items:center;background:#ECFDF3;border:1px solid #ABEFC6;color:#067647;border-radius:10px;padding:10px 12px;margin:0;font-weight:600;font-size:14px}
 
+/* cards */
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow)}
-.card>summary{list-style:none;display:flex;align-items:center;gap:10px;padding:14px 14px;cursor:pointer;font-weight:650;user-select:none}
+.card>summary{list-style:none;display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;font-weight:650;user-select:none}
 .card>summary::-webkit-details-marker{display:none}
-.card>summary::after{content:'';margin-left:auto;width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .15s}
-.card[open]>summary::after{transform:rotate(-135deg)}
-.card .dot{width:9px;height:9px;border-radius:50%;background:var(--line);flex:none}
-.card .dot.done{background:var(--ok)}
-.card .meta{font-weight:500;color:var(--muted);font-size:13px}
-.card-body{padding:0 14px 14px}
+.card[open]>summary{border-bottom:1px solid #F0F2F7}
+.sec-ico{width:34px;height:34px;border-radius:10px;flex:none;display:grid;place-items:center;color:var(--c);background:color-mix(in srgb,var(--c) 13%,#fff)}
+.sec-ico .ui-ico{width:18px;height:18px}
+.sec-title{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25}
+.sec-title .meta{font-weight:500;color:var(--muted);font-size:12.5px}
+.state{width:22px;height:22px;border-radius:50%;flex:none;display:grid;place-items:center;border:2px solid #E3E7EF;color:transparent}
+.state .ui-ico{width:13px;height:13px}
+.state.done{background:var(--ok);border-color:var(--ok);color:#fff}
+.card-body{padding:12px 14px 14px}
 .card-static{padding:14px}
-.card h3{margin:0 0 4px;font-size:15px}
+.card h3{margin:0 0 4px;font-size:15.5px}
+.card-h{display:flex;align-items:center;gap:10px;margin:0 0 8px!important}
+.card-h .sec-ico{width:30px;height:30px;border-radius:9px}
+.card-h .sec-ico .ui-ico{width:16px;height:16px}
+.hello{display:flex;align-items:center;gap:12px;justify-content:space-between;background:linear-gradient(135deg,#EEF2FF,#FDF2F8);border-color:#E0E7FF}
 .hint{color:var(--muted);font-size:13px;margin:2px 0 10px}
 
+/* form */
 .field{display:block;margin-bottom:10px}
 .field>span{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#344054;margin-bottom:4px}
-.field input,.field select,.field textarea,.input{width:100%;border:1px solid #D0D5DD;border-radius:9px;padding:9px 11px;background:#fff;font-size:15px;outline:none;transition:border .15s,box-shadow .15s}
-.field textarea{min-height:84px;resize:vertical;line-height:1.45}
+.field input,.field select,.field textarea,.input{width:100%;border:1px solid #D0D5DD;border-radius:10px;padding:9px 11px;background:#fff;font-size:15px;outline:none;transition:border .15s,box-shadow .15s}
+.field textarea,textarea.input{min-height:80px;resize:vertical;line-height:1.45}
 .field input:focus,.field select:focus,.field textarea:focus,.input:focus{border-color:var(--ui);box-shadow:0 0 0 3px rgba(79,70,229,.15)}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.tag{font-size:11px;font-weight:600;padding:1px 7px;border-radius:999px;background:var(--ui-soft);color:var(--ui-dark)}
-.tag.off{background:#F2F4F7;color:#98A2B3}
-.field.dim input,.field.dim select{background:#F9FAFB;color:#98A2B3}
+.tag{font-size:11px;font-weight:650;padding:2px 8px;border-radius:999px;background:var(--ui-soft);color:var(--ui-dark)}
+.subhead{display:flex;align-items:center;gap:8px;margin:16px 0 4px;font-size:14px;color:#344054}
+.weak{display:flex;flex-direction:column;gap:4px;margin-top:6px}
+.weak:empty{display:none}
+.weak span{font-size:12.5px;background:#FFFAEB;border:1px solid #FEDF89;color:#93370D;border-radius:8px;padding:5px 9px}
+.weak span::before{content:'⚠ '}
 
-.seg{display:flex;background:#EAECF0;border-radius:11px;padding:3px;gap:3px}
-.seg button{flex:1;border:0;background:transparent;border-radius:9px;padding:9px 6px;font-weight:600;font-size:14px;color:#475467;display:flex;flex-direction:column;align-items:center;gap:1px}
-.seg button small{font-weight:500;font-size:11px;color:var(--muted)}
+.seg{display:flex;background:#EBEEF5;border-radius:12px;padding:3px;gap:3px}
+.seg button{flex:1;border:0;background:transparent;border-radius:9px;padding:9px 6px;font-weight:650;font-size:14px;color:#475467;display:flex;align-items:center;justify-content:center;gap:6px}
 .seg button.on{background:#fff;color:var(--ink);box-shadow:var(--shadow)}
-.style-note{font-size:13px;color:var(--muted);margin:8px 2px 0}
+.seg-icons{margin-bottom:12px;background:#fff;border:1px solid var(--line)}
+.seg-icons button.on{background:var(--ui);color:#fff}
+.style-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.style-opt{border:2px solid var(--line);background:#fff;border-radius:12px;padding:9px 6px;display:flex;flex-direction:column;align-items:center;gap:1px;transition:all .15s}
+.style-opt .flag{font-size:20px;line-height:1.1}
+.style-opt b{font-size:14px}
+.style-opt small{font-size:11px;color:var(--muted)}
+.style-opt:hover{border-color:#C7D2FE}
+.style-opt.on{border-color:var(--ui);background:var(--ui-soft);box-shadow:0 0 0 3px rgba(79,70,229,.12)}
+.style-note{font-size:13px;color:var(--muted);margin:10px 2px 0}
 
-.btn{border:1px solid #D0D5DD;background:#fff;border-radius:10px;padding:9px 14px;font-weight:600;font-size:14px;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btn{border:1px solid #D0D5DD;background:#fff;border-radius:10px;padding:9px 14px;font-weight:650;font-size:14px;display:inline-flex;align-items:center;justify-content:center;gap:6px;color:var(--ink);text-decoration:none}
 .btn:hover{background:#F9FAFB}
-.btn.primary{background:var(--ui);border-color:var(--ui);color:#fff}
-.btn.primary:hover{background:var(--ui-dark)}
+.btn .ui-ico{width:16px;height:16px}
+.btn.primary{background:linear-gradient(135deg,#4F46E5,#6D28D9);border-color:transparent;color:#fff;box-shadow:0 2px 6px rgba(79,70,229,.25)}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.soft{background:var(--ui-soft);border-color:#E0E7FF;color:var(--ui-dark)}
 .btn.ghost{border-color:transparent;background:transparent;color:var(--ui)}
-.btn.small{padding:6px 10px;font-size:13px;border-radius:8px}
+.btn.small{padding:6px 11px;font-size:13px;border-radius:9px}
 .btn.danger{color:var(--bad)}
 .btn.block{width:100%}
+.big-start{padding:15px;font-size:16px;border-radius:13px}
+.big-start .ui-ico{width:19px;height:19px}
 .btn-row{display:flex;gap:8px;flex-wrap:wrap}
-.icon-btn{border:1px solid var(--line);background:#fff;border-radius:8px;width:32px;height:32px;display:inline-grid;place-items:center;font-size:14px;color:#475467;padding:0}
+.icon-btn{border:1px solid var(--line);background:#fff;border-radius:9px;width:32px;height:32px;display:inline-grid;place-items:center;font-size:14px;color:#475467;padding:0;text-decoration:none}
+.icon-btn .ui-ico{width:16px;height:16px}
 .icon-btn:hover{background:#F9FAFB}
 .icon-btn:disabled{opacity:.35;cursor:default}
 
-.entry{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px;background:#FCFCFD}
+.entry{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;background:#FBFCFE}
 .entry-head{display:flex;align-items:center;gap:6px;margin-bottom:8px}
 .entry-head b{flex:1;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dates{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -108,14 +145,20 @@ button{cursor:pointer}
 .lang-row{display:grid;grid-template-columns:1fr 1fr 32px;gap:8px;margin-bottom:8px;align-items:center}
 
 .photo-box{display:flex;gap:14px;align-items:flex-start;margin-bottom:12px}
-.photo-frame{width:84px;height:84px;flex:none;overflow:hidden;background:#EEF0F4;display:grid;place-items:center;color:#98A2B3;font-size:12px;text-align:center;border:1px solid var(--line)}
+.photo-frame{width:86px;height:86px;flex:none;overflow:hidden;background:linear-gradient(135deg,#EEF2FF,#F5F3FF);display:grid;place-items:center;color:#A5B4FC;border:1px solid var(--line)}
+.photo-frame .ui-ico{width:38px;height:38px}
 .photo-frame img{width:100%;height:100%;object-fit:cover}
-.photo-frame.circle{border-radius:50%}.photo-frame.rounded{border-radius:14px}.photo-frame.square{border-radius:2px}
+.photo-frame.circle{border-radius:50%}.photo-frame.rounded{border-radius:14px}.photo-frame.square{border-radius:3px}
 .photo-tools{flex:1;min-width:0}
 .range{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin-bottom:4px}
 .range input{flex:1;accent-color:var(--ui)}
+.sig-box{height:74px;border:1px dashed #C7D2FE;background:repeating-linear-gradient(0deg,#fff 0 32px,#F5F7FF 32px 33px);border-radius:10px;display:grid;place-items:center;margin-bottom:8px;overflow:hidden;color:var(--muted);font-size:13px}
+.sig-box img{max-height:62px;max-width:90%}
+.sig-pad-wrap{position:relative;border:2px dashed #C7D2FE;border-radius:12px;background:#FCFCFF;overflow:hidden}
+.sig-pad-wrap canvas{display:block;touch-action:none;cursor:crosshair}
+.sig-line{position:absolute;left:8%;right:8%;bottom:42px;border-top:1px solid #CBD5E1;pointer-events:none}
 
-/* Design tab */
+/* design */
 .tpl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .tpl{border:2px solid var(--line);border-radius:12px;background:#fff;padding:8px;text-align:left}
 .tpl.on{border-color:var(--ui);box-shadow:0 0 0 3px rgba(79,70,229,.15)}
@@ -127,6 +170,7 @@ button{cursor:pointer}
 .sw{width:32px;height:32px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1px var(--line);padding:0}
 .sw.on{box-shadow:0 0 0 2px var(--ink)}
 .sw-custom{position:relative;width:32px;height:32px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 1px var(--line);background:conic-gradient(red,yellow,lime,cyan,blue,magenta,red)}
+.sw-custom.on{box-shadow:0 0 0 2px var(--ink)}
 .sw-custom input{position:absolute;inset:-8px;width:48px;height:48px;opacity:0;cursor:pointer}
 .font-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .font-opt{border:2px solid var(--line);border-radius:10px;background:#fff;padding:10px;text-align:left}
@@ -140,26 +184,86 @@ button{cursor:pointer}
 .sec-list li.off span{color:#98A2B3;text-decoration:line-through}
 .sec-list li em{font-style:normal;font-size:12px;color:var(--muted);font-weight:500}
 
-/* Download tab */
+/* download */
+.score-card{background:linear-gradient(135deg,#fff 60%,#F5F3FF)}
 .score{display:flex;align-items:center;gap:16px}
 .ring{--p:0;--c:var(--ok);width:86px;height:86px;border-radius:50%;flex:none;display:grid;place-items:center;background:conic-gradient(var(--c) calc(var(--p)*1%),#EAECF0 0)}
 .ring b{width:68px;height:68px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:22px}
 .tips{list-style:none;padding:0;margin:12px 0 0}
 .tips li{display:flex;gap:8px;padding:6px 0;font-size:14px;border-top:1px dashed var(--line)}
-.tips li i{font-style:normal;flex:none;width:20px;text-align:center}
+.tips li i{font-style:normal;flex:none;width:20px;text-align:center;color:var(--warn)}
 .tips li.good{color:var(--muted)}
+.tips li.good i{color:var(--ok)}
+.weak-list{list-style:none;margin:0;padding:0}
+.weak-list li{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;padding:8px 10px;border-radius:10px;background:#FFFAEB;border:1px solid #FEF0C7;margin-bottom:6px;font-size:13.5px}
+.weak-list b{color:#93370D}
+.weak-list span{color:var(--muted);text-align:right;font-size:12.5px}
+.weak-list em{grid-column:1/-1;font-style:normal;color:#344054}
 .kw{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .kw span{font-size:13px;padding:4px 10px;border-radius:999px;border:1px solid}
 .kw .hit{background:#ECFDF3;border-color:#ABEFC6;color:#067647}
 .kw .miss{background:#FEF3F2;border-color:#FECDCA;color:#B42318}
-.big-actions{display:grid;gap:8px}
-.big-actions .btn{padding:13px 14px;font-size:15px;justify-content:flex-start}
-.big-actions .btn small{margin-left:auto;font-weight:500;color:inherit;opacity:.75;font-size:12px}
-.help{font-size:13px;color:var(--muted);background:#F9FAFB;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:10px}
+.dl-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dl-btn{display:flex;align-items:center;gap:10px;text-align:left;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px;transition:all .15s}
+.dl-btn:hover{border-color:#C7D2FE;box-shadow:var(--shadow);transform:translateY(-1px)}
+.dl-btn b{display:block;font-size:14px}
+.dl-btn small{color:var(--muted);font-size:12px}
+.dl-ico{width:38px;height:38px;border-radius:10px;flex:none;display:grid;place-items:center;color:#fff;background:var(--c)}
+.dl-ico .ui-ico{width:20px;height:20px}
+.help{font-size:13px;color:var(--muted);background:#F8F9FC;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:10px}
 
-/* Preview */
-.preview{display:flex;flex-direction:column;min-width:0;background:#E7E9EE}
-.preview-bar{display:flex;align-items:center;gap:10px;padding:10px 16px;background:#fff;border-bottom:1px solid var(--line)}
+/* jobs */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px}
+.stat{border-radius:14px;padding:12px 10px;background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 70%,#000));color:#fff;box-shadow:0 4px 12px color-mix(in srgb,var(--c) 30%,transparent)}
+.stat b{display:block;font-size:24px;line-height:1.1}
+.stat span{font-size:12px;opacity:.92;font-weight:600}
+.track-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;font-size:13px;font-weight:600;color:#475467}
+.chip span{color:var(--muted);font-weight:500}
+.chip.on{background:var(--c);border-color:var(--c);color:#fff}
+.chip.on span{color:rgba(255,255,255,.85)}
+.job-card{display:flex;gap:10px;justify-content:space-between;border:1px solid var(--line);border-left:5px solid var(--c);border-radius:12px;padding:11px 12px;margin-bottom:8px;background:#fff}
+.job-main{min-width:0}
+.job-main b{display:block;font-size:15px}
+.job-main span{display:block;font-size:14px;color:#344054}
+.job-main small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.job-main p{margin:6px 0 0;font-size:13px;color:#475467;background:#F8F9FC;border-radius:8px;padding:6px 8px}
+.follow{display:inline-block;margin-top:5px;font-style:normal;font-size:12px;font-weight:650;color:#B54708;background:#FFFAEB;border:1px solid #FEDF89;border-radius:999px;padding:2px 9px}
+.job-side{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:none}
+.pill-select{border:0;border-radius:999px;padding:5px 10px;font-size:12.5px;font-weight:700;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c);outline:none}
+.empty{text-align:center;padding:22px 10px;color:var(--muted)}
+.empty .ui-ico{width:40px;height:40px;color:#C7D2FE}
+.empty b{display:block;color:var(--ink);margin:6px 0 2px}
+.empty p{margin:0 auto;max-width:330px;font-size:13.5px}
+.li-intro{background:linear-gradient(135deg,#fff 55%,#EFF6FF)}
+.li-block{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px;margin-bottom:10px;box-shadow:var(--shadow)}
+.li-head b{display:block;font-size:14.5px}
+.li-head small{color:var(--muted);font-size:12.5px}
+.li-block textarea{margin-top:8px;font-size:14px}
+.li-foot{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.count{font-size:12.5px;color:var(--muted)}
+.count.over{color:var(--bad);font-weight:700}
+.progress{height:10px;border-radius:999px;background:#EEF0F5;overflow:hidden;margin-top:4px}
+.progress div{height:100%;border-radius:999px;background:linear-gradient(90deg,#4F46E5,#DB2777,#F59E0B);transition:width .3s}
+.star-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.star-grid div{border-radius:12px;padding:10px 8px;background:color-mix(in srgb,var(--c) 10%,#fff);border:1px solid color-mix(in srgb,var(--c) 25%,#fff);text-align:center}
+.star-grid b{display:grid;place-items:center;width:30px;height:30px;margin:0 auto 4px;border-radius:50%;background:var(--c);color:#fff;font-size:15px}
+.star-grid span{display:block;font-weight:700;font-size:13px;color:var(--c)}
+.star-grid small{display:block;font-size:11.5px;color:var(--muted);line-height:1.3}
+.q-group{margin:16px 2px 8px;font-size:14px;color:#344054}
+.q-card{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;box-shadow:var(--shadow)}
+.q-card>summary{list-style:none;display:flex;gap:10px;align-items:center;padding:11px 12px;cursor:pointer;font-weight:600;font-size:14.5px}
+.q-card>summary::-webkit-details-marker{display:none}
+.q-dot{width:22px;height:22px;border-radius:50%;flex:none;display:grid;place-items:center;border:2px solid #E3E7EF;color:transparent}
+.q-dot .ui-ico{width:13px;height:13px}
+.q-card.done .q-dot{background:var(--ok);border-color:var(--ok);color:#fff}
+.q-body{padding:0 12px 12px}
+.q-tip{margin:0 0 8px;font-size:13.5px;background:#F5F3FF;border-radius:10px;padding:8px 10px;color:#4C1D95}
+
+/* preview */
+.preview{display:flex;flex-direction:column;min-width:0;background:#E5E8F0}
+.preview-bar{display:flex;align-items:center;gap:10px;padding:9px 16px;background:#fff;border-bottom:1px solid var(--line)}
 .preview-bar .seg{width:220px}
 .preview-bar .seg button{padding:6px}
 .page-info{font-size:13px;color:var(--muted);margin-left:auto;text-align:right}
@@ -167,58 +271,69 @@ button{cursor:pointer}
 .page-info.over b{color:var(--warn)}
 .close-preview{display:none}
 .paper-wrap{flex:1;overflow:auto;padding:22px 16px 40px;-webkit-overflow-scrolling:touch}
+.paper-sizer{position:relative;margin:0 auto}
+.paper-sizer .paper-scale{position:absolute;top:0;left:0}
 .paper-scale{transform-origin:top left;position:relative}
-.paper{background:#fff;box-shadow:0 4px 18px rgba(16,24,40,.12),0 1px 3px rgba(16,24,40,.1);position:relative}
+.paper{background:#fff;box-shadow:0 6px 24px rgba(16,24,40,.13),0 1px 3px rgba(16,24,40,.1);position:relative}
 .page-break{position:absolute;left:0;right:0;border-top:2px dashed #F79009;pointer-events:none;z-index:5}
 .page-break span{position:absolute;right:6px;top:-11px;background:#F79009;color:#fff;font:600 11px/1 -apple-system,Segoe UI,sans-serif;padding:4px 7px;border-radius:5px}
 .fab{display:none}
 
-/* Modal / sheet */
+/* modal / sheet */
 .modal{position:fixed;inset:0;z-index:100;background:rgba(16,24,40,.45);display:flex;align-items:center;justify-content:center;padding:16px}
-.sheet{background:#fff;border-radius:16px;width:100%;max-width:560px;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.sheet{background:#fff;border-radius:18px;width:100%;max-width:580px;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 20px 50px rgba(0,0,0,.25)}
 .sheet-head{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}
 .sheet-head h2{margin:0;font-size:17px;flex:1}
 .sheet-body{padding:14px 16px;overflow-y:auto}
 .sheet-foot{padding:12px 16px;border-top:1px solid var(--line);display:flex;gap:8px;justify-content:flex-end}
-.list-item{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px}
+.list-item{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px}
 .list-item.on{border-color:var(--ui);background:var(--ui-soft)}
 .list-item .grow{flex:1;min-width:0}
 .list-item .grow b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .list-item .grow small{color:var(--muted)}
+.open-now{color:var(--ui);font-weight:650}
 .phrase{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:14px}
 .phrase:hover{border-color:var(--ui);background:var(--ui-soft)}
 .phrase::before{content:'+ ';color:var(--ui);font-weight:700}
 .verbs{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 12px}
 .verbs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 10px;font-size:13px}
 .verbs button:hover{border-color:var(--ui);color:var(--ui)}
-.sample-card{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:8px}
-.sample-card:hover{border-color:var(--ui);background:var(--ui-soft)}
-.sample-card b{display:block}
-.sample-card small{color:var(--muted)}
-.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:#1F2433;color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;pointer-events:none;transition:all .2s;z-index:200;max-width:90vw}
+.sample-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sample-card{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:13px;padding:11px 12px;transition:all .15s}
+.sample-card:hover{border-color:color-mix(in srgb,var(--ui) 40%,#fff);box-shadow:var(--shadow);transform:translateY(-1px)}
+.s-ico{width:36px;height:36px;border-radius:10px;flex:none;display:grid;place-items:center;color:#fff;background:var(--c)}
+.s-txt{min-width:0}
+.s-txt b{display:block;font-size:14px}
+.s-txt small{display:block;color:var(--muted);font-size:12.5px;line-height:1.3}
+.s-txt em{display:block;font-style:normal;font-size:11.5px;color:#475467;margin-top:3px;font-weight:600}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:#172033;color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;opacity:0;pointer-events:none;transition:all .2s;z-index:200;max-width:90vw;box-shadow:0 8px 24px rgba(0,0,0,.2)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* Welcome */
-.welcome{max-width:560px;margin:0 auto;padding:30px 18px 60px}
-.welcome h1{font-size:28px;margin:10px 0 6px;line-height:1.2}
+/* welcome */
+#welcome{min-height:100vh;background:radial-gradient(1200px 500px at 10% -10%,#E0E7FF 0,transparent 60%),radial-gradient(900px 400px at 110% 0,#FCE7F3 0,transparent 55%),var(--bg)}
+.welcome{max-width:640px;margin:0 auto;padding:34px 18px 60px}
+.welcome h1{font-size:30px;margin:14px 0 6px;line-height:1.2;letter-spacing:-.02em;background:linear-gradient(90deg,#312E81,#6D28D9 60%,#BE185D);-webkit-background-clip:text;background-clip:text;color:transparent}
 .welcome p.lead{color:var(--muted);margin:0 0 18px}
-.features{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:18px 0}
-.features div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px}
-.features b{display:block;font-size:14px}
+.w-h{margin:24px 0 10px;font-size:16px}
 
 @media (max-width: 900px){
   #app{display:block;height:auto}
   .layout{display:block}
-  .topbar{position:static}
+  .topbar{position:static;padding:9px 12px;gap:8px}
   .editor{overflow:visible;border:0}
-  .tabs{top:0;padding-top:max(10px,env(safe-area-inset-top))}
+  .tabs{top:0;padding:max(8px,env(safe-area-inset-top)) 10px 8px;gap:3px}
+  .tab{flex-direction:column;gap:2px;font-size:12px;padding:7px 2px}
+  .tab .ui-ico{width:20px;height:20px}
   .preview{position:fixed;inset:0;z-index:60;visibility:hidden;transform:translateY(100%);transition:transform .25s ease,visibility 0s linear .25s}
   body.show-preview .preview{visibility:visible;transform:none;transition:transform .25s ease}
   body.show-preview{overflow:hidden}
   .close-preview{display:inline-flex}
-  .fab{display:flex;position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:40;align-items:center;gap:8px;border:0;background:var(--ink);color:#fff;border-radius:999px;padding:13px 18px;font-weight:700;box-shadow:0 8px 24px rgba(16,24,40,.3)}
+  .fab{display:flex;position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:40;align-items:center;gap:7px;border:0;background:linear-gradient(135deg,#172033,#3730A3);color:#fff;border-radius:999px;padding:13px 18px;font-weight:700;box-shadow:0 8px 24px rgba(16,24,40,.3)}
+  .fab small{opacity:.7;font-weight:500}
+  body[data-tab="jobs"] .fab{display:none}
   .save-state{display:none}
   .brand small{display:none}
+  .icon-btn.top em{display:none}
   .preview-bar{padding:max(10px,env(safe-area-inset-top)) 10px 10px;gap:8px}
   .preview-bar .seg{width:auto;flex:none}
   .preview-bar .seg button{padding:6px 10px;white-space:nowrap;font-size:13px}
@@ -227,11 +342,17 @@ button{cursor:pointer}
   .pi-long{display:none}
   .paper-wrap{padding:14px 8px 40px}
   .modal{align-items:flex-end;padding:0}
-  .sheet{border-radius:16px 16px 0 0;max-height:90vh;padding-bottom:env(safe-area-inset-bottom)}
+  .sheet{border-radius:18px 18px 0 0;max-height:90vh;padding-bottom:env(safe-area-inset-bottom)}
+  .stats{grid-template-columns:repeat(2,1fr)}
 }
-@media (max-width: 420px){
-  .row3{grid-template-columns:1fr 1fr}
-  .features{grid-template-columns:1fr}
+@media (max-width: 520px){
+  .sample-grid{grid-template-columns:1fr}
+  .dl-grid{grid-template-columns:1fr}
+  .star-grid{grid-template-columns:repeat(2,1fr)}
+  .hello{flex-direction:column;align-items:flex-start}
+}
+@media (max-width: 380px){
+  .brand-name{display:none}
 }
 
 /* ================= CV paper ================= */
@@ -280,6 +401,10 @@ button{cursor:pointer}
 .cv-sign{display:flex;justify-content:space-between;align-items:flex-end;margin-top:5mm}
 .cv-sign .sig{text-align:right}
 .cv-sign .sig b{display:block;margin-top:1mm}
+.cv-signature{display:block;max-height:14mm;max-width:48mm;margin:0 0 1mm auto;mix-blend-mode:multiply}
+.letter-sign{min-height:9mm;margin-top:2mm}
+.letter-sign .cv-signature{margin:0 0 1mm 0}
+.cv.bw .cv-photo img{filter:grayscale(1)}
 .cv-dots{display:inline-flex;gap:1mm;margin-left:2mm;vertical-align:middle}
 .cv-dots i{width:1.9mm;height:1.9mm;border-radius:50%;background:currentColor;opacity:.25}
 .cv-dots i.f{opacity:1}
@@ -373,20 +498,27 @@ button{cursor:pointer}
 <div id="welcome" hidden></div>
 <div id="app" hidden>
   <header class="topbar">
-    <div class="brand"><span class="brand-mark">CV</span>CV Builder <small>Free · Offline · Private</small></div>
-    <button class="cv-switch" data-act="cv-menu" title="My CVs"><span aria-hidden="true">📄</span><span id="cvName">My CV</span><span aria-hidden="true">▾</span></button>
+    <div class="brand"><span class="brand-mark">CV</span><span class="brand-name">CV Builder</span><small>Free · Offline · Private</small></div>
+    <div class="top-actions">
+      <button class="icon-btn top" id="undoBtn" data-act="undo" title="Undo (Ctrl+Z)" aria-label="Undo" disabled><span data-ico="undo"></span><em>Undo</em></button>
+      <button class="icon-btn top" data-act="history" title="Earlier versions" aria-label="Earlier versions"><span data-ico="clock"></span></button>
+      <button class="cv-switch" data-act="cv-menu" title="My CVs"><span data-ico="doc"></span><span id="cvName">My CV</span><span aria-hidden="true">▾</span></button>
+    </div>
     <span class="save-state ok" id="saveState">Saved on this device</span>
   </header>
+  <div class="rainbow" aria-hidden="true"></div>
   <main class="layout">
     <section class="editor" id="editor">
       <nav class="tabs">
-        <button class="tab active" data-act="tab" data-tab="write"><span class="n">1</span>Write</button>
-        <button class="tab" data-act="tab" data-tab="design"><span class="n">2</span>Design</button>
-        <button class="tab" data-act="tab" data-tab="download"><span class="n">3</span>Download</button>
+        <button class="tab active" data-act="tab" data-tab="write" style="--tc:#4F46E5"><span data-ico="write"></span>Write</button>
+        <button class="tab" data-act="tab" data-tab="design" style="--tc:#DB2777"><span data-ico="palette"></span>Design</button>
+        <button class="tab" data-act="tab" data-tab="download" style="--tc:#0D9488"><span data-ico="download"></span>Download</button>
+        <button class="tab" data-act="tab" data-tab="jobs" style="--tc:#D97706"><span data-ico="target"></span>Jobs</button>
       </nav>
       <div class="panel" id="panel-write"></div>
       <div class="panel" id="panel-design" hidden></div>
       <div class="panel" id="panel-download" hidden></div>
+      <div class="panel" id="panel-jobs" hidden></div>
     </section>
     <section class="preview" id="preview" aria-label="Preview">
       <div class="preview-bar">
@@ -398,7 +530,7 @@ button{cursor:pointer}
       <div class="paper-wrap" id="paperWrap"><div class="paper-sizer" id="paperSizer"><div class="paper-scale" id="paperScale"><div class="paper" id="paper"></div></div></div></div>
     </section>
   </main>
-  <button class="fab" id="fab" data-act="preview-open">👁 Preview</button>
+  <button class="fab" id="fab" data-act="preview-open">Preview</button>
 </div>
 <div id="modal" class="modal" hidden></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
@@ -926,20 +1058,300 @@ const STOPWORDS = new Set(('a about above across after again against all also am
   'strong excellent good great well must required requirements require requires requirement preferred plus etc including include includes within across based new key ideal ideally looking join responsibilities responsibility responsible duties duty ' +
   'opportunity opportunities skills skill knowledge understanding demonstrated proven minimum least highly per may like make ensure across day days various related relevant use using used help helps support supports provide provides offer offers our us we you\'ll we\'re you\'re they\'re it\'s via full time part salary benefits apply today please send resume cv cover letter email growing grow build building join manage managing seeking seek want wants need needs employer equal hiring hire location remote hybrid onsite office').split(/\s+/));
 
+/* ---------- v2 additions: more styles, sections, samples, writing help, interview prep ---------- */
+Object.assign(STYLES, {
+  uk:   { name: 'UK',   flag: '🇬🇧', paper: 'A4',     note: 'No photo, age or marital status. Starts with a personal statement; up to 2 pages.' },
+  usa:  { name: 'USA',  flag: '🇺🇸', paper: 'Letter', note: 'No photo or personal details. Letter paper; one page is best under 10 years of experience.' },
+  gulf: { name: 'Gulf', flag: '🇦🇪', paper: 'A4',     note: 'Photo, nationality, visa status and passport details are included — usual for the UAE, Saudi Arabia, Qatar and nearby.' }
+});
+STYLES.euro.note = 'Photo, date of birth, nationality and language levels (A1–C2) are included.';
+const STYLE_ORDER = ['india', 'euro', 'uk', 'usa', 'canada', 'gulf'];
+Object.values(STYLE_FIELDS).forEach(f => Object.assign(f, { visa: false, passport: false, licence: false }));
+const NO_PERSONAL = { photo: false, dob: false, gender: false, nationality: false, marital: false, father: false, declaration: false, cefr: false, visa: false, passport: false, licence: false };
+Object.assign(STYLE_FIELDS, {
+  uk: Object.assign({}, NO_PERSONAL),
+  usa: Object.assign({}, NO_PERSONAL),
+  gulf: { photo: true, dob: true, gender: true, nationality: true, marital: true, father: false, declaration: false, cefr: false, visa: true, passport: true, licence: true }
+});
+Object.assign(LABELS.en, {
+  summary_uk: 'Personal Statement', summary_usa: 'Summary', summary_gulf: 'Professional Summary',
+  achievements: 'Achievements & Awards', responsibilities: 'Positions of Responsibility', volunteering: 'Volunteering',
+  visa: 'Visa status', passport: 'Passport', licence: 'Driving licence'
+});
+Object.assign(LABELS.de, {
+  summary_uk: 'Profil', summary_usa: 'Profil', summary_gulf: 'Profil',
+  achievements: 'Auszeichnungen & Erfolge', responsibilities: 'Funktionen & Verantwortung', volunteering: 'Ehrenamtliches Engagement',
+  visa: 'Visum', passport: 'Reisepass', licence: 'Führerschein'
+});
+SECTION_KEYS.splice(SECTION_KEYS.indexOf('projects') + 1, 0, 'achievements', 'responsibilities', 'volunteering');
+Object.assign(SECTION_NAMES, { achievements: 'Achievements & Awards', responsibilities: 'Positions of Responsibility', volunteering: 'Volunteering' });
+PHRASES['Sales & Marketing'].summary = 'Sales and marketing professional with [X] years of experience growing revenue and building lasting client relationships in [industry].';
+
+/* ---------- section look in the app (icon + colour) ---------- */
+const SEC_META = {
+  style: ['globe', '#4F46E5'], personal: ['user', '#4F46E5'], summary: ['text', '#7C3AED'], experience: ['briefcase', '#2563EB'],
+  education: ['cap', '#0D9488'], skills: ['bolt', '#D97706'], projects: ['folder', '#0284C7'], achievements: ['award', '#EA580C'],
+  responsibilities: ['flag', '#DB2777'], volunteering: ['heart', '#16A34A'], certifications: ['cert', '#0891B2'], languages: ['globe', '#9333EA'],
+  publications: ['book', '#475569'], interests: ['star', '#E11D48'], references: ['users', '#64748B'], custom: ['plus', '#C026D3'],
+  declaration: ['pen', '#B45309'], letter: ['mail', '#4338CA']
+};
+const UI_ICONS = {
+  user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/>',
+  text: '<path d="M4 6h16M4 12h16M4 18h10"/>',
+  briefcase: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M3 13h18"/>',
+  cap: '<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/>',
+  bolt: '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+  folder: '<path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>',
+  award: '<circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/>',
+  flag: '<path d="M5 21V4h11l-2 4 2 4H5"/>',
+  heart: '<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0112 7.4a4.3 4.3 0 017.5 2.4C19.5 15.4 12 20 12 20z"/>',
+  cert: '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M7 8h10M7 12h5"/><circle cx="16" cy="17" r="3"/><path d="M14.5 19.5L14 22l2-1 2 1-.5-2.5"/>',
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/>',
+  book: '<path d="M4 5h6a2 2 0 012 2v13a2 2 0 00-2-2H4zM20 5h-6a2 2 0 00-2 2v13a2 2 0 012-2h6z"/>',
+  star: '<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>',
+  users: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.5 3-5.5 6.5-5.5s6.5 2 6.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14.5c3 0 5 1.6 5 4.5"/>',
+  plus: '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/>',
+  pen: '<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
+  write: '<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/>',
+  palette: '<path d="M12 3a9 9 0 100 18c1.2 0 1.8-.8 1.8-1.7 0-1.2-1-1.5-1-2.6 0-1 .8-1.7 1.8-1.7H17a4 4 0 004-4c0-4.4-4-8-9-8z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10.5" cy="7.5" r="1.2"/><circle cx="15" cy="7.5" r="1.2"/>',
+  download: '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',
+  target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>',
+  undo: '<path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 010 10h-3"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  doc: '<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/>',
+  pdf: '<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M8.5 16.5v-4h1.3a1.2 1.2 0 010 2.4H8.5M13 12.5v4h1a2 2 0 000-4z"/>',
+  copy: '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h2"/>',
+  save: '<path d="M5 3h11l3 3v15H5z"/><path d="M8 3v5h7V3M8 21v-7h8v7"/>',
+  open: '<path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v1H3z"/><path d="M3 10h18l-2 9H5z"/>',
+  check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  linkedin: '<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V16M8 7.8v.1M11.5 16v-5.5M11.5 13.2c0-1.7 1-2.7 2.3-2.7s2.2.9 2.2 2.7V16"/>',
+  chat: '<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/>',
+  list: '<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
+  dice: '<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1.1"/><circle cx="15" cy="15" r="1.1"/><circle cx="15" cy="9" r="1.1"/><circle cx="9" cy="15" r="1.1"/>',
+  link: '<path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/>',
+  edit: '<path d="M4 20h4L19 9l-4-4L4 16z"/>',
+  trash: '<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>',
+  sparkle: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/>',
+  eye: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  lock: '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/>'
+};
+const uiIcon = (name, cls = '') => `<svg class="ui-ico ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${UI_ICONS[name] || ''}</svg>`;
+
+/* ---------- weak-phrase finder ---------- */
+const WEAK_PHRASES = [
+  { re: /\bresponsible for\b/i, phrase: 'responsible for', tip: 'Say what you did: Managed, Led, Handled' },
+  { re: /\bduties (?:included|include)\b/i, phrase: 'duties included', tip: 'Describe results instead: Improved, Delivered, Reduced' },
+  { re: /\bworked on\b/i, phrase: 'worked on', tip: 'Be specific: Built, Developed, Delivered' },
+  { re: /\bhelped\b/i, phrase: 'helped', tip: 'Use Supported or Contributed to — and add the result' },
+  { re: /\binvolved in\b/i, phrase: 'involved in', tip: 'Say your part: Led, Coordinated, Contributed to' },
+  { re: /\bparticipated in\b/i, phrase: 'participated in', tip: 'Say your part and the result' },
+  { re: /\bin charge of\b/i, phrase: 'in charge of', tip: 'Use Managed or Led' },
+  { re: /\bhard[- ]?working\b/i, phrase: 'hardworking', tip: 'Show it with a number or an example instead' },
+  { re: /\bteam player\b/i, phrase: 'team player', tip: 'Give an example: “Worked with 5 teams to…”' },
+  { re: /\bgo[- ]getter\b/i, phrase: 'go-getter', tip: 'Replace it with a real achievement' },
+  { re: /\bresults?[- ](?:driven|oriented)\b/i, phrase: 'results-driven', tip: 'Show the results instead of saying it' },
+  { re: /\bthink(?:ing)? outside the box\b/i, phrase: 'think outside the box', tip: 'Give an example of a new idea you had' },
+  { re: /\bfamiliar with\b/i, phrase: 'familiar with', tip: 'Use “Skilled in” or “Used … to …”' },
+  { re: /\b(?:good|basic) knowledge of\b/i, phrase: 'good knowledge of', tip: 'Use “Skilled in”, or list it under Skills' },
+  { re: /\btried to\b/i, phrase: 'tried to', tip: 'Say what you achieved' },
+  { re: /\betc\b\.?/i, phrase: 'etc.', tip: 'List the important items instead' },
+  { re: /\bvarious\b/i, phrase: 'various', tip: 'Be specific — how many, which ones?' }
+];
+const WEAK_START_I = { phrase: '“I” at the start', tip: 'Start bullet points with a verb, not “I”' };
+
+/* ---------- more samples (fictional people) ---------- */
+Object.assign(SAMPLES, {
+  mba: {
+    label: 'MBA Graduate', desc: 'Marketing MBA with an internship and student leadership',
+    cv: {
+      name: 'Sample – MBA', style: 'india',
+      design: { template: 'modern', color: '#B91C1C', font: 'modern', size: 'm', headingLang: 'en' },
+      personal: { fullName: 'Rohan Desai', title: 'MBA (Marketing) | Brand & Digital Marketing', email: 'rohan.desai@example.com', phone: '+91 98980 12345', city: 'Ahmedabad', country: 'India', linkedin: 'linkedin.com/in/rohan-desai-example', dob: '2002-07-09', gender: 'Male', nationality: 'Indian', marital: 'Single', father: 'Mahesh Desai' },
+      summary: 'MBA marketing graduate with a summer internship in digital marketing and a strong grasp of consumer research. Skilled in social media campaigns, Google Analytics and Excel. Looking for a brand or digital marketing role.',
+      experience: [{ role: 'Summer Intern – Digital Marketing', org: 'Sunbeam Foods Pvt. Ltd.', city: 'Ahmedabad', start: '2025-04', end: '2025-06', bullets: 'Planned 3 Instagram campaigns that grew followers by 28% in 8 weeks\nAnalysed website traffic in Google Analytics and suggested 5 landing-page fixes\nSurveyed 200 customers to map buying habits for a new snack range' }],
+      education: [
+        { degree: 'MBA (Marketing)', school: 'Western Institute of Management', city: 'Ahmedabad', start: '2024-06', end: '2026-04', grade: 'CGPA 7.9 / 10' },
+        { degree: 'BBA', school: 'Riverside College of Commerce', city: 'Vadodara', start: '2021-06', end: '2024-04', grade: '71%' }
+      ],
+      skills: 'Marketing: Social media marketing, SEO basics, Market research, Branding\nTools: Google Analytics, Canva, MS Excel, PowerPoint',
+      projects: [{ name: 'Brand audit of a local dairy', desc: 'Compared 4 competitors and proposed a new pack design and price ladder.' }],
+      achievements: [{ title: '1st place, National B-School Marketing Case Contest', org: '', year: '2025', desc: '' }],
+      responsibilities: [{ role: 'Marketing Head, Student Council', org: 'Western Institute of Management', start: '2024-07', end: '2025-06', bullets: 'Led a team of 8 to run the annual management fest for 1,200 visitors\nRaised INR 3.5 lakh in sponsorship from 12 local brands' }],
+      languages: [{ name: 'Gujarati', level: 'Native' }, { name: 'Hindi', level: 'C2' }, { name: 'English', level: 'C1' }],
+      interests: 'Photography, Badminton',
+      declaration: { place: 'Ahmedabad' }
+    }
+  },
+  engineer: {
+    label: 'Engineer (Gulf job)', desc: 'Mechanical engineer applying for jobs in the UAE',
+    cv: {
+      name: 'Sample – Engineer', style: 'gulf',
+      design: { template: 'classic', color: '#0E7490', font: 'sans', size: 'm', headingLang: 'en' },
+      personal: { fullName: 'Karan Patel', title: 'Mechanical Engineer – Production & Maintenance', email: 'karan.patel@example.com', phone: '+91 98250 11223', city: 'Vapi', country: 'India', linkedin: 'linkedin.com/in/karan-patel-example', dob: '1995-02-14', gender: 'Male', nationality: 'Indian', marital: 'Married', visa: 'Employment visa required · Can join in 30 days', passport: 'Indian passport, valid until 2033', licence: 'Indian driving licence (LMV)' },
+      summary: 'Mechanical engineer with 6 years of experience in production and preventive maintenance in chemical and engineering plants. Strong in root-cause analysis, TPM and plant safety. Seeking a maintenance or production engineer role in the GCC.',
+      experience: [
+        { role: 'Maintenance Engineer', org: 'Coastal Chemicals Ltd.', city: 'Vapi, India', start: '2021-08', current: true, bullets: 'Cut unplanned downtime by 22% with a preventive maintenance plan for 140 machines\nLed root-cause analysis on pump failures, saving INR 18 lakh a year in spares\nSupervised 12 technicians across 3 shifts with zero lost-time injuries' },
+        { role: 'Production Engineer', org: 'Shakti Engineering Works', city: 'Ahmedabad, India', start: '2019-06', end: '2021-07', bullets: 'Raised line output by 15% through layout changes and 5S\nPrepared daily production and quality reports for management' }
+      ],
+      education: [{ degree: 'B.E. Mechanical Engineering', school: 'Riverbank Institute of Technology', city: 'Surat', start: '2015-07', end: '2019-05', grade: 'CGPA 7.6 / 10' }],
+      skills: 'Maintenance: Preventive maintenance, TPM, Root-cause analysis, Hydraulics\nTools: AutoCAD, SAP PM, MS Excel\nSafety: Permit to work, LOTO, Risk assessment',
+      certifications: [{ name: 'Six Sigma Yellow Belt', year: '2022' }, { name: 'Industrial Safety Officer course', year: '2023' }],
+      languages: [{ name: 'Gujarati', level: 'Native' }, { name: 'Hindi', level: 'C2' }, { name: 'English', level: 'C1' }],
+      interests: 'Cricket, Travel'
+    }
+  },
+  nurse: {
+    label: 'Nurse (UK job)', desc: 'ICU nurse applying to hospitals in the UK',
+    cv: {
+      name: 'Sample – Nurse', style: 'uk',
+      design: { template: 'classic', color: '#2563EB', font: 'sans', size: 'm', headingLang: 'en' },
+      personal: { fullName: 'Anjali Nair', title: 'Registered Nurse – Critical Care', email: 'anjali.nair@example.com', phone: '+91 94470 55678', city: 'Kochi', country: 'India', linkedin: 'linkedin.com/in/anjali-nair-example' },
+      summary: 'Compassionate registered nurse with 5 years of ICU experience in a 400-bed hospital. Skilled in ventilator care, patient monitoring and clear communication with families. OET grade B in all skills, seeking a staff nurse role in a UK hospital.',
+      experience: [
+        { role: 'Staff Nurse – Medical ICU', org: 'Lakeshore Multispeciality Hospital', city: 'Kochi', start: '2021-03', current: true, bullets: 'Care for 2–3 critically ill patients per shift, including ventilated patients\nIntroduced a daily line-care checklist that cut central-line infections on the unit by 30%\nTrained 10 new nurses on infection control and safe handover' },
+        { role: 'Staff Nurse – General Ward', org: 'Seaview Hospital', city: 'Thrissur', start: '2019-06', end: '2021-02', bullets: 'Managed care for up to 8 patients per shift\nGave patients and families clear guidance on medicines and discharge' }
+      ],
+      education: [{ degree: 'B.Sc. Nursing', school: 'Malabar College of Nursing', city: 'Kochi', start: '2015-08', end: '2019-05', grade: 'First class' }],
+      skills: 'Clinical: Ventilator care, IV therapy, Patient monitoring, BLS & ACLS\nOther: Electronic health records, Infection control, Patient education',
+      certifications: [{ name: 'OET – Grade B in all skills', year: '2025' }, { name: 'BLS & ACLS', year: '2024' }],
+      volunteering: [{ role: 'Volunteer Nurse', org: 'Rural Health Camps', city: 'Kerala', start: '2022-01', current: true, bullets: 'Screen 300+ villagers a year for diabetes and blood pressure at monthly camps' }],
+      languages: [{ name: 'Malayalam', level: 'Native' }, { name: 'English', level: 'C1' }, { name: 'Hindi', level: 'B2' }],
+      interests: 'Running, Cooking'
+    }
+  },
+  accountant: {
+    label: 'Accountant', desc: 'CA Intermediate with GST, TDS and audit experience',
+    cv: {
+      name: 'Sample – Accountant', style: 'india',
+      design: { template: 'timeline', color: '#15803D', font: 'serif', size: 'm', headingLang: 'en' },
+      personal: { fullName: 'Meera Joshi', title: 'Accountant | CA Intermediate', email: 'meera.joshi@example.com', phone: '+91 99099 87654', city: 'Surat', country: 'India', linkedin: 'linkedin.com/in/meera-joshi-example', dob: '1999-10-05', gender: 'Female', nationality: 'Indian', marital: 'Single', father: 'Suresh Joshi' },
+      summary: 'Accountant with 3 years of experience in bookkeeping, GST returns and audit support for small and mid-sized businesses. Cleared CA Intermediate (both groups). Known for accurate, on-time work and clear reporting.',
+      experience: [
+        { role: 'Accountant', org: 'Patel & Shah Associates, Chartered Accountants', city: 'Surat', start: '2023-01', current: true, bullets: 'Maintain books for 25 clients in Tally Prime and Zoho Books\nFile monthly GSTR-1 and GSTR-3B returns with zero late fees\nPrepare TDS returns and support statutory audits for 6 companies' },
+        { role: 'Articled Assistant', org: 'Mehta & Co.', city: 'Surat', start: '2021-01', end: '2022-12', bullets: 'Vouched 2,000+ transactions during audits\nReconciled bank statements and cleared 150 old pending entries' }
+      ],
+      education: [
+        { degree: 'CA Intermediate (both groups)', school: 'ICAI', city: '', end: '2022-11' },
+        { degree: 'B.Com', school: 'Tapi College of Commerce', city: 'Surat', start: '2018-06', end: '2021-04', grade: '72%' }
+      ],
+      skills: 'Accounting: Bookkeeping, GST, TDS, Bank reconciliation, Audit support\nSoftware: Tally Prime, Zoho Books, Advanced Excel',
+      certifications: [{ name: 'GST Practitioner course', year: '2023' }],
+      languages: [{ name: 'Gujarati', level: 'Native' }, { name: 'Hindi', level: 'C2' }, { name: 'English', level: 'C1' }],
+      interests: 'Reading, Yoga',
+      declaration: { place: 'Surat' }
+    }
+  },
+  sales: {
+    label: 'Sales Executive (USA)', desc: 'B2B sales with strong numbers, US résumé style',
+    cv: {
+      name: 'Sample – Sales', style: 'usa',
+      design: { template: 'sidebar', color: '#B45309', font: 'modern', size: 'm', headingLang: 'en' },
+      personal: { fullName: 'Vikram Singh', title: 'B2B Sales Executive', email: 'vikram.singh@example.com', phone: '+1 312 555 0147', city: 'Chicago, IL', country: 'USA', linkedin: 'linkedin.com/in/vikram-singh-example' },
+      summary: 'B2B sales executive with 5 years of experience selling industrial supplies to manufacturers. Above target every year, with a strong pipeline built through cold outreach and referrals. Skilled in Salesforce and solution selling.',
+      experience: [
+        { role: 'Sales Executive', org: 'Midwest Industrial Supply', city: 'Chicago, IL', start: '2022-05', current: true, bullets: 'Closed $1.4M in new business in 2025 — 118% of target\nBuilt a pipeline of 60+ accounts through cold calls, LinkedIn and trade shows\nCut quote turnaround from 3 days to 1 by creating standard price templates' },
+        { role: 'Inside Sales Associate', org: 'Prairie Tools Co.', city: 'Naperville, IL', start: '2020-08', end: '2022-04', bullets: 'Qualified 50+ inbound leads per week for the field sales team\nRanked #2 of 14 associates for lead conversion in 2021' }
+      ],
+      education: [{ degree: 'BBA, Marketing', school: 'Lakeside State University', city: 'Illinois', start: '2016-08', end: '2020-05' }],
+      skills: 'Sales: B2B sales, Solution selling, Negotiation, Account management\nTools: Salesforce, HubSpot, Excel',
+      achievements: [{ title: "President's Club", org: 'Midwest Industrial Supply', year: '2025', desc: 'Top 10% of the national sales team' }],
+      languages: [{ name: 'English', level: 'C2' }, { name: 'Hindi', level: 'Native' }, { name: 'Spanish', level: 'A2' }],
+      interests: ''
+    }
+  }
+});
+const SAMPLE_ORDER = ['fresher', 'mba', 'pro', 'engineer', 'nurse', 'accountant', 'sales', 'academic'];
+const SAMPLE_COLORS = { fresher: '#4F46E5', mba: '#B91C1C', pro: '#0F766E', engineer: '#0E7490', nurse: '#2563EB', accountant: '#15803D', sales: '#B45309', academic: '#7C3AED' };
+const SAMPLE_ICONS = { fresher: 'cap', mba: 'bolt', pro: 'briefcase', engineer: 'cert', nurse: 'heart', accountant: 'list', sales: 'target', academic: 'book' };
+
+/* ---------- application tracker ---------- */
+const JOB_STATUS = {
+  todo:      { name: 'To apply',     color: '#64748B' },
+  applied:   { name: 'Applied',      color: '#2563EB' },
+  interview: { name: 'Interview',    color: '#D97706' },
+  offer:     { name: 'Offer',        color: '#16A34A' },
+  rejected:  { name: 'Not selected', color: '#E11D48' }
+};
+
+/* ---------- interview prep ---------- */
+const INTERVIEW_GENERAL = [
+  ['Tell me about yourself.', 'Keep it to 60–90 seconds: what you do now, what you did before, and why this job is the next step.'],
+  ['Why do you want to work here?', 'Mention something specific about the company (a product, value or news) and link it to your skills.'],
+  ['What are your strengths?', 'Pick 2–3 strengths that fit the job and give a short example for each.'],
+  ['What is your biggest weakness?', 'Choose a real but non-critical weakness and explain what you are doing to improve it.'],
+  ['Tell me about a challenge you faced and how you handled it.', 'Use STAR: Situation, Task, Action, Result. Spend most of the time on your Action and the Result.'],
+  ['Where do you see yourself in five years?', 'Show ambition that fits the company: growing skills, taking more responsibility.'],
+  ['Why should we hire you?', 'Match three of your strengths to the three most important needs in the job advert.'],
+  ['Do you have any questions for us?', 'Always ask 1–2: what success looks like in the first 3 months, the team, and the next steps.']
+];
+const INTERVIEW_FIELD = {
+  'Supply Chain & Logistics': [
+    ['How would you reduce stock-outs without increasing inventory?', 'Talk about better forecasting, safety stock for key items, ABC analysis and faster supplier lead times.'],
+    ['Explain safety stock and reorder point.', 'Reorder point = demand during lead time + safety stock. Give a simple number example.'],
+    ['Tell me about a time you improved a process using data.', 'Use STAR and give the before/after numbers.'],
+    ['How do you handle a supplier who keeps missing delivery dates?', 'Find the root cause, agree a recovery plan, track it, and line up a backup supplier.']],
+  'Procurement & Purchasing': [
+    ['How do you evaluate and select a new supplier?', 'Quality, cost, delivery, capacity, finances and risk — ideally with a weighted scorecard.'],
+    ['Describe a negotiation where you saved cost.', 'Use STAR: your preparation, your options (BATNA) and the saving in numbers.'],
+    ['How do you manage supply risk for a critical item?', 'Dual sourcing, safety stock, contracts and regular supplier reviews.'],
+    ['What is the difference between price and total cost of ownership?', 'TCO adds freight, duties, quality costs, storage and downtime to the purchase price.']],
+  'Warehouse & Operations': [
+    ['How would you improve picking accuracy?', 'Slotting fast movers, clear labelling, scanning, training and checking error data.'],
+    ['How do you keep a team safe and motivated during peak season?', 'Clear plans, breaks, safety briefings, recognition and fair shift rotation.'],
+    ['Which KPIs do you track in a warehouse?', 'Order accuracy, on-time dispatch, picks per hour, stock accuracy, safety incidents.'],
+    ['Tell me about a time you solved a stock discrepancy.', 'Use STAR: how you found the cause and what you changed to stop it happening again.']],
+  'Sales & Marketing': [
+    ['Sell me this pen.', 'Ask questions first to find the need, then link the pen to that need and ask for the sale.'],
+    ['How do you handle a customer who says your price is too high?', 'Acknowledge it, ask what they compare with, then explain value and total cost.'],
+    ['Tell me about a target you exceeded.', 'Give the target, your result in numbers and the 2–3 actions that made the difference.'],
+    ['How do you find new leads?', 'Mention referrals, LinkedIn, events, cold calls and how you track your pipeline.']],
+  'Accounts & Finance': [
+    ['Explain GST input tax credit in simple words.', 'Tax paid on purchases can be set off against tax collected on sales, if the rules are met.'],
+    ['How do you do a bank reconciliation?', 'Match the bank statement with the books, list differences (cheques, charges, timing) and fix errors.'],
+    ['Tell me about an error you found and how you fixed it.', 'Use STAR and show how you prevented it from happening again.'],
+    ['How do you make sure month-end closing is on time?', 'A checklist, early reconciliations, clear deadlines with other teams.']],
+  'Teaching & Training': [
+    ['How do you keep students engaged?', 'Activities, real examples, questions, games or simulations — give one example from your class.'],
+    ['How do you support a student who is struggling?', 'Find the cause, give extra practice or one-to-one time, and track progress.'],
+    ['Describe a lesson you designed that worked well.', 'Explain the goal, the activity and how you knew students had learned.'],
+    ['How do you use technology in teaching?', 'Name the tools you use and what they improve, such as quizzes or online resources.']],
+  'IT & Software': [
+    ['Tell me about a project you are proud of.', 'Explain the problem, your part, the technology and the result.'],
+    ['How do you debug a problem you have never seen before?', 'Reproduce it, read logs, narrow it down step by step, test the fix.'],
+    ['How do you keep your skills up to date?', 'Courses, side projects, documentation, communities.'],
+    ['Explain a technical idea to a non-technical person.', 'Use a simple everyday comparison and avoid jargon.']],
+  'Customer Service': [
+    ['Tell me about a time you calmed an angry customer.', 'Listen, apologise, solve, follow up — and share the result.'],
+    ['How do you handle many queries at once?', 'Prioritise by urgency, set expectations, use templates and keep notes.'],
+    ['What does good customer service mean to you?', 'Fast, friendly, accurate and owning the problem until it is solved.'],
+    ['How do you deal with a request you cannot fulfil?', 'Explain why politely and offer the best alternative.']],
+  'HR & Administration': [
+    ['How do you screen candidates quickly and fairly?', 'Clear criteria, a structured shortlist and the same questions for everyone.'],
+    ['How would you handle a conflict between two employees?', 'Listen to both sides privately, focus on facts, agree actions and follow up.'],
+    ['How do you keep employee data confidential?', 'Access controls, secure storage and sharing only on a need-to-know basis.'],
+    ['Tell me about a process you improved.', 'Use STAR with before/after numbers, e.g. time to hire.']],
+  'Fresher / Internship': [
+    ['Tell me about your final-year project.', 'The problem, your role, the method and what you learned — in 2 minutes.'],
+    ['What did you learn in your internship?', 'Give 2–3 concrete skills and one result you contributed to.'],
+    ['Why should we hire a fresher?', 'Eagerness to learn, current knowledge, energy — plus proof from projects or activities.'],
+    ['How do you work in a team?', 'Give an example from a college project or event and your specific role.']]
+};
+
 /* ================= Rendering: CV, cover letter, plain text, checks ================= */
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const nl2br = s => esc(s).replace(/\n/g, '<br>');
 const lines = s => String(s || '').split(/\r?\n/).map(l => l.replace(/^\s*[-•*–·▪●]\s*/, '').trim()).filter(Boolean);
 const has = s => String(s == null ? '' : s).trim().length > 0;
 const DEFAULT_DECL = 'I hereby declare that the information given above is true to the best of my knowledge and belief.';
-const ENTRY_KEYS = ['experience', 'education', 'projects', 'certifications'];
+const ENTRY_KEYS = ['experience', 'education', 'projects', 'certifications', 'achievements', 'responsibilities', 'volunteering'];
 const MM = 96 / 25.4; // px per mm
 
 Object.assign(LABELS.en, { email: 'Email', phone: 'Phone', location: 'Location', website: 'Website', linkedin: 'LinkedIn' });
 Object.assign(LABELS.de, { email: 'E-Mail', phone: 'Telefon', location: 'Wohnort', website: 'Webseite', linkedin: 'LinkedIn' });
 
 const langOf = cv => (cv.style === 'euro' && cv.design.headingLang === 'de') ? 'de' : 'en';
-const paperOf = cv => cv.style === 'canada'
+const paperOf = cv => (STYLES[cv.style] || {}).paper === 'Letter'
   ? { name: 'Letter', w: 215.9, h: 279.4, css: 'letter' }
   : { name: 'A4', w: 210, h: 297, css: 'A4' };
 
@@ -991,6 +1403,7 @@ function levelLabel(code, cv) {
 }
 function sectionTitle(key, cv) {
   const L = LABELS[langOf(cv)];
+  if (key.startsWith('custom:')) { const c = (cv.custom || []).find(x => 'custom:' + x.id === key); return c ? (c.title || 'My section') : ''; }
   return key === 'summary' ? L['summary_' + cv.style] : L[key];
 }
 
@@ -1046,6 +1459,9 @@ function personalItems(cv) {
   if (F.nationality && has(p.nationality)) out.push([L.nationality, p.nationality]);
   if (F.marital && has(p.marital)) out.push([L.marital, p.marital]);
   if (F.father && has(p.father)) out.push([L.father, p.father]);
+  if (F.visa && has(p.visa)) out.push([L.visa, p.visa]);
+  if (F.passport && has(p.passport)) out.push([L.passport, p.passport]);
+  if (F.licence && has(p.licence)) out.push([L.licence, p.licence]);
   return out;
 }
 const personalDL = items => `<dl class="cv-personal">${items.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>`;
@@ -1099,12 +1515,24 @@ function secContent(key, cv, tpl, aside) {
     case 'certifications': return (cv.certifications || []).filter(e => has(e.name)).map(e => entryHTML(tpl, {
       title: e.name, org: e.issuer, place: '', date: e.year || '', body: ''
     })).join('');
+    case 'achievements': return (cv.achievements || []).filter(e => has(e.title)).map(e => entryHTML(tpl, {
+      title: e.title, org: e.org, place: '', date: e.year || '', body: has(e.desc) ? `<p>${nl2br(e.desc.trim())}</p>` : ''
+    })).join('');
+    case 'responsibilities': case 'volunteering': return (cv[key] || []).filter(e => has(e.role) || has(e.org)).map(e => entryHTML(tpl, {
+      title: e.role, org: e.org, place: e.city, date: fmtRange(e.start, e.end, e.current, cv), body: bulletsHTML(e.bullets)
+    })).join('');
     case 'publications': { const ls = lines(cv.publications); return ls.length ? `<ul class="cv-pubs">${ls.map(l => `<li>${esc(l)}</li>`).join('')}</ul>` : ''; }
     case 'skills': return skillsHTML(cv, aside);
     case 'languages': return langsHTML(cv, aside);
     case 'interests': return has(cv.interests) ? `<p class="cv-inline">${nl2br(cv.interests.trim())}</p>` : '';
     case 'references':
       return has(cv.references) ? `<p>${nl2br(cv.references.trim())}</p>` : '';
+  }
+  if (key.startsWith('custom:')) {
+    const c = (cv.custom || []).find(x => 'custom:' + x.id === key);
+    if (!c || !has(c.body)) return '';
+    const ls = lines(c.body);
+    return ls.length > 1 ? `<ul class="cv-bullets">${ls.map(l => `<li>${esc(l)}</li>`).join('')}</ul>` : `<p>${esc(ls[0])}</p>`;
   }
   return '';
 }
@@ -1115,12 +1543,14 @@ function declHTML(cv) {
   const L = LABELS.en;
   return `<section class="cv-section cv-decl" data-sec="declaration"><h2 class="cv-h">${L.declaration}</h2><p>${esc(d.text.trim())}</p>
     <div class="cv-sign"><div>${L.date}: ${d.date ? esc(fmtDay(d.date, cv)) : ''}<br>${L.place}: ${esc(d.place || '')}</div>
-    <div class="sig">&nbsp;<b>(${esc(cv.personal.fullName || '')})</b></div></div></section>`;
+    <div class="sig">${sigHTML(cv)}<b>(${esc(cv.personal.fullName || '')})</b></div></div></section>`;
 }
 
+const sigHTML = cv => /^data:image\//.test(cv.signature || '') ? `<img class="cv-signature" alt="" src="${cv.signature}">` : '&nbsp;';
+const accentOf = cv => cv.design.bw ? '#1F2328' : safeHex(cv.design.color);
 function styleVars(cv) {
-  const d = cv.design, color = safeHex(d.color);
-  return `--accent:${color};--tint:${tint(color)};--font:${(FONTS[d.font] || FONTS.sans).css}`;
+  const d = cv.design, color = accentOf(cv);
+  return `--accent:${color};--tint:${d.bw ? '#F1F2F4' : tint(color)};--font:${(FONTS[d.font] || FONTS.sans).css}`;
 }
 function nameHTML(cv) {
   const p = cv.personal;
@@ -1135,7 +1565,7 @@ function renderCV(cv) {
   const hidden = cv.hidden || {};
   const order = (cv.order || SECTION_KEYS).filter(k => !hidden[k]);
   const pItems = personalItems(cv);
-  const cls = ['cv', 't-' + tpl, 'size-' + (d.size || 'm'), photo ? 'has-photo' : 'no-photo', qr ? 'has-qr' : '', 'st-' + cv.style].join(' ');
+  const cls = ['cv', 't-' + tpl, 'size-' + (d.size || 'm'), photo ? 'has-photo' : 'no-photo', qr ? 'has-qr' : '', 'st-' + cv.style, d.bw ? 'bw' : ''].join(' ');
 
   const section = (k, aside) => {
     const inner = secContent(k, cv, tpl, aside);
@@ -1170,7 +1600,7 @@ function renderCV(cv) {
 
   const body = order.map(k => section(k, false)).join('');
   let personal = '';
-  if (cv.style === 'india' && pItems.length && !hidden.personal) {
+  if (cv.style !== 'euro' && pItems.length && !hidden.personal) {
     const dl = personalDL(pItems);
     personal = `<section class="cv-section" data-sec="personal"><h2 class="cv-h">${L.personal}</h2>${tpl === 'timeline' ? `<div class="tl-pad">${dl}</div>` : dl}</section>`;
   }
@@ -1190,7 +1620,7 @@ function renderLetter(cv) {
   const d = cv.design, lt = cv.letter || {}, def = letterDefaults(cv);
   const side = d.template === 'sidebar';
   const tpl = side ? 'classic' : (TEMPLATES[d.template] ? d.template : 'classic');
-  const cls = ['cv', 'cv-letter', 't-' + tpl, side ? 'letter-side' : '', 'size-' + (d.size || 'm'), 'no-photo', 'st-' + cv.style].join(' ');
+  const cls = ['cv', 'cv-letter', 't-' + tpl, side ? 'letter-side' : '', 'size-' + (d.size || 'm'), 'no-photo', 'st-' + cv.style, d.bw ? 'bw' : ''].join(' ');
   const contact = contactItems(cv).map(([, v, k]) => `<span>${ico(k)}${v}</span>`);
   const contactHTML = contact.length ? `<div class="cv-contact">${contact.join('')}</div>` : '';
   const header = tpl === 'modern'
@@ -1208,7 +1638,7 @@ function renderLetter(cv) {
     ${to.length ? `<div class="letter-to">${to.map(esc).join('<br>')}</div>` : ''}
     ${has(lt.jobTitle) ? `<div class="letter-subject">${esc(def.subject(lt.jobTitle.trim()))}</div>` : ''}
     <div class="letter-body"><p>${esc(has(lt.greeting) ? lt.greeting : def.greeting((lt.recipient || '').trim()))}</p>${bodyHTML}
-    <p style="margin-top:6mm">${esc(has(lt.closing) ? lt.closing : def.closing)}</p><p style="margin-top:9mm"><b>${esc(cv.personal.fullName || '')}</b></p></div></div>`;
+    <p style="margin-top:6mm">${esc(has(lt.closing) ? lt.closing : def.closing)}</p><div class="letter-sign">${sigHTML(cv)}</div><p><b>${esc(cv.personal.fullName || '')}</b></p></div></div>`;
 }
 
 function draftLetter(cv) {
@@ -1233,12 +1663,14 @@ function draftLetter(cv) {
     ].join('\n\n');
   }
   const intro = `I am writing to apply for the ${job} position at ${company}. ` + (exp.length && years >= 1
-    ? `As a ${p.title || '[your profession]'} with ${years}+ years of experience, I am confident I can add value to your team from day one.`
+    ? `As a ${(p.title || '').split(/\s[|–—-]\s|\|/)[0].trim() || '[your profession]'} with ${years}+ years of experience, I am confident I can add value to your team from day one.`
     : `As a motivated ${p.title || '[your degree] graduate'}, I am eager to bring my skills and energy to your team.`);
   let middle;
   const e0 = exp[0];
   if (e0) {
-    const b = lines(e0.bullets)[0];
+    const verbStart = s => ALL_VERBS.has((s.split(/\s+/)[0] || '').toLowerCase().replace(/[^a-z]/g, ''));
+    const bl = lines(e0.bullets).filter(verbStart);
+    const b = bl.find(x => /\d/.test(x)) || bl[0];
     const lowerFirst = s => /^[A-Z][a-z]/.test(s) ? s.charAt(0).toLowerCase() + s.slice(1) : s;
     const did = b ? `I ${lowerFirst(b).replace(/\.$/, '')}.` : 'I [describe a key achievement].';
     middle = `${e0.current ? 'In my current role' : 'In my previous role'} as ${e0.role || '[role]'} at ${e0.org || '[company]'}, ${did} I have also built strong skills in ${skillText}, which match what this role needs.`;
@@ -1280,6 +1712,14 @@ function plainText(cv) {
       [e.grade, e.details].filter(has).forEach(x => body.push(`  ${x}`));
     });
     if (k === 'projects') cv.projects.filter(e => has(e.name)).forEach(e => { body.push(`${e.name}${has(e.link) ? ` (${shortUrl(e.link)})` : ''}`); if (has(e.desc)) body.push(`  ${e.desc.trim()}`); });
+    if (k === 'achievements') (cv.achievements || []).filter(e => has(e.title)).forEach(e => { body.push(`- ${[e.title, e.org].filter(has).join(', ')}${has(e.year) ? ` (${e.year})` : ''}`); if (has(e.desc)) body.push(`  ${e.desc.trim()}`); });
+    if (k === 'responsibilities' || k === 'volunteering') (cv[k] || []).filter(e => has(e.role) || has(e.org)).forEach(e => {
+      const r = fmtRange(e.start, e.end, e.current, cv);
+      body.push(`${[e.role, [e.org, e.city].filter(has).join(', ')].filter(has).join(' — ')}${r ? ` (${r})` : ''}`);
+      lines(e.bullets).forEach(b => body.push(`- ${b}`));
+      body.push('');
+    });
+    if (k.startsWith('custom:')) { const c = (cv.custom || []).find(x => 'custom:' + x.id === k); if (c) { const ls = lines(c.body); body = ls.length > 1 ? ls.map(l => `- ${l}`) : ls; } }
     if (k === 'certifications') cv.certifications.filter(e => has(e.name)).forEach(e => body.push(`- ${[e.name, e.issuer].filter(has).join(', ')}${has(e.year) ? ` (${e.year})` : ''}`));
     if (k === 'publications') lines(cv.publications).forEach(l => body.push(`- ${l}`));
     if (k === 'skills') body = lines(cv.skills);
@@ -1289,7 +1729,7 @@ function plainText(cv) {
     while (body.length && body[body.length - 1] === '') body.pop();
     if (body.length) { head(sectionTitle(k, cv)); out.push(...body); }
   });
-  if (cv.style === 'india' && pItems.length && !hidden.personal) { head(L.personal); pItems.forEach(([k, v]) => out.push(`${k}: ${v}`)); }
+  if (cv.style !== 'euro' && pItems.length && !hidden.personal) { head(L.personal); pItems.forEach(([k, v]) => out.push(`${k}: ${v}`)); }
   const d = cv.declaration || {};
   if (STYLE_FIELDS[cv.style].declaration && has(d.text)) { head(L.declaration); out.push(d.text.trim()); if (has(d.place)) out.push(`${L.place}: ${d.place}`); }
   return out.join('\n').replace(/\n{3,}/g, '\n\n').trim() + '\n';
@@ -1301,7 +1741,7 @@ function checkCV(cv, pages) {
   const add = (ok, w, good, tip) => items.push({ ok: ok === true, half: ok === 'half', w, text: ok === true ? good : tip });
   const exp = cv.experience.filter(e => has(e.role) || has(e.org));
   const allBullets = exp.flatMap(e => lines(e.bullets));
-  const allText = JSON.stringify([cv.summary, cv.experience, cv.education, cv.skills, cv.projects, cv.certifications, cv.letter && cv.letter.body]);
+  const allText = JSON.stringify([cv.summary, cv.experience, cv.education, cv.skills, cv.projects, cv.certifications, cv.achievements, cv.responsibilities, cv.volunteering, cv.custom, cv.letter && cv.letter.body]);
 
   add(has(p.fullName), 10, 'Your name is on the CV', 'Add your full name');
   add(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((p.email || '').trim()), 8, 'Email address looks right', has(p.email) ? 'Check your email address — it looks incomplete' : 'Add your email address');
@@ -1336,10 +1776,48 @@ function checkCV(cv, pages) {
   if (pages) add(pages <= 2, 5, pages === 1 ? 'Fits on one page' : 'Two pages — fine for experienced people', `Your CV is ${pages} pages — try to keep it to 1–2 pages`);
   if (cv.style === 'india') add(has(cv.declaration.text) && has(cv.declaration.place), 4, 'Declaration with place is filled in', 'Fill in the place for the declaration at the end');
   if (cv.style === 'euro') add(!!p.photo, 4, 'Professional photo added', 'European CVs (especially German) usually include a professional photo');
-  if (cv.style === 'canada') add(true, 4, 'Photo, age and marital status are left out automatically (Canadian norm)', '');
+  if (cv.style === 'canada' || cv.style === 'uk') add(true, 4, `Photo, age and marital status are left out automatically (${STYLES[cv.style].name} norm)`, '');
+  if (cv.style === 'usa') add(pages ? pages === 1 || years(cv) >= 10 : true, 4, 'Fits the US one-page norm', 'US résumés are usually one page — shorten bullet points or choose Small text');
+  if (cv.style === 'gulf') {
+    add(!!p.photo, 3, 'Professional photo added', 'Gulf CVs usually include a professional photo');
+    add(has(p.visa), 3, 'Visa status added', 'Add your visa status or notice period — Gulf employers look for it');
+  }
+  const weak = collectWeak(cv);
+  add(!weak.length, 5, 'No weak phrases found', `${weak.length} weak phrase${weak.length > 1 ? 's' : ''} found — see “Writing check” below`);
   const total = items.reduce((s, i) => s + i.w, 0);
   const got = items.reduce((s, i) => s + (i.ok ? i.w : i.half ? i.w / 2 : 0), 0);
   return { score: Math.round(got / total * 100), items };
+}
+
+function years(cv) {
+  let y = 0;
+  (cv.experience || []).forEach(e => { const s = parseInt(e.start), en = e.current ? new Date().getFullYear() : parseInt(e.end); if (s && en && en >= s) y += en - s; });
+  return y;
+}
+/* ---------- weak-phrase finder ---------- */
+function findWeak(text, isBullet) {
+  const out = [];
+  WEAK_PHRASES.forEach(w => { if (w.re.test(text)) out.push(w); });
+  if (isBullet && /^\s*i\s/i.test(text)) out.push(WEAK_START_I);
+  return out;
+}
+function weakInField(text, bullets) {
+  const seen = new Map();
+  (bullets ? lines(text) : [String(text || '')]).forEach(l => findWeak(l, bullets).forEach(w => seen.set(w.phrase, w)));
+  return [...seen.values()];
+}
+function collectWeak(cv) {
+  const out = [];
+  const push = (where, text, bullets) => weakInField(text, bullets).forEach(w => out.push({ where, phrase: w.phrase, tip: w.tip }));
+  push('Summary', cv.summary, false);
+  (cv.experience || []).forEach(e => push(`Work experience – ${e.role || e.org || 'job'}`, e.bullets, true));
+  (cv.responsibilities || []).forEach(e => push(`Positions of responsibility – ${e.role || e.org || 'entry'}`, e.bullets, true));
+  (cv.volunteering || []).forEach(e => push(`Volunteering – ${e.role || e.org || 'entry'}`, e.bullets, true));
+  (cv.projects || []).forEach(e => push(`Projects – ${e.name || 'project'}`, e.desc, false));
+  (cv.achievements || []).forEach(e => push(`Achievements – ${e.title || 'entry'}`, e.desc, false));
+  (cv.custom || []).forEach(c => push(c.title || 'My section', c.body, true));
+  if (cv.letter) push('Cover letter', cv.letter.body, false);
+  return out;
 }
 
 /* ---------- Job ad keyword checker ---------- */
@@ -1385,7 +1863,230 @@ function matchKeywords(cv, ad) {
   });
 }
 
-/* ================= App ================= */
+/* ================= Word (.docx) export — built in the browser, works offline ================= */
+const DOCX = (() => {
+  const MIME = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+  const NS_A = 'http://schemas.openxmlformats.org/drawingml/2006/main';
+  const NS_PIC = 'http://schemas.openxmlformats.org/drawingml/2006/picture';
+  const enc = new TextEncoder();
+  const CRC = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+  const crc32 = b => { let c = 0xFFFFFFFF; for (let i = 0; i < b.length; i++) c = CRC[(c ^ b[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; };
+
+  /* minimal ZIP writer (no compression) */
+  function zip(files) {
+    const parts = [], central = []; let offset = 0;
+    files.forEach(f => {
+      const name = enc.encode(f.name), data = typeof f.data === 'string' ? enc.encode(f.data) : f.data, crc = crc32(data);
+      const lh = new DataView(new ArrayBuffer(30));
+      lh.setUint32(0, 0x04034b50, true); lh.setUint16(4, 20, true); lh.setUint16(6, 0, true); lh.setUint16(8, 0, true);
+      lh.setUint16(10, 0, true); lh.setUint16(12, 0x21, true); lh.setUint32(14, crc, true);
+      lh.setUint32(18, data.length, true); lh.setUint32(22, data.length, true); lh.setUint16(26, name.length, true); lh.setUint16(28, 0, true);
+      parts.push(new Uint8Array(lh.buffer), name, data);
+      const ch = new DataView(new ArrayBuffer(46));
+      ch.setUint32(0, 0x02014b50, true); ch.setUint16(4, 20, true); ch.setUint16(6, 20, true); ch.setUint16(8, 0, true); ch.setUint16(10, 0, true);
+      ch.setUint16(12, 0, true); ch.setUint16(14, 0x21, true); ch.setUint32(16, crc, true); ch.setUint32(20, data.length, true); ch.setUint32(24, data.length, true);
+      ch.setUint16(28, name.length, true); ch.setUint16(30, 0, true); ch.setUint16(32, 0, true); ch.setUint16(34, 0, true); ch.setUint16(36, 0, true);
+      ch.setUint32(38, 0, true); ch.setUint32(42, offset, true);
+      central.push(new Uint8Array(ch.buffer), name);
+      offset += 30 + name.length + data.length;
+    });
+    const size = central.reduce((s, a) => s + a.length, 0);
+    const end = new DataView(new ArrayBuffer(22));
+    end.setUint32(0, 0x06054b50, true); end.setUint16(8, files.length, true); end.setUint16(10, files.length, true);
+    end.setUint32(12, size, true); end.setUint32(16, offset, true);
+    return new Blob([...parts, ...central, new Uint8Array(end.buffer)], { type: MIME });
+  }
+
+  /* XML helpers */
+  const X = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '');
+  const hx = c => String(c).replace('#', '').toUpperCase();
+  function run(text, o = {}) {
+    let pr = '';
+    if (o.b) pr += '<w:b/><w:bCs/>';
+    if (o.i) pr += '<w:i/><w:iCs/>';
+    if (o.caps) pr += '<w:caps/>';
+    if (o.color) pr += `<w:color w:val="${hx(o.color)}"/>`;
+    if (o.spacing) pr += `<w:spacing w:val="${o.spacing}"/>`;
+    if (o.sz) pr += `<w:sz w:val="${o.sz}"/><w:szCs w:val="${o.sz}"/>`;
+    const rpr = pr ? `<w:rPr>${pr}</w:rPr>` : '';
+    return String(text).split('\t').map((t, i) => `${i ? `<w:r>${rpr}<w:tab/></w:r>` : ''}${t ? `<w:r>${rpr}<w:t xml:space="preserve">${X(t)}</w:t></w:r>` : ''}`).join('');
+  }
+  function para(content, o = {}) {
+    let pr = '';
+    if (o.keepNext) pr += '<w:keepNext/>';
+    if (o.keepLines) pr += '<w:keepLines/>';
+    if (o.border) pr += `<w:pBdr><w:bottom w:val="single" w:sz="8" w:space="2" w:color="${hx(o.border)}"/></w:pBdr>`;
+    if (o.tabs) pr += `<w:tabs>${o.tabs.map(t => `<w:tab w:val="${t[0]}" w:pos="${t[1]}"/>`).join('')}</w:tabs>`;
+    pr += `<w:spacing w:before="${o.before || 0}" w:after="${o.after || 0}"/>`;
+    if (o.ind) pr += `<w:ind w:left="${o.ind[0]}" w:hanging="${o.ind[1] || 0}"/>`;
+    if (o.align) pr += `<w:jc w:val="${o.align}"/>`;
+    return `<w:p><w:pPr>${pr}</w:pPr>${content || ''}</w:p>`;
+  }
+  function imageRun(rid, id, wEmu, hEmu) {
+    return `<w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="${wEmu}" cy="${hEmu}"/><wp:docPr id="${id}" name="Picture ${id}"/><wp:cNvGraphicFramePr><a:graphicFrameLocks xmlns:a="${NS_A}" noChangeAspect="1"/></wp:cNvGraphicFramePr><a:graphic xmlns:a="${NS_A}"><a:graphicData uri="${NS_PIC}"><pic:pic xmlns:pic="${NS_PIC}"><pic:nvPicPr><pic:cNvPr id="${id}" name="image${id}.png"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="${rid}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${wEmu}" cy="${hEmu}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r>`;
+  }
+  function twoCols(left, right, wl, wr) {
+    const none = '<w:top w:val="nil"/><w:left w:val="nil"/><w:bottom w:val="nil"/><w:right w:val="nil"/><w:insideH w:val="nil"/><w:insideV w:val="nil"/>';
+    const cell = (w, x) => `<w:tc><w:tcPr><w:tcW w:w="${w}" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>${x}</w:tc>`;
+    return `<w:tbl><w:tblPr><w:tblW w:w="${wl + wr}" w:type="dxa"/><w:tblBorders>${none}</w:tblBorders><w:tblLayout w:type="fixed"/><w:tblCellMar><w:left w:w="0" w:type="dxa"/><w:right w:w="0" w:type="dxa"/></w:tblCellMar></w:tblPr><w:tblGrid><w:gridCol w:w="${wl}"/><w:gridCol w:w="${wr}"/></w:tblGrid><w:tr>${cell(wl, left)}${cell(wr, right)}</w:tr></w:tbl>`;
+  }
+
+  /* images */
+  const bytesOf = dataUrl => { const b = atob(dataUrl.split(',')[1]); const u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; };
+  const loadImg = src => new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
+  async function photoPNG(p, bw) {
+    try {
+      const img = await loadImg(p.photo), S = 400, c = document.createElement('canvas');
+      c.width = c.height = S; const g = c.getContext('2d');
+      g.beginPath();
+      const shape = p.photoShape || 'circle';
+      if (shape === 'circle') g.arc(S / 2, S / 2, S / 2, 0, Math.PI * 2);
+      else if (shape === 'rounded') { const r = S * 0.11; g.moveTo(r, 0); g.arcTo(S, 0, S, S, r); g.arcTo(S, S, 0, S, r); g.arcTo(0, S, 0, 0, r); g.arcTo(0, 0, S, 0, r); g.closePath(); }
+      else g.rect(0, 0, S, S);
+      g.clip();
+      const Xp = +p.photoX || 50, Yp = +p.photoY || 50, z = Math.max(1, +p.photoZoom || 1);
+      const cover = Math.max(S / img.width, S / img.height), w = img.width * cover, h = img.height * cover;
+      const offX = (S - w) * Xp / 100, offY = (S - h) * Yp / 100, ox = S * Xp / 100, oy = S * Yp / 100;
+      g.drawImage(img, ox + z * (offX - ox), oy + z * (offY - oy), w * z, h * z);
+      if (bw) {
+        const d = g.getImageData(0, 0, S, S), a = d.data;
+        for (let i = 0; i < a.length; i += 4) { const v = Math.round(a[i] * 0.3 + a[i + 1] * 0.59 + a[i + 2] * 0.11); a[i] = a[i + 1] = a[i + 2] = v; }
+        g.putImageData(d, 0, 0);
+      }
+      return bytesOf(c.toDataURL('image/png'));
+    } catch (e) { return null; }
+  }
+  async function signatureImg(cv) {
+    if (!/^data:image\/png/.test(cv.signature || '')) return null;
+    try { const img = await loadImg(cv.signature); return { bytes: bytesOf(cv.signature), w: img.width, h: img.height }; } catch (e) { return null; }
+  }
+
+  async function build(cv, kind) {
+    const d = cv.design, p = cv.personal, L = LABELS[langOf(cv)], paper = paperOf(cv);
+    const pg = paper.css === 'letter' ? { w: 12240, h: 15840 } : { w: 11906, h: 16838 };
+    const mar = 850, W = pg.w - 2 * mar;
+    const font = { sans: 'Arial', modern: 'Calibri', serif: 'Georgia', elegant: 'Palatino Linotype' }[d.font] || 'Arial';
+    const base = { s: 19, m: 21, l: 23 }[d.size] || 21;
+    const accent = accentOf(cv), grey = '4A5263';
+    const media = []; let nid = 0;
+    const addImg = bytes => { nid++; media.push({ name: `word/media/image${nid}.png`, rid: `rIdImg${nid}`, data: bytes }); return { rid: `rIdImg${nid}`, id: nid }; };
+    const EMU = 635; // EMU per twip
+    const out = [];
+
+    /* header */
+    const contact = [p.email, p.phone, [p.city, p.country].filter(has).join(', '), shortUrl(p.linkedin), shortUrl(p.website)].filter(has);
+    if (cv.style === 'euro' && !(cv.hidden || {}).personal && kind === 'cv') personalItems(cv).forEach(([k, v]) => contact.push(`${k}: ${v}`));
+    let head = para(run(has(p.fullName) ? p.fullName : 'Your Name', { b: true, sz: Math.round(base * 2.2), color: accent }), { after: 40 })
+      + (has(p.title) ? para(run(p.title, { sz: base + 4, color: grey }), { after: 60 }) : '')
+      + (contact.length ? para(run(contact.join('   |   '), { sz: base - 2, color: grey }), { after: 60 }) : '');
+    if (kind === 'cv' && STYLE_FIELDS[cv.style].photo && /^data:image\//.test(p.photo || '')) {
+      const png = await photoPNG(p, d.bw);
+      if (png) { const im = addImg(png), size = 1560; head = twoCols(head, para(imageRun(im.rid, im.id, size * EMU, size * EMU), { align: 'right' }), W - 1800, 1800); }
+    }
+    out.push(head, para('', { border: accent, after: 60 }));
+
+    const H = t => para(run(t, { b: true, caps: true, color: accent, spacing: 16 }), { before: 220, after: 90, border: accent, keepNext: true });
+    const entryHead = (title, date) => para(run(title, { b: true }) + (date ? run('\t' + date, { color: grey, sz: base - 1 }) : ''), { tabs: [['right', W]], keepNext: true, before: 80 });
+    const sub = (t, keep = true) => has(t) ? para(run(t, { i: true, color: grey, sz: base - 1 }), { keepNext: keep }) : '';
+    const bullet = t => para(run('•', { color: accent }) + run('\t' + t), { ind: [320, 320], tabs: [['left', 320]], after: 20 });
+    const text = t => para(run(t), { after: 40 });
+    const sig = await signatureImg(cv);
+    const sigRun = () => { if (!sig) return ''; const im = addImg(sig.bytes), h = 620, w = Math.min(3200, Math.round(h * sig.w / sig.h)); return imageRun(im.rid, im.id, w * EMU, Math.round(w * sig.h / sig.w) * EMU); };
+
+    if (kind === 'letter') {
+      const lt = cv.letter || {}, def = letterDefaults(cv);
+      out.push(para(run(fmtDay(lt.date || todayISO(), cv, true), { color: grey }), { before: 240, after: 200 }));
+      [lt.recipient, lt.recipientTitle, lt.company, ...lines(lt.address)].filter(has).forEach(t => out.push(para(run(t))));
+      if (has(lt.jobTitle)) out.push(para(run(def.subject(lt.jobTitle.trim()), { b: true }), { before: 240 }));
+      out.push(para(run(has(lt.greeting) ? lt.greeting : def.greeting((lt.recipient || '').trim())), { before: 240, after: 160 }));
+      String(lt.body || '').trim().split(/\n\s*\n|\n/).map(s => s.trim()).filter(Boolean).forEach(t => out.push(para(run(t), { after: 160 })));
+      out.push(para(run(has(lt.closing) ? lt.closing : def.closing), { before: 120, after: 60 }));
+      if (sig) out.push(para(sigRun()));
+      out.push(para(run(p.fullName || '', { b: true }), { before: sig ? 40 : 480 }));
+    } else {
+      const hidden = cv.hidden || {};
+      (cv.order || SECTION_KEYS).filter(k => !hidden[k]).forEach(k => {
+        const blocks = [];
+        const exp = arr => arr.filter(e => has(e.role) || has(e.org)).forEach(e => {
+          blocks.push(entryHead(has(e.role) ? e.role : e.org, fmtRange(e.start, e.end, e.current, cv)));
+          blocks.push(sub([has(e.role) ? e.org : '', e.city].filter(has).join(', ')));
+          lines(e.bullets).forEach(b => blocks.push(bullet(b)));
+        });
+        if (k === 'summary' && has(cv.summary)) lines(cv.summary).forEach(t => blocks.push(text(t)));
+        if (k === 'experience' || k === 'responsibilities' || k === 'volunteering') exp(cv[k] || []);
+        if (k === 'education') cv.education.filter(e => has(e.degree) || has(e.school)).forEach(e => {
+          blocks.push(entryHead(has(e.degree) ? e.degree : e.school, fmtRange(e.start, e.end, e.current, cv)));
+          blocks.push(sub([has(e.degree) ? e.school : '', e.city].filter(has).join(', '), has(e.grade) || has(e.details)));
+          blocks.push(sub([e.grade, e.details].filter(has).join(' · '), false));
+        });
+        if (k === 'projects') cv.projects.filter(e => has(e.name) || has(e.desc)).forEach(e => {
+          blocks.push(entryHead(e.name || '', '')); blocks.push(sub(shortUrl(e.link))); if (has(e.desc)) blocks.push(text(e.desc.trim()));
+        });
+        if (k === 'certifications') cv.certifications.filter(e => has(e.name)).forEach(e => { blocks.push(entryHead(e.name, e.year || '')); blocks.push(sub(e.issuer, false)); });
+        if (k === 'achievements') (cv.achievements || []).filter(e => has(e.title)).forEach(e => {
+          blocks.push(entryHead(e.title, e.year || '')); blocks.push(sub(e.org)); if (has(e.desc)) blocks.push(text(e.desc.trim()));
+        });
+        if (k === 'publications') lines(cv.publications).forEach(t => blocks.push(bullet(t)));
+        if (k === 'skills') {
+          const ls = lines(cv.skills), grouped = ls.some(l => /^[^,:]{2,40}:/.test(l));
+          if (grouped) ls.forEach(l => { const i = l.indexOf(':'); blocks.push(i > 1 && i < 41 ? para(run(l.slice(0, i) + ': ', { b: true }) + run(l.slice(i + 1).trim()), { after: 40 }) : text(l)); });
+          else if (ls.length) blocks.push(text(ls.flatMap(l => l.split(',')).map(s => s.trim()).filter(Boolean).join('  ·  ')));
+        }
+        if (k === 'languages') {
+          const ls = cv.languages.filter(l => has(l.name));
+          if (ls.length) blocks.push(para(ls.map((l, i) => (i ? run('     ') : '') + run(l.name, { b: true }) + run(' – ' + levelLabel(l.level, cv))).join(''), { after: 40 }));
+        }
+        if (k === 'interests' && has(cv.interests)) blocks.push(text(cv.interests.trim()));
+        if (k === 'references' && has(cv.references)) lines(cv.references).forEach(t => blocks.push(text(t)));
+        if (k.startsWith('custom:')) {
+          const c = (cv.custom || []).find(x => 'custom:' + x.id === k);
+          if (c) { const ls = lines(c.body); ls.forEach(t => blocks.push(ls.length > 1 ? bullet(t) : text(t))); }
+        }
+        const real = blocks.filter(Boolean);
+        if (real.length) out.push(H(sectionTitle(k, cv)), ...real);
+      });
+      const pItems = personalItems(cv);
+      if (cv.style !== 'euro' && pItems.length && !hidden.personal) {
+        out.push(H(L.personal));
+        pItems.forEach(([k, v]) => out.push(para(run(k + ':', { b: true }) + run('\t' + v), { tabs: [['left', 2300]], after: 20 })));
+      }
+      const dc = cv.declaration || {};
+      if (STYLE_FIELDS[cv.style].declaration && has(dc.text) && !hidden.declaration) {
+        out.push(H(L.declaration), text(dc.text.trim()));
+        out.push(para(run(`${L.date}: ${dc.date ? fmtDay(dc.date, cv) : ''}`), { before: 200, keepNext: true }));
+        if (sig) out.push(para(sigRun(), { align: 'right', keepNext: true }));
+        out.push(para(run(`${L.place}: ${dc.place || ''}`) + run(`\t(${p.fullName || ''})`, { b: true }), { tabs: [['right', W]] }));
+      }
+    }
+
+    const lang = ['usa', 'canada'].includes(cv.style) ? 'en-US' : langOf(cv) === 'de' ? 'de-DE' : 'en-GB';
+    const doc = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="${NS_A}" xmlns:pic="${NS_PIC}"><w:body>${out.join('')}<w:sectPr><w:pgSz w:w="${pg.w}" w:h="${pg.h}"/><w:pgMar w:top="${mar}" w:right="${mar}" w:bottom="${mar}" w:left="${mar}" w:header="400" w:footer="400" w:gutter="0"/></w:sectPr></w:body></w:document>`;
+    const styles = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="${font}" w:hAnsi="${font}" w:eastAsia="${font}" w:cs="${font}"/><w:color w:val="1D2230"/><w:sz w:val="${base}"/><w:szCs w:val="${base}"/><w:lang w:val="${lang}"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:after="0" w:line="264" w:lineRule="auto"/></w:pPr></w:pPrDefault></w:docDefaults><w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/><w:qFormat/></w:style></w:styles>`;
+    const types = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="png" ContentType="image/png"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/><Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/></Types>`;
+    const rels = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/></Relationships>`;
+    const docRels = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rIdStyles" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>${media.map(m => `<Relationship Id="${m.rid}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="${m.name.replace('word/', '')}"/>`).join('')}</Relationships>`;
+    const title = `${p.fullName || 'My'} – ${kind === 'letter' ? 'Cover letter' : 'CV'}`;
+    const core = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><dc:title>${X(title)}</dc:title><dc:creator>${X(p.fullName || '')}</dc:creator><dcterms:created xsi:type="dcterms:W3CDTF">${new Date().toISOString().replace(/\.\d+Z$/, 'Z')}</dcterms:created></cp:coreProperties>`;
+    return zip([
+      { name: '[Content_Types].xml', data: types },
+      { name: '_rels/.rels', data: rels },
+      { name: 'word/document.xml', data: doc },
+      { name: 'word/styles.xml', data: styles },
+      { name: 'word/_rels/document.xml.rels', data: docRels },
+      { name: 'docProps/core.xml', data: core },
+      ...media.map(m => ({ name: m.name, data: m.data }))
+    ]);
+  }
+  return { build, MIME };
+})();
+
+/* ================= App (part 1: model, storage, undo, Write tab) ================= */
 (function () {
   'use strict';
   const $ = (s, el = document) => el.querySelector(s);
@@ -1398,9 +2099,10 @@ function matchKeywords(cv, ad) {
   function defaults() {
     return {
       name: 'My CV', updated: Date.now(), style: 'india',
-      design: { template: 'classic', color: '#1F3A5F', font: 'sans', size: 'm', headingLang: 'en' },
-      personal: { fullName: '', title: '', email: '', phone: '', city: '', country: '', linkedin: '', website: '', dob: '', gender: '', nationality: '', marital: '', father: '', photo: '', photoZoom: 1, photoX: 50, photoY: 50, photoShape: 'circle' },
-      summary: '', experience: [], education: [], skills: '', projects: [], certifications: [], publications: '', languages: [], interests: '', references: '',
+      design: { template: 'classic', color: '#1F3A5F', font: 'sans', size: 'm', headingLang: 'en', bw: false },
+      personal: { fullName: '', title: '', email: '', phone: '', city: '', country: '', linkedin: '', website: '', dob: '', gender: '', nationality: '', marital: '', father: '', visa: '', passport: '', licence: '', photo: '', photoZoom: 1, photoX: 50, photoY: 50, photoShape: 'circle' },
+      summary: '', experience: [], education: [], skills: '', projects: [], achievements: [], responsibilities: [], volunteering: [], certifications: [], publications: '', languages: [], interests: '', references: '',
+      custom: [], signature: '',
       declaration: { text: DEFAULT_DECL, place: '', date: '' },
       qr: { show: false, link: 'linkedin', custom: '' },
       order: SECTION_KEYS.slice(), hidden: {},
@@ -1412,8 +2114,12 @@ function matchKeywords(cv, ad) {
     experience: { role: '', org: '', city: '', start: '', end: '', current: false, bullets: '' },
     education: { degree: '', school: '', city: '', start: '', end: '', current: false, grade: '', details: '' },
     projects: { name: '', link: '', desc: '' },
+    achievements: { title: '', org: '', year: '', desc: '' },
+    responsibilities: { role: '', org: '', city: '', start: '', end: '', current: false, bullets: '' },
+    volunteering: { role: '', org: '', city: '', start: '', end: '', current: false, bullets: '' },
     certifications: { name: '', issuer: '', year: '' },
-    languages: { name: '', level: 'B2' }
+    languages: { name: '', level: 'B2' },
+    custom: { title: '', body: '' }
   };
   function normalize(c, keepId) {
     const d = defaults(); c = (c && typeof c === 'object') ? c : {};
@@ -1423,38 +2129,62 @@ function matchKeywords(cv, ad) {
     Object.keys(ENTRY_DEF).forEach(k => {
       out[k] = (Array.isArray(c[k]) ? c[k] : []).filter(e => e && typeof e === 'object').map(e => Object.assign({}, ENTRY_DEF[k], e, { id: e.id || uid() }));
     });
-    ['summary', 'skills', 'publications', 'interests', 'references', 'jobAd', 'name'].forEach(k => { if (typeof out[k] !== 'string') out[k] = String(out[k] || ''); });
+    ['summary', 'skills', 'publications', 'interests', 'references', 'jobAd', 'name', 'signature'].forEach(k => { if (typeof out[k] !== 'string') out[k] = String(out[k] || ''); });
     if (!out.name.trim()) out.name = 'My CV';
     if (!STYLES[out.style]) out.style = 'india';
-    const ord = (Array.isArray(c.order) ? c.order : []).filter((k, i, a) => SECTION_KEYS.includes(k) && a.indexOf(k) === i);
-    SECTION_KEYS.forEach(k => { if (!ord.includes(k)) ord.push(k); });
+    const customKeys = out.custom.map(x => 'custom:' + x.id);
+    const ord = (Array.isArray(c.order) ? c.order : []).filter((k, i, a) => (SECTION_KEYS.includes(k) || customKeys.includes(k)) && a.indexOf(k) === i);
+    SECTION_KEYS.forEach((k, i) => {
+      if (ord.includes(k)) return;
+      let at = ord.length;
+      for (let j = i - 1; j >= 0; j--) { const pos = ord.indexOf(SECTION_KEYS[j]); if (pos >= 0) { at = pos + 1; break; } }
+      if (i === 0) at = 0;
+      ord.splice(at, 0, k);
+    });
+    customKeys.forEach(k => { if (!ord.includes(k)) ord.push(k); });
     out.order = ord;
     if (!TEMPLATES[out.design.template]) out.design.template = 'classic';
     if (!FONTS[out.design.font]) out.design.font = 'sans';
     if (!['s', 'm', 'l'].includes(out.design.size)) out.design.size = 'm';
     out.design.color = safeHex(out.design.color);
+    out.design.bw = !!out.design.bw;
     if (!/^data:image\//.test(out.personal.photo || '')) out.personal.photo = '';
+    if (!/^data:image\//.test(out.signature || '')) out.signature = '';
     out.id = keepId && c.id ? c.id : uid();
     return out;
   }
 
   /* ---------- storage ---------- */
-  const KEY = 'cvbuilder.v1';
-  let db = { activeId: null, order: [], cvs: {} };
+  const KEY = 'cvbuilder.v1', HKEY = 'cvbuilder.history.v1';
+  let db = { activeId: null, order: [], cvs: {}, jobs: [], prep: { answers: {}, field: '' } };
   try {
     const raw = localStorage.getItem(KEY);
-    if (raw) { const d = JSON.parse(raw); if (d && d.cvs) db = d; }
+    if (raw) { const d = JSON.parse(raw); if (d && d.cvs) db = Object.assign(db, d); }
   } catch (e) { /* storage blocked */ }
   Object.keys(db.cvs).forEach(id => { db.cvs[id] = normalize(Object.assign({}, db.cvs[id], { id }), true); });
   db.order = (Array.isArray(db.order) ? db.order : []).filter(id => db.cvs[id]);
   Object.keys(db.cvs).forEach(id => { if (!db.order.includes(id)) db.order.push(id); });
   if (!db.cvs[db.activeId]) db.activeId = db.order[0] || null;
+  if (!Array.isArray(db.jobs)) db.jobs = [];
+  if (!db.prep || typeof db.prep !== 'object') db.prep = { answers: {}, field: '' };
+  if (!db.prep.answers) db.prep.answers = {};
+
+  let history = {};
+  try { history = JSON.parse(localStorage.getItem(HKEY) || '{}') || {}; } catch (e) { history = {}; }
 
   let saveTimer = null;
   function save() { clearTimeout(saveTimer); setSave('saving'); saveTimer = setTimeout(saveNow, 350); }
   function saveNow() {
     try { localStorage.setItem(KEY, JSON.stringify(db)); setSave('ok'); }
     catch (e) { setSave('bad'); }
+  }
+  function saveHistory() {
+    try { localStorage.setItem(HKEY, JSON.stringify(history)); }
+    catch (e) {
+      // storage full: keep only the newest 3 restore points per CV
+      Object.keys(history).forEach(k => { history[k] = history[k].slice(-3); });
+      try { localStorage.setItem(HKEY, JSON.stringify(history)); } catch (e2) { /* give up quietly */ }
+    }
   }
   function setSave(s) {
     const el = $('#saveState'); if (!el) return;
@@ -1468,11 +2198,54 @@ function matchKeywords(cv, ad) {
   let tab = 'write', previewMode = 'cv', zoomFull = false, lastPages = 1, longest = '';
   let openSet = new Set(['personal']);
   let phraseField = null, phraseTarget = null, deferredPrompt = null;
+  let jobsView = 'tracker', jobFilter = 'all';
+
+  /* ---------- undo + restore points ---------- */
+  const undoStacks = {};
+  let lastStable = null, burstOpen = false, burstTimer = null;
+  function resetUndoBase() { clearTimeout(burstTimer); burstOpen = false; lastStable = cur() ? JSON.stringify(cur()) : null; updateUndoBtn(); }
+  function noteChange() {
+    const id = db.activeId;
+    if (!burstOpen) {
+      const st = undoStacks[id] = undoStacks[id] || [];
+      if (lastStable && lastStable !== st[st.length - 1]) { st.push(lastStable); if (st.length > 40) st.shift(); }
+      burstOpen = true; updateUndoBtn();
+    }
+    clearTimeout(burstTimer);
+    burstTimer = setTimeout(() => { burstOpen = false; if (cur()) { lastStable = JSON.stringify(cur()); autoVersion(); } }, 1200);
+  }
+  function updateUndoBtn() {
+    const b = $('#undoBtn'); if (!b) return;
+    const st = undoStacks[db.activeId];
+    b.disabled = !(st && st.length);
+  }
+  function undo() {
+    const st = undoStacks[db.activeId]; if (!st || !st.length) { toast('Nothing to undo.'); return; }
+    clearTimeout(burstTimer); burstOpen = false;
+    db.cvs[db.activeId] = normalize(JSON.parse(st.pop()), true);
+    lastStable = JSON.stringify(cur());
+    save(); renderPanel(); renderPreview(); updateUndoBtn(); toast('Undone.');
+  }
+  function stripPhoto(json) { const o = JSON.parse(json); if (o.personal) o.personal.photo = ''; return JSON.stringify(o); }
+  function addVersion(json, label) {
+    const id = db.activeId; if (!id || !json) return;
+    const list = history[id] = history[id] || [];
+    const data = stripPhoto(json);
+    if (list.length && list[list.length - 1].data === data) return;
+    list.push({ ts: Date.now(), label: label || 'Auto-saved', data });
+    if (list.length > 12) list.splice(0, list.length - 12);
+    saveHistory();
+  }
+  function autoVersion() {
+    const list = history[db.activeId] || [];
+    const last = list[list.length - 1];
+    if (!last || Date.now() - last.ts > 10 * 60 * 1000) addVersion(JSON.stringify(cur()), 'Auto-saved');
+  }
 
   function touch() {
     const c = cur(); if (!c) return;
     c.updated = Date.now();
-    save(); schedulePreview(); updateDots();
+    noteChange(); save(); schedulePreview(); updateDots();
   }
 
   /* ---------- small helpers ---------- */
@@ -1505,6 +2278,8 @@ function matchKeywords(cv, ad) {
     for (let i = 2; ; i++) if (!names.has(`${base} ${i}`)) return `${base} ${i}`;
   }
   const isEmpty = cv => !has(cv.personal.fullName) && !has(cv.summary) && !cv.experience.length && !cv.education.length;
+  const tile = (icon, color) => `<span class="sec-ico" style="--c:${color}">${uiIcon(icon)}</span>`;
+  const secIco = id => { const m = SEC_META[id] || SEC_META.custom; return tile(m[0], m[1]); };
 
   /* ---------- CV management ---------- */
   function addCV(data, open = true) {
@@ -1515,7 +2290,7 @@ function matchKeywords(cv, ad) {
   }
   function openCV(id) {
     db.activeId = id; openSet = new Set(['personal']); previewMode = 'cv';
-    showApp(); setTab('write'); save();
+    showApp(); setTab('write'); save(); resetUndoBase();
   }
   function showApp() {
     $('#welcome').hidden = true; $('#app').hidden = false;
@@ -1528,21 +2303,24 @@ function matchKeywords(cv, ad) {
       <h1>Make a professional CV in minutes</h1>
       <p class="lead">Write your details once and your CV builds itself. Free, works offline, and nothing you type leaves your device.</p>
       ${privacyHTML()}
-      <button class="btn primary block" data-act="cv-new" style="padding:14px;font-size:16px">Start with a blank CV</button>
-      <h3 style="margin:22px 0 8px">Or start from a sample</h3>
+      <button class="btn primary block big-start" data-act="cv-new">${uiIcon('write')} Start with a blank CV</button>
+      <h3 class="w-h">Or start from a sample</h3>
       ${samplesHTML()}
       <p class="hint" style="text-align:center;margin-top:18px">Already have a backup file? <label class="btn ghost small">Open backup file<input type="file" id="importInput" accept=".json,application/json" hidden></label></p>
     </div>`;
   }
-  const samplesHTML = () => Object.entries(SAMPLES).map(([k, s]) =>
-    `<button class="sample-card" data-act="sample-load" data-v="${k}"><b>${esc(s.label)}</b><small>${esc(s.desc)} · ${STYLES[s.cv.style].flag} ${STYLES[s.cv.style].name} style</small></button>`).join('');
-  const privacyHTML = () => `<div class="privacy"><span aria-hidden="true">🔒</span><div><b>Private by design</b>Nothing you type leaves this device. No sign-up, no upload, no tracking.</div></div>`;
+  const samplesHTML = () => `<div class="sample-grid">${SAMPLE_ORDER.map(k => {
+    const s = SAMPLES[k];
+    return `<button class="sample-card" data-act="sample-load" data-v="${k}"><span class="s-ico" style="--c:${SAMPLE_COLORS[k]}">${uiIcon(SAMPLE_ICONS[k])}</span><span class="s-txt"><b>${esc(s.label)}</b><small>${esc(s.desc)}</small><em>${STYLES[s.cv.style].flag} ${STYLES[s.cv.style].name} style</em></span></button>`;
+  }).join('')}</div>`;
+  const privacyHTML = () => `<div class="privacy">${uiIcon('lock')}<div><b>Private by design</b>Nothing you type leaves this device. No sign-up, no upload, no tracking.</div></div>`;
 
   /* ---------- tabs ---------- */
   function setTab(t) {
     tab = t;
     $$('.tab').forEach(b => b.classList.toggle('active', b.dataset.tab === t));
-    ['write', 'design', 'download'].forEach(k => { $('#panel-' + k).hidden = k !== t; });
+    ['write', 'design', 'download', 'jobs'].forEach(k => { $('#panel-' + k).hidden = k !== t; });
+    document.body.dataset.tab = t;
     renderPanel();
     renderPreview();
     $('#editor').scrollTop = 0; window.scrollTo(0, 0);
@@ -1553,6 +2331,8 @@ function matchKeywords(cv, ad) {
     if (tab === 'write') renderWrite();
     if (tab === 'design') renderDesign();
     if (tab === 'download') renderDownload();
+    if (tab === 'jobs') renderJobs();
+    updateUndoBtn();
   }
   function rerenderKeepScroll(fn) {
     const ed = $('#editor'), st = ed.scrollTop, wy = window.scrollY;
@@ -1567,7 +2347,13 @@ function matchKeywords(cv, ad) {
     if (type === 'textarea') input = `<textarea data-k="${path}" rows="${o.rows || 4}" placeholder="${esc(o.ph || '')}">${esc(v)}</textarea>`;
     else if (type === 'select') input = `<select data-k="${path}">${o.options.map(([ov, ol]) => `<option value="${esc(ov)}" ${String(ov) === String(v) ? 'selected' : ''}>${esc(ol)}</option>`).join('')}</select>`;
     else input = `<input type="${type}" data-k="${path}" value="${esc(v)}" placeholder="${esc(o.ph || '')}" ${o.attrs || ''}>`;
-    return `<label class="field ${o.dim ? 'dim' : ''}"><span>${esc(label)} ${o.tag || ''}</span>${input}${o.hint ? `<p class="hint">${o.hint}</p>` : ''}</label>`;
+    const weak = o.weak ? `<div class="weak" data-weak="${path}" data-bul="${o.weak === 'bullets' ? 1 : 0}">${weakHint(v, o.weak === 'bullets')}</div>` : '';
+    return `<label class="field ${o.dim ? 'dim' : ''}"><span>${esc(label)} ${o.tag || ''}</span>${input}${weak}${o.hint ? `<p class="hint">${o.hint}</p>` : ''}</label>`;
+  }
+  function weakHint(text, bullets) {
+    const w = weakInField(text, bullets);
+    if (!w.length) return '';
+    return w.slice(0, 3).map(x => `<span><b>“${esc(x.phrase)}”</b> → ${esc(x.tip)}</span>`).join('');
   }
   function datePick(path, value, disabled) {
     const [y, m] = String(value || '').split('-');
@@ -1579,11 +2365,12 @@ function matchKeywords(cv, ad) {
   }
   function datesBlock(P, e, list) {
     return `<div class="dates"><div class="field"><span>Start</span>${datePick(P + '.start', e.start)}</div><div class="field"><span>End</span>${datePick(P + '.end', e.end, e.current)}</div></div>
-      <label class="check"><input type="checkbox" data-k="${P}.current" ${e.current ? 'checked' : ''}> I ${list === 'education' ? 'study' : 'work'} here now</label>`;
+      <label class="check"><input type="checkbox" data-k="${P}.current" ${e.current ? 'checked' : ''}> ${list === 'education' ? 'I study here now' : list === 'experience' ? 'I work here now' : 'I still do this'}</label>`;
   }
+  const NEW_TITLE = { experience: 'New job', education: 'New education', projects: 'New project', certifications: 'New certificate', achievements: 'New achievement', responsibilities: 'New position', volunteering: 'New volunteering', custom: 'New section' };
   function entryTitle(list, e) {
-    const t = { experience: e.role || e.org, education: e.degree || e.school, projects: e.name, certifications: e.name }[list];
-    return has(t) ? t : { experience: 'New job', education: 'New education', projects: 'New project', certifications: 'New certificate' }[list];
+    const t = { experience: e.role || e.org, education: e.degree || e.school, projects: e.name, certifications: e.name, achievements: e.title, responsibilities: e.role || e.org, volunteering: e.role || e.org, custom: e.title }[list];
+    return has(t) ? t : NEW_TITLE[list];
   }
   function entryCard(list, e, i, n) {
     const P = `${list}.${e.id}`;
@@ -1592,19 +2379,32 @@ function matchKeywords(cv, ad) {
       <button class="icon-btn" data-act="move" data-list="${list}" data-id="${e.id}" data-dir="1" ${i === n - 1 ? 'disabled' : ''} title="Move down" aria-label="Move down">↓</button>
       <button class="icon-btn" data-act="del" data-list="${list}" data-id="${e.id}" title="Remove" aria-label="Remove">✕</button></div>`;
     let body = '';
+    const bulletsField = (label, ph) => `${fld(label, P + '.bullets', e.bullets, { type: 'textarea', rows: 4, ph, weak: 'bullets' })}<button class="btn small soft" data-act="phrases" data-target="${P}.bullets">${uiIcon('sparkle')} Phrase ideas</button>`;
     if (list === 'experience') body = `${fld('Job title', P + '.role', e.role, { ph: 'e.g. Inventory Intern' })}
       <div class="row">${fld('Company / organisation', P + '.org', e.org)}${fld('City', P + '.city', e.city)}</div>
       ${datesBlock(P, e, list)}
-      ${fld('What you did — one point per line', P + '.bullets', e.bullets, { type: 'textarea', rows: 5, ph: 'Reduced stock errors by 30% by…\nTrained 5 new staff on…' })}
-      <button class="btn small" data-act="phrases" data-target="${P}.bullets">💡 Phrase ideas</button>`;
+      ${bulletsField('What you did — one point per line', 'Reduced stock errors by 30% by…\nTrained 5 new staff on…')}`;
+    if (list === 'responsibilities') body = `${fld('Position', P + '.role', e.role, { ph: 'e.g. Class Representative, Club Secretary' })}
+      <div class="row">${fld('College / club / organisation', P + '.org', e.org)}${fld('City (optional)', P + '.city', e.city)}</div>
+      ${datesBlock(P, e, list)}
+      ${bulletsField('What you did — one point per line', 'Organised a fest for 1,000 students…')}`;
+    if (list === 'volunteering') body = `${fld('Role', P + '.role', e.role, { ph: 'e.g. Volunteer Teacher' })}
+      <div class="row">${fld('Organisation', P + '.org', e.org, { ph: 'e.g. NSS, an NGO' })}${fld('City (optional)', P + '.city', e.city)}</div>
+      ${datesBlock(P, e, list)}
+      ${bulletsField('What you did — one point per line', 'Taught basic computers to 40 children…')}`;
     if (list === 'education') body = `${fld('Degree / course', P + '.degree', e.degree, { ph: 'e.g. B.Com, MBA, Class XII' })}
       <div class="row">${fld('College / school', P + '.school', e.school)}${fld('City', P + '.city', e.city)}</div>
       ${datesBlock(P, e, list)}
       <div class="row">${fld('Grade (optional)', P + '.grade', e.grade, { ph: 'e.g. CGPA 8.1 / 86%' })}${fld('Details (optional)', P + '.details', e.details, { ph: 'e.g. Specialisation, thesis' })}</div>`;
     if (list === 'projects') body = `${fld('Project name', P + '.name', e.name)}${fld('Link (optional)', P + '.link', e.link, { ph: 'github.com/…' })}
-      ${fld('What you did and the result', P + '.desc', e.desc, { type: 'textarea', rows: 3 })}`;
+      ${fld('What you did and the result', P + '.desc', e.desc, { type: 'textarea', rows: 3, weak: 'text' })}`;
+    if (list === 'achievements') body = `${fld('Award or achievement', P + '.title', e.title, { ph: 'e.g. 1st place, State-level Quiz' })}
+      <div class="row">${fld('Given by / where (optional)', P + '.org', e.org)}${fld('Year', P + '.year', e.year, { ph: 'e.g. 2025', attrs: 'inputmode="numeric" maxlength="9"' })}</div>
+      ${fld('Details (optional)', P + '.desc', e.desc, { type: 'textarea', rows: 2, weak: 'text', ph: 'e.g. Out of 300 teams from 40 colleges' })}`;
     if (list === 'certifications') body = `${fld('Certificate / course', P + '.name', e.name)}
       <div class="row">${fld('Issued by (optional)', P + '.issuer', e.issuer)}${fld('Year', P + '.year', e.year, { ph: 'e.g. 2025', attrs: 'inputmode="numeric" maxlength="9"' })}</div>`;
+    if (list === 'custom') body = `${fld('Section title', P + '.title', e.title, { ph: 'e.g. Extracurricular Activities, Conferences, Hobbies' })}
+      ${fld('Content — one point per line', P + '.body', e.body, { type: 'textarea', rows: 4, weak: 'bullets', ph: 'Each line becomes a bullet point.\nA single line shows as normal text.' })}`;
     return `<div class="entry" data-entry="${e.id}">${head}${body}</div>`;
   }
   function listBody(cv, list, addLabel, hint) {
@@ -1612,22 +2412,16 @@ function matchKeywords(cv, ad) {
     return `${hint ? `<p class="hint">${hint}</p>` : ''}${arr.map((e, i) => entryCard(list, e, i, arr.length)).join('')}
       <button class="btn small primary" data-act="add" data-list="${list}">+ ${addLabel}</button>`;
   }
-  function tagFor(cv, f) {
-    const F = STYLE_FIELDS[cv.style];
-    const where = Object.keys(STYLES).filter(s => STYLE_FIELDS[s][f]).map(s => STYLES[s].name).join(' · ');
-    return F[f] ? `<span class="tag">${where}</span>` : `<span class="tag off">Hidden in ${STYLES[cv.style].name} style</span>`;
-  }
   function photoImg(p) {
     return `<img alt="" src="${p.photo}" style="object-position:${p.photoX}% ${p.photoY}%;transform:scale(${p.photoZoom});transform-origin:${p.photoX}% ${p.photoY}%">`;
   }
   function personalBody(cv) {
-    const p = cv.personal, F = STYLE_FIELDS[cv.style];
+    const p = cv.personal, F = STYLE_FIELDS[cv.style], st = STYLES[cv.style];
     const shapeSeg = `<div class="seg" style="margin-top:6px">${[['circle', 'Circle'], ['rounded', 'Rounded'], ['square', 'Square']].map(([v, l]) => `<button data-act="photo-shape" data-v="${v}" class="${p.photoShape === v ? 'on' : ''}">${l}</button>`).join('')}</div>`;
-    return `
+    const photo = F.photo ? `
       <div class="photo-box">
-        <div class="photo-frame ${esc(p.photoShape)}" id="photoFrame">${p.photo ? photoImg(p) : 'No photo'}</div>
+        <div class="photo-frame ${esc(p.photoShape)}" id="photoFrame">${p.photo ? photoImg(p) : uiIcon('user')}</div>
         <div class="photo-tools">
-          <div style="margin-bottom:6px">${tagFor(cv, 'photo')}</div>
           <div class="btn-row"><label class="btn small">📷 ${p.photo ? 'Change photo' : 'Add photo'}<input type="file" accept="image/*" id="photoInput" hidden></label>${p.photo ? '<button class="btn small danger" data-act="photo-remove">Remove</button>' : ''}</div>
           ${p.photo ? `<div style="margin-top:8px">
             <div class="range">Zoom<input type="range" min="1" max="3" step="0.02" data-k="personal.photoZoom" value="${p.photoZoom}"></div>
@@ -1635,17 +2429,24 @@ function matchKeywords(cv, ad) {
             <div class="range">Up/down<input type="range" min="0" max="100" step="1" data-k="personal.photoY" value="${p.photoY}"></div>
             ${shapeSeg}</div>` : '<p class="hint" style="margin-top:6px">Use a clear, front-facing photo with a plain background.</p>'}
         </div>
-      </div>
+      </div>` : `<p class="note-box">${uiIcon('user')} ${st.name} CVs don't use a photo${p.photo ? ' — yours is kept and shows again if you switch style' : ''}.</p>`;
+    const pf = [];
+    if (F.dob) pf.push(fld('Date of birth', 'personal.dob', p.dob, { type: 'date' }));
+    if (F.nationality) pf.push(fld('Nationality', 'personal.nationality', p.nationality, { ph: 'e.g. Indian' }));
+    if (F.gender) pf.push(fld('Gender', 'personal.gender', p.gender, { type: 'select', options: [['', '—'], ['Female', 'Female'], ['Male', 'Male'], ['Other', 'Other']] }));
+    if (F.marital) pf.push(fld('Marital status', 'personal.marital', p.marital, { type: 'select', options: [['', '—'], ['Single', 'Single'], ['Married', 'Married']] }));
+    if (F.father) pf.push(fld("Father's name", 'personal.father', p.father));
+    if (F.visa) pf.push(fld('Visa status', 'personal.visa', p.visa, { ph: 'e.g. Employment visa required · Can join in 30 days' }));
+    if (F.passport) pf.push(fld('Passport', 'personal.passport', p.passport, { ph: 'e.g. Indian passport, valid until 2033' }));
+    if (F.licence) pf.push(fld('Driving licence', 'personal.licence', p.licence, { ph: 'e.g. UAE driving licence' }));
+    let rows = ''; for (let i = 0; i < pf.length; i += 2) rows += `<div class="row">${pf[i]}${pf[i + 1] || '<div></div>'}</div>`;
+    return `${photo}
       ${fld('Full name', 'personal.fullName', p.fullName, { ph: 'e.g. Priya Shah', attrs: 'autocomplete="name"' })}
       ${fld('Job title / headline', 'personal.title', p.title, { ph: 'e.g. Supply Chain Analyst' })}
       <div class="row">${fld('Email', 'personal.email', p.email, { type: 'email', ph: 'name@example.com', attrs: 'autocomplete="email"' })}${fld('Phone', 'personal.phone', p.phone, { type: 'tel', ph: '+91 98765 43210', attrs: 'autocomplete="tel"' })}</div>
       <div class="row">${fld('City', 'personal.city', p.city)}${fld('Country', 'personal.country', p.country)}</div>
       <div class="row">${fld('LinkedIn', 'personal.linkedin', p.linkedin, { ph: 'linkedin.com/in/your-name' })}${fld('Website (optional)', 'personal.website', p.website, { ph: 'your-site.com' })}</div>
-      <h4 class="subhead">Personal details</h4>
-      <p class="hint">Common in Indian and European CVs. Each style shows only what is normal there.</p>
-      <div class="row">${fld('Date of birth', 'personal.dob', p.dob, { type: 'date', tag: tagFor(cv, 'dob'), dim: !F.dob })}${fld('Nationality', 'personal.nationality', p.nationality, { ph: 'e.g. Indian', tag: tagFor(cv, 'nationality'), dim: !F.nationality })}</div>
-      <div class="row">${fld('Gender', 'personal.gender', p.gender, { type: 'select', options: [['', '—'], ['Female', 'Female'], ['Male', 'Male'], ['Other', 'Other']], tag: tagFor(cv, 'gender'), dim: !F.gender })}${fld('Marital status', 'personal.marital', p.marital, { type: 'select', options: [['', '—'], ['Single', 'Single'], ['Married', 'Married']], tag: tagFor(cv, 'marital'), dim: !F.marital })}</div>
-      ${fld("Father's name", 'personal.father', p.father, { tag: tagFor(cv, 'father'), dim: !F.father })}
+      ${pf.length ? `<h4 class="subhead">Personal details <span class="tag">${st.flag} ${st.name}</span></h4><p class="hint">Normal for ${st.name} CVs. Leave any of them empty if you prefer.</p>${rows}` : `<p class="note-box">${uiIcon('lock')} ${st.name} CVs leave out date of birth, gender and marital status — so they are hidden automatically.</p>`}
       <h4 class="subhead">QR code</h4>
       <label class="check"><input type="checkbox" data-k="qr.show" ${cv.qr.show ? 'checked' : ''}> Add a QR code to my CV</label>
       <div class="row">${fld('The QR code opens', 'qr.link', cv.qr.link, { type: 'select', options: [['linkedin', 'My LinkedIn'], ['website', 'My website'], ['custom', 'Another link']] })}${cv.qr.link === 'custom' ? fld('Link', 'qr.custom', cv.qr.custom, { ph: 'https://…' }) : '<div></div>'}</div>
@@ -1665,6 +2466,10 @@ function matchKeywords(cv, ad) {
         <button class="icon-btn" data-act="del" data-list="languages" data-id="${l.id}" aria-label="Remove">✕</button></div>`).join('')}
       <button class="btn small primary" data-act="add" data-list="languages">+ Add language</button>`;
   }
+  function signatureBox(cv) {
+    return `<div class="sig-box">${cv.signature ? `<img src="${cv.signature}" alt="Your signature">` : '<span>No signature yet</span>'}</div>
+      <div class="btn-row" style="margin-bottom:10px"><button class="btn small soft" data-act="sig-draw">✍️ Draw signature</button><label class="btn small">Upload photo of signature<input type="file" accept="image/*" id="sigInput" hidden></label>${cv.signature ? '<button class="btn small danger" data-act="sig-remove">Remove</button>' : ''}</div>`;
+  }
   function letterBody(cv) {
     const lt = cv.letter, def = letterDefaults(cv);
     return `<p class="hint">Uses your name, contact details, colours and template from the CV.</p>
@@ -1672,16 +2477,19 @@ function matchKeywords(cv, ad) {
       <div class="row">${fld('Recipient name (optional)', 'letter.recipient', lt.recipient, { ph: 'e.g. Ms. Anita Desai' })}${fld('Recipient job title (optional)', 'letter.recipientTitle', lt.recipientTitle, { ph: 'e.g. HR Manager' })}</div>
       ${fld('Company address (optional)', 'letter.address', lt.address, { type: 'textarea', rows: 2 })}
       <div class="row">${fld('Date', 'letter.date', lt.date, { type: 'date', hint: 'Leave empty for today' })}${fld('Greeting', 'letter.greeting', lt.greeting, { ph: def.greeting((lt.recipient || '').trim()) })}</div>
-      ${fld('Letter text', 'letter.body', lt.body, { type: 'textarea', rows: 11, ph: 'Write 3–4 short paragraphs, or tap the button below for a first draft.' })}
-      <div class="btn-row" style="margin-bottom:12px"><button class="btn small primary" data-act="draft">✨ Write a first draft for me</button><button class="btn small" data-act="show-letter">👁 Preview letter</button></div>
-      ${fld('Closing', 'letter.closing', lt.closing, { ph: def.closing })}`;
+      ${fld('Letter text', 'letter.body', lt.body, { type: 'textarea', rows: 11, weak: 'text', ph: 'Write 3–4 short paragraphs, or tap the button below for a first draft.' })}
+      <div class="btn-row" style="margin-bottom:12px"><button class="btn small primary" data-act="draft">${uiIcon('sparkle')} Write a first draft for me</button><button class="btn small" data-act="show-letter">${uiIcon('eye')} Preview letter</button></div>
+      ${fld('Closing', 'letter.closing', lt.closing, { ph: def.closing })}
+      <h4 class="subhead">Signature (optional)</h4>${signatureBox(cv)}`;
   }
   function filledSec(cv, id) {
+    if (id.startsWith('custom:')) { const c = cv.custom.find(x => 'custom:' + x.id === id); return !!(c && has(c.body)); }
     switch (id) {
       case 'personal': return has(cv.personal.fullName) && has(cv.personal.email);
       case 'summary': return has(cv.summary);
-      case 'experience': case 'education': case 'projects': case 'certifications': case 'languages':
+      case 'experience': case 'education': case 'projects': case 'certifications': case 'languages': case 'achievements': case 'responsibilities': case 'volunteering':
         return cv[id].some(e => Object.entries(e).some(([k, v]) => k !== 'id' && k !== 'level' && k !== 'current' && has(v)));
+      case 'custom': return cv.custom.some(c => has(c.body));
       case 'skills': case 'publications': case 'interests': case 'references': return has(cv[id]);
       case 'declaration': return has(cv.declaration.text) && has(cv.declaration.place);
       case 'letter': return has(cv.letter.body);
@@ -1690,34 +2498,39 @@ function matchKeywords(cv, ad) {
   }
   function metaFor(cv, id) {
     const n = Array.isArray(cv[id]) ? cv[id].length : 0;
-    const w = { experience: ['job', 'jobs'], education: ['entry', 'entries'], projects: ['project', 'projects'], certifications: ['certificate', 'certificates'], languages: ['language', 'languages'] }[id];
+    const w = { experience: ['job', 'jobs'], education: ['entry', 'entries'], projects: ['project', 'projects'], certifications: ['certificate', 'certificates'], languages: ['language', 'languages'], achievements: ['entry', 'entries'], responsibilities: ['position', 'positions'], volunteering: ['entry', 'entries'], custom: ['section', 'sections'] }[id];
     let m = w && n ? `${n} ${n > 1 ? w[1] : w[0]}` : '';
     if (cv.hidden[id]) m += (m ? ' · ' : '') + 'hidden on CV';
     return m;
   }
   function acc(cv, id, title, body) {
-    return `<details class="card" data-acc="${id}" ${openSet.has(id) ? 'open' : ''}><summary><span class="dot ${filledSec(cv, id) ? 'done' : ''}" data-dot="${id}"></span>${esc(title)}<span class="meta" data-meta="${id}">${esc(metaFor(cv, id))}</span></summary><div class="card-body">${body}</div></details>`;
+    return `<details class="card" data-acc="${id}" ${openSet.has(id) ? 'open' : ''}><summary>${secIco(id)}<span class="sec-title">${esc(title)}<span class="meta" data-meta="${id}">${esc(metaFor(cv, id))}</span></span><span class="state ${filledSec(cv, id) ? 'done' : ''}" data-dot="${id}">${uiIcon('check')}</span></summary><div class="card-body">${body}</div></details>`;
   }
   function renderWrite() {
     const cv = cur();
-    const styleSeg = `<div class="seg">${Object.entries(STYLES).map(([k, s]) => `<button data-act="style" data-v="${k}" class="${cv.style === k ? 'on' : ''}">${s.flag} ${s.name}<small>${s.paper}</small></button>`).join('')}</div>`;
+    const styleGrid = `<div class="style-grid">${STYLE_ORDER.map(k => { const s = STYLES[k]; return `<button data-act="style" data-v="${k}" class="style-opt ${cv.style === k ? 'on' : ''}"><span class="flag">${s.flag}</span><b>${s.name}</b><small>${s.paper}</small></button>`; }).join('')}</div>`;
     $('#panel-write').innerHTML = `
-      ${isEmpty(cv) ? `<div class="card card-static"><h3>New here?</h3><p class="hint">Start from a ready-made example, then replace the text with your own.</p><button class="btn primary small" data-act="samples">Start from a sample</button></div>` : ''}
-      <div class="card card-static"><h3>Where are you applying?</h3><p class="hint">Your CV follows the normal rules of each region automatically.</p>${styleSeg}<p class="style-note">${esc(STYLES[cv.style].note)}</p></div>
+      ${isEmpty(cv) ? `<div class="card card-static hello"><div><h3>New here?</h3><p class="hint" style="margin:0">Start from a ready-made example, then replace the text with your own.</p></div><button class="btn primary small" data-act="samples">Start from a sample</button></div>` : ''}
+      <div class="card card-static"><h3 class="card-h">${secIco('style')}Where are you applying?</h3><p class="hint">Your CV follows the normal rules of each region automatically.</p>${styleGrid}<p class="style-note">${esc(STYLES[cv.style].note)}</p></div>
       ${acc(cv, 'personal', 'Personal details', personalBody(cv))}
-      ${acc(cv, 'summary', 'Summary', `${fld('3–4 lines about you', 'summary', cv.summary, { type: 'textarea', rows: 5, ph: 'Who you are, your key skills and what kind of job you want.' })}<button class="btn small" data-act="phrases" data-target="summary">💡 Example summaries</button>`)}
+      ${acc(cv, 'summary', sectionTitle('summary', cv), `${fld('3–4 lines about you', 'summary', cv.summary, { type: 'textarea', rows: 5, weak: 'text', ph: 'Who you are, your key skills and what kind of job you want.' })}<button class="btn small soft" data-act="phrases" data-target="summary">${uiIcon('sparkle')} Example summaries</button>`)}
       ${acc(cv, 'experience', 'Work experience', listBody(cv, 'experience', 'Add job', 'Most recent job first. Internships and part-time jobs count too.'))}
       ${acc(cv, 'education', 'Education', listBody(cv, 'education', 'Add education', 'Most recent first.'))}
       ${acc(cv, 'skills', 'Skills', fld('Your skills', 'skills', cv.skills, { type: 'textarea', rows: 5, ph: 'Software: Excel, Tally, SAP\nCore: Inventory management, Data analysis\nSoft skills: Teamwork, Communication', hint: 'One skill per line, or groups like <b>Software: Excel, Tally, SAP</b>' }))}
       ${acc(cv, 'projects', 'Projects', listBody(cv, 'projects', 'Add project', 'College projects, research or personal projects — great for freshers.'))}
+      ${acc(cv, 'achievements', 'Achievements & awards', listBody(cv, 'achievements', 'Add achievement', 'Prizes, ranks, scholarships, competitions, top-performer awards.'))}
+      ${acc(cv, 'responsibilities', 'Positions of responsibility', listBody(cv, 'responsibilities', 'Add position', 'Class representative, club or council roles, event organiser.'))}
+      ${acc(cv, 'volunteering', 'Volunteering', listBody(cv, 'volunteering', 'Add volunteering', 'NSS, NCC, NGOs, community work.'))}
       ${acc(cv, 'certifications', 'Certifications & courses', listBody(cv, 'certifications', 'Add certificate'))}
       ${acc(cv, 'languages', 'Languages', languagesBody(cv))}
       ${acc(cv, 'publications', 'Publications', fld('One publication per line', 'publications', cv.publications, { type: 'textarea', rows: 4, ph: 'Author, A. (2025). Title of the paper. Journal name, 1(2), 10–20.', hint: 'Mainly for teaching and research jobs. Leave empty if not needed.' }))}
       ${acc(cv, 'interests', 'Interests', fld('Hobbies and interests', 'interests', cv.interests, { ph: 'e.g. Reading, Cricket, Volunteering' }))}
       ${acc(cv, 'references', 'References', fld('References', 'references', cv.references, { type: 'textarea', rows: 3, ph: 'Name, job title, company, phone / email', hint: 'Optional. Most employers ask for references later, so you can leave this empty.' }))}
-      ${acc(cv, 'declaration', 'Declaration', `<p class="hint">${tagFor(cv, 'declaration')} The signed statement at the end of Indian CVs.</p>
-        ${fld('Statement', 'declaration.text', cv.declaration.text, { type: 'textarea', rows: 3, dim: !STYLE_FIELDS[cv.style].declaration })}
-        <div class="row">${fld('Place', 'declaration.place', cv.declaration.place, { ph: 'e.g. Vadodara' })}${fld('Date (optional)', 'declaration.date', cv.declaration.date, { type: 'date' })}</div>`)}
+      ${acc(cv, 'custom', 'Your own sections', listBody(cv, 'custom', 'Add a section', 'Need something else? Add any section — for example Extracurricular Activities, Conferences or Workshops.'))}
+      ${cv.style === 'india' ? acc(cv, 'declaration', 'Declaration & signature', `<p class="hint">The signed statement at the end of Indian CVs.</p>
+        ${fld('Statement', 'declaration.text', cv.declaration.text, { type: 'textarea', rows: 3 })}
+        <div class="row">${fld('Place', 'declaration.place', cv.declaration.place, { ph: 'e.g. Vadodara' })}${fld('Date (optional)', 'declaration.date', cv.declaration.date, { type: 'date' })}</div>
+        <h4 class="subhead">Signature (optional)</h4>${signatureBox(cv)}`) : ''}
       ${acc(cv, 'letter', 'Cover letter', letterBody(cv))}
       ${privacyHTML()}`;
   }
@@ -1726,6 +2539,8 @@ function matchKeywords(cv, ad) {
     $$('[data-dot]').forEach(d => d.classList.toggle('done', filledSec(cv, d.dataset.dot)));
     $$('[data-meta]').forEach(m => { m.textContent = metaFor(cv, m.dataset.meta); });
   }
+
+/* ================= App (part 2: Design, Download, Jobs, preview, export, events) ================= */
 
   /* ================= DESIGN ================= */
   function thumb(k, c) {
@@ -1737,27 +2552,31 @@ function matchKeywords(cv, ad) {
     return `<div class="thumb">${b(8, 8, 48, 9, c)}${b(8, 21, 60, 3)}${b(80, 6, 12, 17)}${b(8, 28, 84, .8, '#c9ced8')}${b(8, 35, 28, 4, c)}${b(40, 37, 52, .8, c)}${b(8, 45, 20, 3, c)}${b(32, 45, 60, 3)}${b(32, 51, 55, 3)}${b(8, 59, 20, 3, c)}${b(32, 59, 60, 3)}${b(32, 65, 45, 3)}${b(8, 75, 28, 4, c)}${b(40, 77, 52, .8, c)}${b(32, 85, 60, 3)}</div>`;
   }
   function seg(field, options, value) {
-    return `<div class="seg">${options.map(([v, l]) => `<button data-act="design" data-f="${field}" data-v="${v}" class="${v === value ? 'on' : ''}">${l}</button>`).join('')}</div>`;
+    return `<div class="seg">${options.map(([v, l]) => `<button data-act="design" data-f="${field}" data-v="${v}" class="${String(v) === String(value) ? 'on' : ''}">${l}</button>`).join('')}</div>`;
   }
+  const secName = (cv, k) => k.startsWith('custom:') ? (sectionTitle(k, cv) || 'My section') : SECTION_NAMES[k];
   function renderDesign() {
-    const cv = cur(), d = cv.design, paper = paperOf(cv);
+    const cv = cur(), d = cv.design, paper = paperOf(cv), col = accentOf(cv);
     const extra = [];
-    if (STYLE_FIELDS[cv.style].dob || STYLE_FIELDS[cv.style].nationality) extra.push(['personal', 'Personal details']);
-    if (STYLE_FIELDS[cv.style].declaration) extra.push(['declaration', 'Declaration']);
+    const F = STYLE_FIELDS[cv.style];
+    if (F.dob || F.nationality || F.visa) extra.push(['personal', 'Personal details']);
+    if (F.declaration) extra.push(['declaration', 'Declaration']);
     $('#panel-design').innerHTML = `
-      <div class="card card-static"><h3>Template</h3><p class="hint">Change any time — your text stays the same.</p><div class="tpl-grid">${Object.entries(TEMPLATES).map(([k, t]) => `<button class="tpl ${d.template === k ? 'on' : ''}" data-act="design" data-f="template" data-v="${k}">${thumb(k, d.color)}<b>${t.name}</b><small>${t.note}</small></button>`).join('')}</div></div>
-      <div class="card card-static"><h3>Colour</h3><div class="swatches">${COLORS.map(c => `<button class="sw ${d.color.toLowerCase() === c.toLowerCase() ? 'on' : ''}" style="background:${c}" data-act="design" data-f="color" data-v="${c}" aria-label="Colour ${c}"></button>`).join('')}<label class="sw-custom ${COLORS.map(x => x.toLowerCase()).includes(d.color.toLowerCase()) ? '' : 'on'}" title="Pick any colour"><input type="color" id="customColor" value="${d.color}" aria-label="Custom colour"></label></div><p class="hint" style="margin-top:8px">The last circle lets you pick any colour.</p></div>
-      <div class="card card-static"><h3>Font</h3><div class="font-grid">${Object.entries(FONTS).map(([k, f]) => `<button class="font-opt ${d.font === k ? 'on' : ''}" data-act="design" data-f="font" data-v="${k}"><span style="font-family:${f.css}">Aa Bb Cc</span><small>${f.name}</small></button>`).join('')}</div></div>
-      <div class="card card-static"><h3>Text size</h3>${seg('size', [['s', 'Small'], ['m', 'Normal'], ['l', 'Large']], d.size)}<p class="hint" style="margin-top:8px">Choose Small if your CV is just over one page.</p></div>
-      ${cv.style === 'euro' ? `<div class="card card-static"><h3>Heading language</h3>${seg('headingLang', [['en', 'English'], ['de', 'Deutsch']], d.headingLang)}<p class="hint" style="margin-top:8px">Deutsch turns headings and dates into German (“Lebenslauf” style) for jobs in Germany, Austria or Switzerland. Your own text is not translated.</p></div>` : ''}
-      <div class="card card-static"><h3>Sections</h3><p class="hint">Use the arrows to change the order. Tap the eye to hide a section. Empty sections are left out automatically.</p>
-        <ul class="sec-list">${cv.order.map((k, i) => `<li class="${cv.hidden[k] ? 'off' : ''}"><span>${SECTION_NAMES[k]} ${filledSec(cv, k) ? '' : '<em>(empty)</em>'}</span>
+      <div class="card card-static"><h3 class="card-h">${tile('doc', '#2563EB')}Template</h3><p class="hint">Change any time — your text stays the same.</p><div class="tpl-grid">${Object.entries(TEMPLATES).map(([k, t]) => `<button class="tpl ${d.template === k ? 'on' : ''}" data-act="design" data-f="template" data-v="${k}">${thumb(k, col)}<b>${t.name}</b><small>${t.note}</small></button>`).join('')}</div></div>
+      <div class="card card-static"><h3 class="card-h">${tile('palette', '#DB2777')}Colour</h3>
+        ${seg('bw', [['false', '🎨 Colour'], ['true', '⚫ Black & white']], String(d.bw))}
+        ${d.bw ? '<p class="hint" style="margin-top:10px">Black & white looks clean on any printer or photocopier. The photo turns grey too.</p>' : `<div class="swatches" style="margin-top:12px">${COLORS.map(c => `<button class="sw ${d.color.toLowerCase() === c.toLowerCase() ? 'on' : ''}" style="background:${c}" data-act="design" data-f="color" data-v="${c}" aria-label="Colour ${c}"></button>`).join('')}<label class="sw-custom ${COLORS.map(x => x.toLowerCase()).includes(d.color.toLowerCase()) ? '' : 'on'}" title="Pick any colour"><input type="color" id="customColor" value="${d.color}" aria-label="Custom colour"></label></div><p class="hint" style="margin-top:8px">The rainbow circle lets you pick any colour.</p>`}</div>
+      <div class="card card-static"><h3 class="card-h">${tile('text', '#7C3AED')}Font</h3><div class="font-grid">${Object.entries(FONTS).map(([k, f]) => `<button class="font-opt ${d.font === k ? 'on' : ''}" data-act="design" data-f="font" data-v="${k}"><span style="font-family:${f.css}">Aa Bb Cc</span><small>${f.name}</small></button>`).join('')}</div></div>
+      <div class="card card-static"><h3 class="card-h">${tile('list', '#0D9488')}Text size</h3>${seg('size', [['s', 'Small'], ['m', 'Normal'], ['l', 'Large']], d.size)}<p class="hint" style="margin-top:8px">Choose Small if your CV is just over one page.</p></div>
+      ${cv.style === 'euro' ? `<div class="card card-static"><h3 class="card-h">${tile('globe', '#9333EA')}Heading language</h3>${seg('headingLang', [['en', 'English'], ['de', 'Deutsch']], d.headingLang)}<p class="hint" style="margin-top:8px">Deutsch turns headings and dates into German (“Lebenslauf” style) for jobs in Germany, Austria or Switzerland. Your own text is not translated.</p></div>` : ''}
+      <div class="card card-static"><h3 class="card-h">${tile('list', '#EA580C')}Sections</h3><p class="hint">Use the arrows to change the order. Tap the eye to hide a section. Empty sections are left out automatically.</p>
+        <ul class="sec-list">${cv.order.map((k, i) => `<li class="${cv.hidden[k] ? 'off' : ''}"><span>${esc(secName(cv, k))} ${filledSec(cv, k) ? '' : '<em>(empty)</em>'}</span>
           <button class="icon-btn" data-act="sec-move" data-sec="${k}" data-dir="-1" ${i === 0 ? 'disabled' : ''} aria-label="Move up">↑</button>
           <button class="icon-btn" data-act="sec-move" data-sec="${k}" data-dir="1" ${i === cv.order.length - 1 ? 'disabled' : ''} aria-label="Move down">↓</button>
           <button class="icon-btn" data-act="sec-hide" data-sec="${k}" aria-label="${cv.hidden[k] ? 'Show' : 'Hide'}" title="${cv.hidden[k] ? 'Show' : 'Hide'}">${cv.hidden[k] ? '🙈' : '👁'}</button></li>`).join('')}
           ${extra.map(([k, l]) => `<li class="${cv.hidden[k] ? 'off' : ''}"><span>${l} <em>(fixed place)</em></span><button class="icon-btn" data-act="sec-hide" data-sec="${k}" aria-label="${cv.hidden[k] ? 'Show' : 'Hide'}">${cv.hidden[k] ? '🙈' : '👁'}</button></li>`).join('')}
         </ul></div>
-      <div class="card card-static"><h3>Paper size</h3><p class="hint" style="margin:0"><b>${paper.name}</b> — set automatically by the ${STYLES[cv.style].name} style.</p></div>`;
+      <div class="card card-static"><h3 class="card-h">${tile('doc', '#475569')}Paper size</h3><p class="hint" style="margin:0"><b>${paper.name}</b> — set automatically by the ${STYLES[cv.style].name} style.</p></div>`;
   }
 
   /* ================= DOWNLOAD ================= */
@@ -1774,30 +2593,142 @@ function matchKeywords(cv, ad) {
       <div class="kw">${res.filter(r => !r.found).map(r => `<span class="miss">✕ ${esc(r.term)}</span>`).join('')}${res.filter(r => r.found).map(r => `<span class="hit">✓ ${esc(r.term)}</span>`).join('')}</div>
       <p class="hint" style="margin-top:10px">Add missing words only where they are true for you — for example in your summary, skills or bullet points. Then check again.</p>`;
   }
+  const dlBtn = (act, icon, color, title, sub) => `<button class="dl-btn" data-act="${act}"><span class="dl-ico" style="--c:${color}">${uiIcon(icon)}</span><span><b>${title}</b><small>${sub}</small></span></button>`;
   function renderDownload() {
     const cv = cur(), r = checkCV(cv, lastPages), paper = paperOf(cv);
     const color = r.score >= 80 ? 'var(--ok)' : r.score >= 50 ? 'var(--warn)' : 'var(--bad)';
     const msg = r.score >= 90 ? 'Excellent — ready to send.' : r.score >= 75 ? 'Good. A few small things to improve.' : r.score >= 50 ? 'Getting there. Work through the tips below.' : 'Just started — follow the tips below.';
     const todo = r.items.filter(i => !i.ok), done = r.items.filter(i => i.ok);
+    const weak = collectWeak(cv);
     $('#panel-download').innerHTML = `
-      <div class="card card-static"><div class="score"><div class="ring" style="--p:${r.score};--c:${color}"><b>${r.score}</b></div><div><h3>CV score</h3><p class="hint" style="margin:0">${msg}</p></div></div>
+      <div class="card card-static score-card"><div class="score"><div class="ring" style="--p:${r.score};--c:${color}"><b>${r.score}</b></div><div><h3>CV score</h3><p class="hint" style="margin:0">${msg}</p></div></div>
         <ul class="tips">${todo.map(i => `<li><i>${i.half ? '◐' : '○'}</i>${esc(i.text)}</li>`).join('')}${done.map(i => `<li class="good"><i>✓</i>${esc(i.text)}</li>`).join('')}</ul></div>
-      <div class="card card-static"><h3>Length</h3><p class="hint" style="margin:0" id="lenInfo">${lengthText()}</p></div>
-      <div class="card card-static"><h3>Check against a job advert</h3><p class="hint">Paste a job advert to see which important words from it are missing in your CV. This helps you get past the systems that scan applications. Everything stays on your device.</p>
+      <div class="card card-static"><h3 class="card-h">${tile('pen', '#7C3AED')}Writing check</h3>
+        ${weak.length ? `<p class="hint">These phrases are weak or overused. Replacing them makes your CV sound more confident.</p><ul class="weak-list">${weak.map(w => `<li><b>“${esc(w.phrase)}”</b><span>${esc(w.where)}</span><em>${esc(w.tip)}</em></li>`).join('')}</ul>` : `<p class="good-box">${uiIcon('check')} No weak phrases found. Nice, confident writing!</p>`}</div>
+      <div class="card card-static"><h3 class="card-h">${tile('doc', '#0D9488')}Length</h3><p class="hint" style="margin:0" id="lenInfo">${lengthText()}</p></div>
+      <div class="card card-static"><h3 class="card-h">${tile('target', '#D97706')}Check against a job advert</h3><p class="hint">Paste a job advert to see which important words from it are missing in your CV. This helps you get past the systems that scan applications. Everything stays on your device.</p>
         <label class="field"><textarea data-k="jobAd" rows="6" placeholder="Paste the job advert here…">${esc(cv.jobAd)}</textarea></label>
         <button class="btn primary small" data-act="kw">Check my CV</button>
         <div id="kwOut">${has(cv.jobAd) ? kwHTML(cv) : ''}</div></div>
-      <div class="card card-static"><h3>Download</h3><div class="big-actions">
-          <button class="btn primary" data-act="print-cv">⬇ Download CV as PDF <small>${paper.name}</small></button>
-          <button class="btn" data-act="print-letter">⬇ Download cover letter as PDF</button>
-          <button class="btn" data-act="copy-text">📋 Copy CV as plain text <small>for job portals</small></button></div>
-        <div class="help"><b>How to save as PDF:</b> a print window opens — choose <b>Save as PDF</b> as the printer, keep margins on <b>Default</b> and turn off <b>Headers and footers</b>.<br><b>On iPhone:</b> in the print screen tap the Share button, then <b>Save to Files</b>.</div></div>
-      <div class="card card-static"><h3>Backup</h3><p class="hint">Your CVs are saved in this browser only. Save a backup file to keep them safe, or to open them on another phone or laptop.</p>
-        <div class="btn-row"><button class="btn" data-act="backup">💾 Save backup file</button><label class="btn">📂 Open backup file<input type="file" id="importInput" accept=".json,application/json" hidden></label></div></div>
-      <div class="card card-static"><h3>Use it offline</h3><p class="hint">Add CV Builder to your home screen and it works without internet.</p>
+      <div class="card card-static"><h3 class="card-h">${tile('download', '#2563EB')}Download</h3>
+        <div class="dl-grid">
+          ${dlBtn('print-cv', 'pdf', '#DC2626', 'CV as PDF', `${paper.name} · ready to send`)}
+          ${dlBtn('word-cv', 'doc', '#2B579A', 'CV as Word', '.docx · easy to edit')}
+          ${dlBtn('print-letter', 'pdf', '#EA580C', 'Cover letter as PDF', 'Same design as your CV')}
+          ${dlBtn('word-letter', 'doc', '#0284C7', 'Cover letter as Word', '.docx · easy to edit')}
+          ${dlBtn('copy-text', 'copy', '#475569', 'Copy as plain text', 'For job portals')}
+        </div>
+        <div class="help"><b>PDF:</b> a print window opens — choose <b>Save as PDF</b>, keep margins on <b>Default</b> and turn off <b>Headers and footers</b>. On iPhone tap Share in the print screen, then <b>Save to Files</b>.<br><b>Word:</b> uses a simple one-column layout that opens well in Word, Google Docs and job portals.</div></div>
+      <div class="card card-static"><h3 class="card-h">${tile('save', '#0D9488')}Backup & earlier versions</h3><p class="hint">Your CVs and job tracker are saved in this browser only. Save a backup file to keep them safe, or to open them on another phone or laptop.</p>
+        <div class="btn-row"><button class="btn" data-act="backup">${uiIcon('save')} Save backup file</button><label class="btn">${uiIcon('open')} Open backup file<input type="file" id="importInput" accept=".json,application/json" hidden></label><button class="btn" data-act="history">${uiIcon('clock')} Earlier versions</button></div></div>
+      <div class="card card-static"><h3 class="card-h">${tile('lock', '#16A34A')}Use it offline</h3><p class="hint">Add CV Builder to your home screen and it works without internet.</p>
         ${deferredPrompt ? '<button class="btn primary small" data-act="install" style="margin-bottom:8px">⬇ Install app</button>' : ''}
         <div class="help" style="margin-top:0"><b>iPhone:</b> in Safari tap Share → <b>Add to Home Screen</b>.<br><b>Android:</b> tap the ⋮ menu → <b>Install app</b> or <b>Add to Home screen</b>.<br><b>Laptop (Chrome / Edge):</b> click the install icon in the address bar.</div></div>
       ${privacyHTML()}`;
+  }
+
+  /* ================= JOBS ================= */
+  function renderJobs() {
+    const views = [['tracker', 'list', 'Tracker'], ['linkedin', 'linkedin', 'LinkedIn'], ['interview', 'chat', 'Interview']];
+    const top = `<div class="seg seg-icons">${views.map(([v, i, l]) => `<button data-act="jobs-view" data-v="${v}" class="${jobsView === v ? 'on' : ''}">${uiIcon(i)}${l}</button>`).join('')}</div>`;
+    $('#panel-jobs').innerHTML = top + (jobsView === 'tracker' ? trackerHTML() : jobsView === 'linkedin' ? linkedinHTML() : interviewHTML());
+  }
+  const fmtDate = iso => { if (!iso) return ''; const [y, m, d] = iso.split('-').map(Number); return d ? `${d} ${MONTHS.en[m - 1]} ${y}` : iso; };
+  function trackerHTML() {
+    const jobs = db.jobs.slice().sort((a, b) => (b.date || '').localeCompare(a.date || '') || (b.created || 0) - (a.created || 0));
+    const count = k => jobs.filter(j => j.status === k).length;
+    const sent = jobs.filter(j => j.status !== 'todo').length;
+    const tiles = [['Applied', sent, '#2563EB'], ['Interviews', count('interview') + count('offer'), '#D97706'], ['Offers', count('offer'), '#16A34A'], ['To apply', count('todo'), '#7C3AED']];
+    const shown = jobFilter === 'all' ? jobs : jobs.filter(j => j.status === jobFilter);
+    const chips = [['all', 'All', jobs.length]].concat(Object.entries(JOB_STATUS).map(([k, s]) => [k, s.name, count(k)]));
+    return `<div class="stats">${tiles.map(([l, n, c]) => `<div class="stat" style="--c:${c}"><b>${n}</b><span>${l}</span></div>`).join('')}</div>
+      <div class="card card-static">
+        <div class="track-head"><h3 class="card-h" style="margin:0">${tile('briefcase', '#2563EB')}My applications</h3><button class="btn primary small" data-act="job-add">+ Add application</button></div>
+        <div class="chips">${chips.map(([k, l, n]) => `<button class="chip ${jobFilter === k ? 'on' : ''}" data-act="job-filter" data-v="${k}" style="--c:${k === 'all' ? '#4F46E5' : JOB_STATUS[k].color}">${l} <span>${n}</span></button>`).join('')}</div>
+        ${shown.length ? shown.map(jobCard).join('') : `<div class="empty">${uiIcon('briefcase')}<b>${jobs.length ? 'Nothing here yet' : 'No applications yet'}</b><p>Add each job you apply for — company, date, which CV you sent and the status. You will always know what to follow up.</p></div>`}
+      </div>`;
+  }
+  function jobCard(j) {
+    const st = JOB_STATUS[j.status] || JOB_STATUS.applied;
+    const cvName = j.cvId && db.cvs[j.cvId] ? db.cvs[j.cvId].name : '';
+    const days = j.date ? Math.floor((Date.now() - new Date(j.date + 'T00:00').getTime()) / 86400000) : 0;
+    const follow = j.status === 'applied' && days >= 10 ? `<em class="follow">${days} days — follow up?</em>` : '';
+    return `<div class="job-card" style="--c:${st.color}">
+      <div class="job-main"><b>${esc(j.role || 'Job')}</b><span>${esc(j.company || '')}</span>
+        <small>${j.date ? (j.status === 'todo' ? 'Saved ' : 'Applied ') + fmtDate(j.date) : ''}${cvName ? ` · CV: ${esc(cvName)}` : ''}</small>${follow}
+        ${has(j.notes) ? `<p>${esc(j.notes)}</p>` : ''}</div>
+      <div class="job-side"><select class="pill-select" data-job-status="${j.id}" aria-label="Status">${Object.entries(JOB_STATUS).map(([k, s]) => `<option value="${k}" ${k === j.status ? 'selected' : ''}>${s.name}</option>`).join('')}</select>
+        <div class="btn-row">${has(j.link) ? `<a class="icon-btn" href="${esc(urlOf(j.link))}" target="_blank" rel="noopener" title="Open job advert" aria-label="Open job advert">${uiIcon('link')}</a>` : ''}<button class="icon-btn" data-act="job-edit" data-id="${j.id}" title="Edit" aria-label="Edit">${uiIcon('edit')}</button><button class="icon-btn" data-act="job-del" data-id="${j.id}" title="Delete" aria-label="Delete">${uiIcon('trash')}</button></div></div></div>`;
+  }
+  function jobModal(id) {
+    const j = db.jobs.find(x => x.id === id) || { company: '', role: '', link: '', date: todayISO(), cvId: db.activeId, status: 'applied', notes: '' };
+    const f = (label, key, type = 'text', ph = '') => `<label class="field"><span>${label}</span><input class="input" id="jf-${key}" type="${type}" value="${esc(j[key] || '')}" placeholder="${esc(ph)}"></label>`;
+    openModal(id ? 'Edit application' : 'Add application', `
+      <div class="row">${f('Company', 'company', 'text', 'e.g. Example Logistics')}${f('Job title', 'role', 'text', 'e.g. Supply Chain Analyst')}</div>
+      ${f('Link to the job advert (optional)', 'link', 'url', 'https://…')}
+      <div class="row">${f('Date', 'date', 'date')}<label class="field"><span>Status</span><select class="input" id="jf-status">${Object.entries(JOB_STATUS).map(([k, s]) => `<option value="${k}" ${k === j.status ? 'selected' : ''}>${s.name}</option>`).join('')}</select></label></div>
+      <label class="field"><span>CV you sent</span><select class="input" id="jf-cvId"><option value="">—</option>${db.order.map(cid => `<option value="${cid}" ${cid === j.cvId ? 'selected' : ''}>${esc(db.cvs[cid].name)}</option>`).join('')}</select></label>
+      <label class="field"><span>Notes (optional)</span><textarea class="input" id="jf-notes" rows="3" placeholder="Contact person, salary, next step…">${esc(j.notes || '')}</textarea></label>`,
+      `<button class="btn" data-act="modal-close">Cancel</button><button class="btn primary" id="jobSave">Save</button>`);
+    $('#jf-company').focus();
+    $('#jobSave').onclick = () => {
+      const v = k => $('#jf-' + k).value.trim();
+      if (!v('company') && !v('role')) { toast('Add at least the company or the job title.'); return; }
+      const data = { company: v('company'), role: v('role'), link: v('link'), date: v('date'), status: $('#jf-status').value, cvId: $('#jf-cvId').value, notes: v('notes') };
+      if (id) Object.assign(j, data); else db.jobs.push(Object.assign({ id: uid(), created: Date.now() }, data));
+      closeModal(); save(); renderJobs(); toast(id ? 'Application updated.' : 'Application added.');
+    };
+  }
+
+  function skillItems(cv) {
+    return lines(cv.skills).flatMap(l => (/^[^,:]{2,40}:/.test(l) ? l.slice(l.indexOf(':') + 1) : l).split(',')).map(s => s.trim()).filter(Boolean);
+  }
+  function linkedinData(cv) {
+    const p = cv.personal, skills = skillItems(cv);
+    const role = (p.title || '').split('|')[0].trim();
+    const headline = [p.title, skills.slice(0, 3).join(' · ')].filter(has).join(' | ') || 'Add your job title and skills in the Write tab';
+    const top = (cv.experience || []).flatMap(e => lines(e.bullets)).sort((a, b) => (/\d/.test(b) ? 1 : 0) - (/\d/.test(a) ? 1 : 0)).slice(0, 3);
+    const about = [
+      has(cv.summary) ? cv.summary.trim() : '[Write a 3–4 line summary in the Write tab — it appears here.]',
+      top.length ? 'What I bring:\n' + top.map(b => '• ' + b).join('\n') : '',
+      skills.length ? 'Skills: ' + skills.slice(0, 12).join(' · ') : '',
+      `I am open to new opportunities${role ? ` as ${/^[aeiou]/i.test(role) ? 'an' : 'a'} ${role}` : ''}. Feel free to connect or send me a message.`
+    ].filter(Boolean).join('\n\n');
+    const exp = (cv.experience || []).filter(e => has(e.role) || has(e.org)).map(e => ({ title: [e.role, e.org].filter(has).join(' – '), text: lines(e.bullets).map(b => '• ' + b).join('\n') }));
+    return { headline, about, exp, skills: skills.slice(0, 15).join(', ') };
+  }
+  const liBlock = (key, title, sub, text, limit, rows) => `<div class="li-block"><div class="li-head"><b>${esc(title)}</b><small>${esc(sub)}</small></div>
+    <textarea class="input" rows="${rows}" data-li="${key}" data-limit="${limit || ''}">${esc(text)}</textarea>
+    <div class="li-foot"><span class="count ${limit && text.length > limit ? 'over' : ''}" data-count="${key}">${text.length}${limit ? ` / ${limit.toLocaleString('en-US')}` : ''} characters</span><button class="btn small soft" data-act="li-copy" data-li="${key}">${uiIcon('copy')} Copy</button></div></div>`;
+  function linkedinHTML() {
+    const cv = cur(), d = linkedinData(cv);
+    return `<div class="card card-static li-intro"><h3 class="card-h">${tile('linkedin', '#0A66C2')}LinkedIn helper</h3><p class="hint" style="margin:0">Ready-to-paste text for your LinkedIn profile, made from <b>${esc(cv.name)}</b>. Edit it here if you like, then tap Copy and paste it into LinkedIn. The About section reads best in first person (“I…”).</p></div>
+      ${liBlock('h', 'Headline', 'Shown under your name — the first ~65 characters show in search', d.headline, 220, 2)}
+      ${liBlock('a', 'About', 'Your profile summary — the first ~300 characters show before “See more”', d.about, 2600, 10)}
+      ${d.exp.map((e, i) => liBlock('e' + i, e.title, 'Experience description', e.text || '[Add bullet points to this job in the Write tab]', 2000, 4)).join('')}
+      ${liBlock('s', 'Skills', 'Add these one by one in the Skills section of your profile', d.skills || '[Add skills in the Write tab]', 0, 3)}`;
+  }
+
+  function interviewQs(field) {
+    return INTERVIEW_GENERAL.map((q, i) => ({ id: 'g' + i, q: q[0], tip: q[1], group: 'g' }))
+      .concat((INTERVIEW_FIELD[field] || []).map((q, i) => ({ id: `f:${field}:${i}`, q: q[0], tip: q[1], group: 'f' })));
+  }
+  let openQ = null;
+  function interviewHTML() {
+    const field = db.prep.field && INTERVIEW_FIELD[db.prep.field] ? db.prep.field : guessField(cur());
+    const qs = interviewQs(field), ans = db.prep.answers;
+    const done = qs.filter(q => has(ans[q.id])).length;
+    const qCard = q => `<details class="q-card ${has(ans[q.id]) ? 'done' : ''}" data-q="${esc(q.id)}" ${openQ === q.id ? 'open' : ''}><summary><span class="q-dot">${uiIcon('check')}</span><span>${esc(q.q)}</span></summary>
+      <div class="q-body"><p class="q-tip">💡 ${esc(q.tip)}</p><textarea class="input" rows="5" data-prep="${esc(q.id)}" placeholder="Situation: what was happening?\nTask: what did you need to do?\nAction: what did YOU do?\nResult: what happened — with numbers?">${esc(ans[q.id] || '')}</textarea><p class="hint" style="margin:4px 0 0">Saved on this device as you type. Practise saying it out loud in about 1–2 minutes.</p></div></details>`;
+    return `<div class="card card-static"><h3 class="card-h">${tile('chat', '#7C3AED')}Interview prep</h3>
+        <label class="field"><span>Your field</span><select class="input" id="prepField">${Object.keys(INTERVIEW_FIELD).map(k => `<option ${k === field ? 'selected' : ''}>${esc(k)}</option>`).join('')}</select></label>
+        <div class="progress"><div style="width:${Math.round(done / qs.length * 100)}%"></div></div>
+        <p class="hint" style="margin:6px 0 12px">You have prepared <b>${done} of ${qs.length}</b> answers.</p>
+        <button class="btn soft small" data-act="prep-random">${uiIcon('dice')} Practise a random question</button></div>
+      <div class="card card-static"><h3 class="card-h" style="margin-bottom:8px">The STAR method</h3><p class="hint">For “tell me about a time…” questions, answer in four short steps:</p>
+        <div class="star-grid"><div style="--c:#2563EB"><b>S</b><span>Situation</span><small>Where and when?</small></div><div style="--c:#7C3AED"><b>T</b><span>Task</span><small>What was needed?</small></div><div style="--c:#D97706"><b>A</b><span>Action</span><small>What did you do?</small></div><div style="--c:#16A34A"><b>R</b><span>Result</span><small>What changed? Use numbers.</small></div></div></div>
+      <h4 class="q-group">Common questions</h4>${qs.filter(q => q.group === 'g').map(qCard).join('')}
+      <h4 class="q-group">${esc(field)} questions</h4>${qs.filter(q => q.group === 'f').map(qCard).join('')}`;
   }
 
   /* ================= PREVIEW ================= */
@@ -1826,14 +2757,14 @@ function matchKeywords(cv, ad) {
     if (previewMode === 'cv') {
       lastPages = pages;
       let max = 0; longest = '';
-      $$('[data-sec]', el).forEach(s => { if (s.offsetHeight > max) { max = s.offsetHeight; longest = SEC_LABEL[s.dataset.sec] || ''; } });
+      $$('[data-sec]', el).forEach(s => { if (s.offsetHeight > max) { max = s.offsetHeight; const k = s.dataset.sec; longest = k.startsWith('custom:') ? secName(cv, k) : (SEC_LABEL[k] || ''); } });
       const li = $('#lenInfo'); if (li) li.innerHTML = lengthText();
     }
     const info = $('#pageInfo');
     info.className = 'page-info' + (pages > 2 && previewMode === 'cv' ? ' over' : '');
     info.innerHTML = `<b>${pages} page${pages > 1 ? 's' : ''}</b> · ${paper.name}` + (pages > 1 && previewMode === 'cv' && longest ? `<span class="pi-long"><br>Longest: ${esc(longest)}</span>` : '');
     $$('[data-act="pmode"]').forEach(b => b.classList.toggle('on', b.dataset.v === previewMode));
-    $('#fab').innerHTML = `👁 Preview <small style="opacity:.7;font-weight:500">${lastPages}p</small>`;
+    $('#fab').innerHTML = `${uiIcon('eye')} Preview <small>${lastPages}p</small>`;
     fitPreview();
   }
   const schedulePreview = debounce(renderPreview, 120);
@@ -1855,6 +2786,7 @@ function matchKeywords(cv, ad) {
   }
 
   /* ================= PRINT / EXPORT ================= */
+  const fileBase = (cv, kind) => ((cv.personal.fullName || 'My').trim().replace(/[^\p{L}\p{N}]+/gu, '_') || 'My') + (kind === 'letter' ? '_Cover_Letter' : '_CV');
   function doPrint(kind) {
     const cv = cur(), paper = paperOf(cv);
     const keep = previewMode;
@@ -1865,13 +2797,28 @@ function matchKeywords(cv, ad) {
     const minH = (paper.h - 12) + (pages - 1) * (paper.h - 24) - 1.5;
     $('#pageStyle').textContent = `@page{size:${paper.css};margin:12mm 0 12mm}@page:first{margin-top:0}@media print{#printArea .t-sidebar{min-height:${minH}mm}}`;
     const old = document.title;
-    document.title = ((cv.personal.fullName || 'My').trim().replace(/[^\p{L}\p{N}]+/gu, '_') || 'My') + (kind === 'letter' ? '_Cover_Letter' : '_CV');
+    document.title = fileBase(cv, kind);
     const restore = () => { document.title = old; window.removeEventListener('afterprint', restore); };
     window.addEventListener('afterprint', restore);
     setTimeout(() => {
       try { window.print(); } catch (e) { toast('Printing is not available here — open the app in Safari or Chrome.'); }
       setTimeout(restore, 4000);
     }, 80);
+  }
+  function downloadBlob(blob, name) {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+  }
+  async function exportWord(kind) {
+    const cv = cur();
+    toast('Preparing your Word file…');
+    try {
+      const blob = await DOCX.build(cv, kind);
+      downloadBlob(blob, fileBase(cv, kind) + '.docx');
+      toast('Word file downloaded.');
+    } catch (e) { toast('Sorry — the Word file could not be created.'); }
   }
   async function copyText() {
     const text = plainText(cur());
@@ -1881,13 +2828,14 @@ function matchKeywords(cv, ad) {
     openModal('Copy your CV', `<p class="hint">Select all the text below and copy it.</p><textarea class="input" id="plainOut" rows="16" readonly>${esc(text)}</textarea>`, '<button class="btn primary" data-act="modal-close">Done</button>');
     const ta = $('#plainOut'); ta.focus(); ta.select();
   }
+  async function copyValue(text) {
+    try { if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); toast('Copied — now paste it into LinkedIn.'); return; } } catch (e) { /* fall through */ }
+    openModal('Copy text', `<textarea class="input" id="plainOut" rows="10" readonly>${esc(text)}</textarea>`, '<button class="btn primary" data-act="modal-close">Done</button>');
+    const ta = $('#plainOut'); ta.focus(); ta.select();
+  }
   function backup() {
-    const data = { app: 'cv-builder', version: 1, exported: new Date().toISOString(), cvs: db.order.map(id => db.cvs[id]) };
-    const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob); a.download = `cv-backup-${todayISO()}.json`;
-    document.body.appendChild(a); a.click();
-    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+    const data = { app: 'cv-builder', version: 2, exported: new Date().toISOString(), cvs: db.order.map(id => db.cvs[id]), jobs: db.jobs, prep: db.prep };
+    downloadBlob(new Blob([JSON.stringify(data)], { type: 'application/json' }), `cv-backup-${todayISO()}.json`);
     toast('Backup file saved — keep it somewhere safe.');
   }
   function importBackup(file) {
@@ -1900,8 +2848,11 @@ function matchKeywords(cv, ad) {
         if (!list || !list.length) throw new Error('empty');
         let firstId = null;
         list.slice().reverse().forEach(c => { if (c && typeof c === 'object') c.name = newName(String(c.name || 'My CV')); const n = addCV(c, false); firstId = n.id; });
+        let nj = 0;
+        if (Array.isArray(d.jobs)) d.jobs.forEach(j => { if (j && j.id && !db.jobs.some(x => x.id === j.id)) { db.jobs.push(j); nj++; } });
+        if (d.prep && d.prep.answers) Object.entries(d.prep.answers).forEach(([k, v]) => { if (!has(db.prep.answers[k])) db.prep.answers[k] = v; });
         openCV(firstId);
-        toast(`${list.length} CV${list.length > 1 ? 's' : ''} added from your backup.`);
+        toast(`${list.length} CV${list.length > 1 ? 's' : ''}${nj ? ` and ${nj} job application${nj > 1 ? 's' : ''}` : ''} added from your backup.`);
       } catch (e) { toast('This file is not a CV Builder backup.'); }
     };
     r.readAsText(file);
@@ -1918,14 +2869,69 @@ function matchKeywords(cv, ad) {
         c.width = Math.max(1, Math.round(img.width * s)); c.height = Math.max(1, Math.round(img.height * s));
         const ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height);
         ctx.drawImage(img, 0, 0, c.width, c.height);
+        checkpoint();
         const p = cur().personal;
         p.photo = c.toDataURL('image/jpeg', 0.86);
         p.photoZoom = 1; p.photoX = 50; p.photoY = img.height > img.width * 1.1 ? 30 : 50;
         rerenderKeepScroll(renderWrite); touch();
-        if (!STYLE_FIELDS[cur().style].photo) toast('Photo saved. It is hidden in Canada style — switch to India or Europe to show it.');
-        else toast('Photo added. Use the sliders to adjust it.');
+        toast('Photo added. Use the sliders to adjust it.');
       };
       img.onerror = () => toast('Could not read this photo. Try a JPG or PNG.');
+      img.src = r.result;
+    };
+    r.readAsDataURL(file);
+  }
+
+  /* ---------- signature ---------- */
+  function trimCanvas(c) {
+    const g = c.getContext('2d'), { width: w, height: h } = c, d = g.getImageData(0, 0, w, h).data;
+    let x0 = w, y0 = h, x1 = -1, y1 = -1;
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) if (d[(y * w + x) * 4 + 3] > 10) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+    if (x1 < 0) return null;
+    const pad = 8; x0 = Math.max(0, x0 - pad); y0 = Math.max(0, y0 - pad); x1 = Math.min(w - 1, x1 + pad); y1 = Math.min(h - 1, y1 + pad);
+    const out = document.createElement('canvas'); const sc = Math.min(1, 600 / (x1 - x0 + 1));
+    out.width = Math.round((x1 - x0 + 1) * sc); out.height = Math.round((y1 - y0 + 1) * sc);
+    out.getContext('2d').drawImage(c, x0, y0, x1 - x0 + 1, y1 - y0 + 1, 0, 0, out.width, out.height);
+    return out.toDataURL('image/png');
+  }
+  function setSignature(url) {
+    if (!url) { toast('No signature found in the image.'); return; }
+    checkpoint(); cur().signature = url; rerenderKeepScroll(renderWrite); touch(); toast('Signature added.');
+  }
+  function openSigPad() {
+    openModal('Draw your signature', `<p class="hint">Sign with your finger or mouse inside the box.</p><div class="sig-pad-wrap"><canvas id="sigPad"></canvas><span class="sig-line"></span></div>`,
+      `<button class="btn" id="sigClear">Clear</button><button class="btn primary" id="sigSave">Use this signature</button>`);
+    const c = $('#sigPad'), W = c.parentElement.clientWidth, H = 190, dpr = Math.max(1, window.devicePixelRatio || 1);
+    c.width = Math.round(W * dpr); c.height = Math.round(H * dpr); c.style.width = W + 'px'; c.style.height = H + 'px';
+    const g = c.getContext('2d'); g.scale(dpr, dpr);
+    g.lineWidth = 2.6; g.lineCap = 'round'; g.lineJoin = 'round'; g.strokeStyle = g.fillStyle = '#14213D';
+    let drawing = false, last = null, drawn = false;
+    const pos = e => { const r = c.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+    c.addEventListener('pointerdown', e => { drawing = true; last = pos(e); try { c.setPointerCapture(e.pointerId); } catch (x) { /* ok */ } g.beginPath(); g.arc(last[0], last[1], 1.3, 0, 7); g.fill(); drawn = true; e.preventDefault(); });
+    c.addEventListener('pointermove', e => { if (!drawing) return; const p = pos(e); g.beginPath(); g.moveTo(last[0], last[1]); g.lineTo(p[0], p[1]); g.stroke(); last = p; e.preventDefault(); });
+    const up = () => { drawing = false; };
+    c.addEventListener('pointerup', up); c.addEventListener('pointercancel', up); c.addEventListener('pointerleave', up);
+    $('#sigClear').onclick = () => { g.clearRect(0, 0, W, H); drawn = false; };
+    $('#sigSave').onclick = () => { if (!drawn) { toast('Please sign inside the box first.'); return; } const url = trimCanvas(c); closeModal(); setSignature(url); };
+  }
+  function loadSignatureImage(file) {
+    if (!file) return;
+    const r = new FileReader();
+    r.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        const s = Math.min(1, 900 / img.width), c = document.createElement('canvas');
+        c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+        const g = c.getContext('2d'); g.drawImage(img, 0, 0, c.width, c.height);
+        const d = g.getImageData(0, 0, c.width, c.height), a = d.data;
+        for (let i = 0; i < a.length; i += 4) {
+          const lum = a[i] * 0.3 + a[i + 1] * 0.59 + a[i + 2] * 0.11;
+          if (lum > 165) a[i + 3] = 0; else { a[i] = 20; a[i + 1] = 33; a[i + 2] = 61; a[i + 3] = Math.min(255, Math.round((165 - lum) * 3)); }
+        }
+        g.putImageData(d, 0, 0);
+        setSignature(trimCanvas(c));
+      };
+      img.onerror = () => toast('Could not read this image.');
       img.src = r.result;
     };
     r.readAsDataURL(file);
@@ -1953,7 +2959,7 @@ function matchKeywords(cv, ad) {
     const items = db.order.map(id => {
       const c = db.cvs[id], st = STYLES[c.style];
       return `<div class="list-item ${id === db.activeId ? 'on' : ''}"><div class="grow"><b>${esc(c.name)}</b><small>${st.flag} ${st.name} · ${esc(c.personal.fullName || 'No name yet')} · ${ago(c.updated)}</small></div>
-        ${id !== db.activeId ? `<button class="btn small" data-act="cv-open" data-id="${id}">Open</button>` : '<small style="color:var(--ui);font-weight:600">Open now</small>'}
+        ${id !== db.activeId ? `<button class="btn small" data-act="cv-open" data-id="${id}">Open</button>` : '<small class="open-now">Open now</small>'}
         <button class="icon-btn" data-act="cv-rename" data-id="${id}" title="Rename" aria-label="Rename">✎</button>
         <button class="icon-btn" data-act="cv-dup" data-id="${id}" title="Make a copy" aria-label="Make a copy">⧉</button>
         <button class="icon-btn" data-act="cv-del" data-id="${id}" title="Delete" aria-label="Delete">🗑</button></div>`;
@@ -1961,11 +2967,20 @@ function matchKeywords(cv, ad) {
     openModal('My CVs', `<p class="hint">Keep different versions — for example an Industry CV and a Teaching CV. Use ⧉ to copy one and tailor it for a specific job.</p>${items}`,
       `<button class="btn" data-act="samples">Start from a sample</button><button class="btn primary" data-act="cv-new">+ New blank CV</button>`);
   }
+  function historyModal() {
+    const all = history[db.activeId] || [];
+    const list = all.map((v, i) => ({ v, i })).reverse();
+    const when = ts => { const d = new Date(ts); return `${d.getDate()} ${MONTHS.en[d.getMonth()]}, ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; };
+    openModal('Earlier versions', list.length
+      ? `<p class="hint">Restore points for <b>${esc(cur().name)}</b> are saved automatically while you work (about every 10 minutes) and before big changes. Your current photo is always kept.</p>${list.map(({ v, i }) => { let d = {}; try { d = JSON.parse(v.data); } catch (e) { /* ignore */ } return `<div class="list-item"><div class="grow"><b>${when(v.ts)} · ${ago(v.ts)}</b><small>${esc(v.label)} · ${esc((d.personal && d.personal.fullName) || 'No name')} · ${(d.experience || []).length} job${(d.experience || []).length === 1 ? '' : 's'}</small></div><button class="btn small" data-act="hist-restore" data-i="${i}">Restore</button></div>`; }).join('')}`
+      : `<p class="hint">No earlier versions yet. They are saved automatically while you work. For a quick fix, use the <b>Undo</b> button at the top.</p>`,
+      '<button class="btn primary" data-act="modal-close">Close</button>');
+  }
   function guessField(cv) {
     const t = `${cv.personal.title} ${(cv.experience[0] || {}).role || ''}`.toLowerCase();
-    const map = [[/supply|logistic|demand|planning/, 'Supply Chain & Logistics'], [/procure|purchas|sourcing|buyer/, 'Procurement & Purchasing'], [/warehouse|operation|store keeper|inventory/, 'Warehouse & Operations'],
-      [/teach|lectur|professor|faculty|trainer|tutor/, 'Teaching & Training'], [/sales|marketing|business develop/, 'Sales & Marketing'], [/account|financ|audit|tax|gst/, 'Accounts & Finance'],
-      [/develop|software|engineer|it |web|data/, 'IT & Software'], [/customer|support|call/, 'Customer Service'], [/\bhr\b|human|recruit|admin/, 'HR & Administration'], [/student|fresher|graduate|intern/, 'Fresher / Internship']];
+    const map = [[/supply|logistic|demand|planning/, 'Supply Chain & Logistics'], [/procure|purchas|sourcing|buyer/, 'Procurement & Purchasing'], [/warehouse|operation|store keeper|inventory|maintenance|production|engineer/, 'Warehouse & Operations'],
+      [/teach|lectur|professor|faculty|trainer|tutor/, 'Teaching & Training'], [/sales|marketing|business develop|brand/, 'Sales & Marketing'], [/account|financ|audit|tax|gst|\bca\b/, 'Accounts & Finance'],
+      [/develop|software|it |web|data/, 'IT & Software'], [/customer|support|call|nurse/, 'Customer Service'], [/\bhr\b|human|recruit|admin/, 'HR & Administration'], [/student|fresher|graduate|intern/, 'Fresher / Internship']];
     const hit = map.find(([re]) => re.test(t + ' '));
     return hit ? hit[1] : 'Supply Chain & Logistics';
   }
@@ -1987,19 +3002,38 @@ function matchKeywords(cv, ad) {
   function addToTarget(text, asNewLine) {
     const cv = cur(); if (!phraseTarget) return;
     const curVal = getPath(cv, phraseTarget) || '';
-    let v;
-    if (phraseTarget === 'summary') v = has(curVal) ? curVal.trim() + '\n' + text : text;
-    else v = has(curVal) ? curVal.replace(/\s+$/, '') + '\n' + text : text;
+    const v = has(curVal) ? curVal.replace(/\s+$/, '') + '\n' + text : text;
     setPath(cv, phraseTarget, v);
     const ta = document.querySelector(`[data-k="${phraseTarget}"]`); if (ta) ta.value = v;
+    const wk = document.querySelector(`[data-weak="${phraseTarget}"]`); if (wk) wk.innerHTML = weakHint(v, wk.dataset.bul === '1');
     touch();
     toast(asNewLine ? `Added “${text.trim()}” — finish the sentence in the box.` : 'Added — replace the [brackets] with your details.');
+  }
+  function checkpoint() {
+    if (!cur()) return;
+    clearTimeout(burstTimer); burstOpen = false;
+    const st = undoStacks[db.activeId] = undoStacks[db.activeId] || [];
+    const s = JSON.stringify(cur());
+    if (st[st.length - 1] !== s) { st.push(s); if (st.length > 40) st.shift(); }
+    lastStable = s; updateUndoBtn();
   }
 
   /* ================= EVENTS ================= */
   function onInput(e) {
     const t = e.target;
     if (t.id === 'phraseField') { phraseField = t.value; $('#phraseList').innerHTML = phraseListHTML(t.value, phraseTarget === 'summary'); return; }
+    if (t.id === 'prepField') { db.prep.field = t.value; openQ = null; save(); renderJobs(); return; }
+    if (t.dataset.jobStatus) { const j = db.jobs.find(x => x.id === t.dataset.jobStatus); if (j) { j.status = t.value; save(); renderJobs(); toast(`Status: ${JOB_STATUS[t.value].name}`); } return; }
+    if (t.dataset.prep) {
+      db.prep.answers[t.dataset.prep] = t.value; save();
+      const card = t.closest('.q-card'); if (card) card.classList.toggle('done', has(t.value));
+      return;
+    }
+    if (t.dataset.li) {
+      const lim = +t.dataset.limit, n = t.value.length, c = $(`[data-count="${t.dataset.li}"]`);
+      if (c) { c.textContent = `${n}${lim ? ` / ${lim.toLocaleString('en-US')}` : ''} characters`; c.classList.toggle('over', !!lim && n > lim); }
+      return;
+    }
     if (t.id === 'customColor') { cur().design.color = safeHex(t.value); touch(); return; }
     const cv = cur(); if (!cv) return;
     if (t.dataset.part) {
@@ -2011,16 +3045,17 @@ function matchKeywords(cv, ad) {
     const k = t.dataset.k; if (!k) return;
     const v = t.type === 'checkbox' ? t.checked : t.value;
     setPath(cv, k, v);
-    // live bits that need small UI updates
     const parts = k.split('.');
     if (parts.length === 3) {
       const tt = $(`[data-etitle="${parts[1]}"]`);
-      const list = parts[0], ent = cv[list] && cv[list].find(x => x.id === parts[1]);
+      const list = parts[0], ent = Array.isArray(cv[list]) && cv[list].find(x => x.id === parts[1]);
       if (tt && ent) tt.textContent = entryTitle(list, ent);
       if (parts[2] === 'current') $$(`[data-date="${list}.${parts[1]}.end"] select`).forEach(s => { s.disabled = t.checked; });
     }
+    const wk = document.querySelector(`[data-weak="${k}"]`);
+    if (wk) wk.innerHTML = weakHint(v, wk.dataset.bul === '1');
     if (/^personal\.photo(Zoom|X|Y)$/.test(k)) { const f = $('#photoFrame'); if (f) f.innerHTML = photoImg(cv.personal); }
-    if (k === 'qr.link' || k === 'qr.show' || (k === 'personal.linkedin' && cv.qr.show && !qrTarget(cv))) { if (e.type === 'change' || t.type === 'checkbox' || t.tagName === 'SELECT') rerenderKeepScroll(renderWrite); }
+    if ((k === 'qr.link' || k === 'qr.show') && (t.type === 'checkbox' || t.tagName === 'SELECT')) rerenderKeepScroll(renderWrite);
     if (k === 'jobAd') return save();
     touch();
   }
@@ -2030,46 +3065,71 @@ function matchKeywords(cv, ad) {
     const act = b.dataset.act, cv = cur();
     switch (act) {
       case 'tab': setTab(b.dataset.tab); break;
+      case 'undo': undo(); break;
+      case 'history': historyModal(); break;
+      case 'hist-restore': {
+        const v = (history[db.activeId] || [])[+b.dataset.i]; if (!v) break;
+        checkpoint(); addVersion(JSON.stringify(cv), 'Before restoring');
+        const data = JSON.parse(v.data); data.personal = data.personal || {}; data.personal.photo = cv.personal.photo; data.id = db.activeId;
+        db.cvs[db.activeId] = normalize(data, true);
+        closeModal(); renderPanel(); touch(); toast('Earlier version restored. Tap Undo to go back.');
+        break;
+      }
       case 'style':
-        cv.style = b.dataset.v; rerenderKeepScroll(renderWrite); touch();
+        checkpoint(); cv.style = b.dataset.v; rerenderKeepScroll(renderWrite); touch();
         toast(`${STYLES[cv.style].name} style: ${STYLES[cv.style].note}`); break;
-      case 'design':
-        cv.design[b.dataset.f] = b.dataset.v; rerenderKeepScroll(renderDesign); touch(); break;
+      case 'design': {
+        const f = b.dataset.f; checkpoint();
+        cv.design[f] = f === 'bw' ? b.dataset.v === 'true' : b.dataset.v;
+        rerenderKeepScroll(renderDesign); touch(); break;
+      }
       case 'add': {
         const list = b.dataset.list, e2 = Object.assign({}, ENTRY_DEF[list], { id: uid() });
         if (list === 'languages') e2.level = cv.languages.length ? 'B2' : 'Native';
-        cv[list].push(e2); openSet.add(list); rerenderKeepScroll(renderWrite); touch();
+        checkpoint();
+        cv[list].push(e2);
+        if (list === 'custom') cv.order.push('custom:' + e2.id);
+        openSet.add(list); rerenderKeepScroll(renderWrite); touch();
         const first = $(`[data-entry="${e2.id}"] input, [data-entry="${e2.id}"] textarea`);
         if (first) { first.focus({ preventScroll: true }); first.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
         break;
       }
       case 'del': {
         const list = b.dataset.list, id = b.dataset.id, ent = cv[list].find(x => x.id === id);
-        const doDel = () => { cv[list] = cv[list].filter(x => x.id !== id); rerenderKeepScroll(renderWrite); touch(); };
+        const doDel = () => {
+          checkpoint(); addVersion(JSON.stringify(cv), `Before removing “${entryTitle(list, ent)}”`);
+          cv[list] = cv[list].filter(x => x.id !== id);
+          if (list === 'custom') { cv.order = cv.order.filter(k => k !== 'custom:' + id); delete cv.hidden['custom:' + id]; }
+          rerenderKeepScroll(renderWrite); touch(); toast('Removed. Tap Undo if that was a mistake.');
+        };
         const filledEntry = ent && Object.entries(ent).some(([k2, v2]) => !['id', 'level', 'current'].includes(k2) && has(v2));
-        if (filledEntry && list !== 'languages') confirmBox('Remove this entry?', `“${esc(entryTitle(list, ent))}” will be removed from this CV.`, 'Remove', doDel, true);
+        if (filledEntry && list !== 'languages') confirmBox('Remove this entry?', `“${esc(entryTitle(list, ent))}” will be removed from this CV. You can undo this.`, 'Remove', doDel, true);
         else doDel();
         break;
       }
       case 'move': {
         const list = b.dataset.list, arr = cv[list], i = arr.findIndex(x => x.id === b.dataset.id), j = i + (+b.dataset.dir);
         if (i < 0 || j < 0 || j >= arr.length) break;
-        [arr[i], arr[j]] = [arr[j], arr[i]]; rerenderKeepScroll(renderWrite); touch(); break;
+        checkpoint(); [arr[i], arr[j]] = [arr[j], arr[i]];
+        if (list === 'custom') { const a = 'custom:' + arr[i].id, c2 = 'custom:' + arr[j].id, ia = cv.order.indexOf(a), ic = cv.order.indexOf(c2); if (ia >= 0 && ic >= 0) [cv.order[ia], cv.order[ic]] = [cv.order[ic], cv.order[ia]]; }
+        rerenderKeepScroll(renderWrite); touch(); break;
       }
       case 'sec-move': {
         const arr = cv.order, i = arr.indexOf(b.dataset.sec), j = i + (+b.dataset.dir);
         if (i < 0 || j < 0 || j >= arr.length) break;
-        [arr[i], arr[j]] = [arr[j], arr[i]]; rerenderKeepScroll(renderDesign); touch(); break;
+        checkpoint(); [arr[i], arr[j]] = [arr[j], arr[i]]; rerenderKeepScroll(renderDesign); touch(); break;
       }
-      case 'sec-hide': cv.hidden[b.dataset.sec] = !cv.hidden[b.dataset.sec]; rerenderKeepScroll(renderDesign); touch(); break;
-      case 'photo-remove': cv.personal.photo = ''; rerenderKeepScroll(renderWrite); touch(); break;
-      case 'photo-shape': cv.personal.photoShape = b.dataset.v; rerenderKeepScroll(renderWrite); touch(); break;
+      case 'sec-hide': checkpoint(); cv.hidden[b.dataset.sec] = !cv.hidden[b.dataset.sec]; rerenderKeepScroll(renderDesign); touch(); break;
+      case 'photo-remove': checkpoint(); cv.personal.photo = ''; rerenderKeepScroll(renderWrite); touch(); toast('Photo removed. Tap Undo to bring it back.'); break;
+      case 'photo-shape': checkpoint(); cv.personal.photoShape = b.dataset.v; rerenderKeepScroll(renderWrite); touch(); break;
+      case 'sig-draw': openSigPad(); break;
+      case 'sig-remove': checkpoint(); cv.signature = ''; rerenderKeepScroll(renderWrite); touch(); break;
       case 'phrases': openPhrases(b.dataset.target); break;
       case 'phrase-add': addToTarget(b.dataset.text, false); break;
       case 'verb-add': addToTarget(b.dataset.text + ' ', true); break;
       case 'draft': {
-        const go = () => { cv.letter.body = draftLetter(cv); rerenderKeepScroll(renderWrite); touch(); previewMode = 'letter'; renderPreview(); toast('Draft ready — replace the [brackets] and make it your own.'); };
-        if (has(cv.letter.body)) confirmBox('Replace your letter text?', 'The current letter text will be replaced by a new first draft.', 'Replace', go);
+        const go = () => { checkpoint(); addVersion(JSON.stringify(cv), 'Before new letter draft'); cv.letter.body = draftLetter(cv); rerenderKeepScroll(renderWrite); touch(); previewMode = 'letter'; renderPreview(); toast('Draft ready — replace the [brackets] and make it your own.'); };
+        if (has(cv.letter.body)) confirmBox('Replace your letter text?', 'The current letter text will be replaced by a new first draft. You can undo this.', 'Replace', go);
         else go();
         break;
       }
@@ -2081,6 +3141,8 @@ function matchKeywords(cv, ad) {
       case 'kw': $('#kwOut').innerHTML = has(cv.jobAd) ? kwHTML(cv) : '<p class="hint" style="margin-top:10px">Paste a job advert first.</p>'; break;
       case 'print-cv': doPrint('cv'); break;
       case 'print-letter': doPrint('letter'); break;
+      case 'word-cv': exportWord('cv'); break;
+      case 'word-letter': exportWord('letter'); break;
       case 'copy-text': copyText(); break;
       case 'backup': backup(); break;
       case 'install': if (deferredPrompt) { deferredPrompt.prompt(); deferredPrompt.userChoice.finally(() => { deferredPrompt = null; if (tab === 'download') renderDownload(); }); } break;
@@ -2096,10 +3158,10 @@ function matchKeywords(cv, ad) {
       case 'cv-del': {
         const id = b.dataset.id, c = db.cvs[id];
         confirmBox('Delete this CV?', `“${esc(c.name)}” will be deleted from this device. This cannot be undone. Tip: save a backup file first.`, 'Delete', () => {
-          delete db.cvs[id]; db.order = db.order.filter(x => x !== id);
+          delete db.cvs[id]; db.order = db.order.filter(x => x !== id); delete history[id]; saveHistory();
           if (db.activeId === id) db.activeId = db.order[0] || null;
           saveNow();
-          if (!db.activeId) showWelcome(); else { showApp(); setTab(tab); cvMenu(); }
+          if (!db.activeId) showWelcome(); else { showApp(); setTab(tab); resetUndoBase(); cvMenu(); }
         }, true);
         break;
       }
@@ -2108,22 +3170,40 @@ function matchKeywords(cv, ad) {
         const s = SAMPLES[b.dataset.v]; const c = clone(s.cv); c.name = newName(c.name);
         closeModal(); addCV(c); toast('Sample loaded — replace the text with your own details.'); break;
       }
+      case 'jobs-view': jobsView = b.dataset.v; renderJobs(); break;
+      case 'job-filter': jobFilter = b.dataset.v; renderJobs(); break;
+      case 'job-add': jobModal(null); break;
+      case 'job-edit': jobModal(b.dataset.id); break;
+      case 'job-del': {
+        const j = db.jobs.find(x => x.id === b.dataset.id);
+        confirmBox('Delete this application?', `“${esc((j && (j.role || j.company)) || 'Application')}” will be removed from your tracker.`, 'Delete', () => { db.jobs = db.jobs.filter(x => x.id !== b.dataset.id); save(); renderJobs(); }, true);
+        break;
+      }
+      case 'li-copy': { const ta = $(`[data-li="${b.dataset.li}"]`); if (ta) copyValue(ta.value); break; }
+      case 'prep-random': {
+        const field = db.prep.field && INTERVIEW_FIELD[db.prep.field] ? db.prep.field : guessField(cv);
+        const qs = interviewQs(field); openQ = qs[Math.floor(Math.random() * qs.length)].id; renderJobs();
+        const el = document.querySelector(`[data-q="${CSS.escape(openQ)}"]`);
+        if (el) { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); const ta = $('textarea', el); if (ta) setTimeout(() => ta.focus({ preventScroll: true }), 350); }
+        break;
+      }
     }
   }
   function onChange(e) {
     const t = e.target;
     if (t.id === 'photoInput') { loadPhoto(t.files && t.files[0]); t.value = ''; return; }
+    if (t.id === 'sigInput') { loadSignatureImage(t.files && t.files[0]); t.value = ''; return; }
     if (t.id === 'importInput') { importBackup(t.files && t.files[0]); t.value = ''; return; }
-    if (t.id === 'customColor') { cur().design.color = safeHex(t.value); rerenderKeepScroll(renderDesign); touch(); return; }
-    if (t.dataset && (t.dataset.k === 'qr.link')) rerenderKeepScroll(renderWrite);
+    if (t.id === 'customColor') { cur().design.color = safeHex(t.value); rerenderKeepScroll(renderDesign); touch(); }
   }
 
   document.addEventListener('click', onClick);
   document.addEventListener('input', onInput);
   document.addEventListener('change', onChange);
   document.addEventListener('toggle', e => {
-    const d = e.target; if (!d.dataset || !d.dataset.acc) return;
-    if (d.open) openSet.add(d.dataset.acc); else openSet.delete(d.dataset.acc);
+    const d = e.target; if (!d.dataset) return;
+    if (d.dataset.acc) { if (d.open) openSet.add(d.dataset.acc); else openSet.delete(d.dataset.acc); }
+    if (d.dataset.q) { if (d.open) openQ = d.dataset.q; else if (openQ === d.dataset.q) openQ = null; }
   }, true);
   document.addEventListener('focusin', e => {
     const k = e.target.dataset && e.target.dataset.k; if (!k || window.innerWidth <= 900) return;
@@ -2131,20 +3211,21 @@ function matchKeywords(cv, ad) {
     if (want !== previewMode) { previewMode = want; renderPreview(); }
   });
   document.addEventListener('keydown', e => {
-    if (e.key !== 'Escape') return;
-    if (!$('#modal').hidden) closeModal(); else document.body.classList.remove('show-preview');
+    if (e.key === 'Escape') { if (!$('#modal').hidden) closeModal(); else document.body.classList.remove('show-preview'); return; }
+    const inField = /^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement || {}).tagName || '');
+    if ((e.ctrlKey || e.metaKey) && !e.shiftKey && e.key.toLowerCase() === 'z' && !inField && $('#modal').hidden && cur()) { e.preventDefault(); undo(); }
   });
   window.addEventListener('resize', debounce(fitPreview, 100));
   window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; if (tab === 'download' && cur()) renderDownload(); });
   window.addEventListener('storage', e => { if (e.key === KEY) toast('This CV was changed in another tab — reload to see the latest version.'); });
 
   /* ---------- start ---------- */
-  if (db.activeId) { showApp(); setTab('write'); } else showWelcome();
+  $$('[data-ico]').forEach(el => { el.outerHTML = uiIcon(el.dataset.ico); });
+  if (db.activeId) { showApp(); setTab('write'); resetUndoBase(); } else showWelcome();
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
     window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
   }
-  // for testing
-  window.__cvb = { db: () => db, cur, renderPreview, checkCV: () => checkCV(cur(), lastPages), plainText: () => plainText(cur()) };
+  window.__cvb = { db: () => db, cur, renderPreview, checkCV: () => checkCV(cur(), lastPages), plainText: () => plainText(cur()), history: () => history, undoDepth: () => (undoStacks[db.activeId] || []).length };
 })();
 
 </script>
