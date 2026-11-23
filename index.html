@@ -55,8 +55,9 @@ button{cursor:pointer}
 .editor{overflow-y:auto;border-right:1px solid var(--line);background:var(--bg);-webkit-overflow-scrolling:touch}
 
 /* tabs */
-.tabs{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:10px 14px;background:var(--bg)}
-.tab{border:0;background:transparent;padding:9px 6px;border-radius:12px;font-weight:650;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:7px;font-size:14.5px;transition:background .15s,color .15s}
+.tabs{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:repeat(5,1fr);gap:3px;padding:10px 12px;background:var(--bg)}
+.tab{border:0;background:transparent;padding:9px 3px;border-radius:12px;font-weight:650;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:5px;font-size:13.5px;white-space:nowrap;transition:background .15s,color .15s}
+.tab .ui-ico{width:17px;height:17px}
 .tab .ui-ico{color:var(--tc);opacity:.75}
 .tab:hover{background:rgba(255,255,255,.6)}
 .tab.active{background:#fff;color:var(--tc);box-shadow:var(--shadow),inset 0 -3px 0 var(--tc)}
@@ -359,6 +360,101 @@ button{cursor:pointer}
   .brand-name{display:none}
 }
 
+/* ================= v3: Home, ATS, improver, import, calendar, insights ================= */
+button.brand{border:0;background:transparent;padding:0;color:inherit;font:inherit;font-weight:750;font-size:17px;cursor:pointer}
+.mycv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.mycv{display:flex;gap:12px;align-items:center;text-align:left;border:1px solid var(--line);background:#fff;border-radius:14px;padding:11px;transition:all .15s;box-shadow:var(--shadow)}
+.mycv:hover{transform:translateY(-1px);border-color:color-mix(in srgb,var(--c) 45%,#fff)}
+.mycv-thumb{width:46px;height:60px;flex:none;border-radius:6px;border:1px solid var(--line);background:#fff;position:relative;overflow:hidden}
+.mycv-thumb i{position:absolute;left:7px;right:7px;height:4px;border-radius:2px;background:#E3E7EF}
+.mycv-thumb i:nth-child(1){top:7px;right:16px;height:6px;background:var(--c)}
+.mycv-thumb i:nth-child(2){top:19px}.mycv-thumb i:nth-child(3){top:28px;right:14px}.mycv-thumb i:nth-child(4){top:40px;background:color-mix(in srgb,var(--c) 40%,#fff)}
+.mycv-txt{min-width:0}
+.mycv-txt b{display:block;font-size:14.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mycv-txt small{display:block;color:#344054;font-size:13px}
+.mycv-txt em{display:block;font-style:normal;color:var(--muted);font-size:12px;margin-top:2px}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0 4px}
+.quick-btn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;font-weight:650;font-size:13px;color:var(--ink)}
+.quick-btn .ui-ico{color:var(--c);width:22px;height:22px}
+.quick-btn:hover{border-color:var(--c)}
+.home-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.home-actions .btn:not(.primary){background:#fff}
+.improve-btn{align-self:flex-start;background:linear-gradient(135deg,#F5F3FF,#FDF2F8);border-color:#DDD6FE;color:#5B21B6}
+.or{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12.5px;margin:12px 0}
+.or::before,.or::after{content:'';flex:1;height:1px;background:var(--line)}
+.imp{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:9px 10px;margin-bottom:6px;cursor:pointer}
+.imp input{width:18px;height:18px;margin-top:2px;accent-color:var(--ui);flex:none}
+.imp div{display:flex;flex-direction:column;gap:3px;font-size:13.5px}
+.imp s{color:#98A2B3}
+.imp b{font-weight:600;color:#067647}
+.issues{list-style:none;margin:0;padding:0}
+.issues li{display:flex;gap:8px;align-items:flex-start;padding:8px 10px;border-radius:10px;margin-bottom:6px;font-size:13.5px;background:#F8F9FC;border:1px solid var(--line)}
+.issues li>span{flex:1;min-width:0}
+.issues li small{display:block;color:var(--muted);font-size:12px}
+.issues li>i{font-style:normal;flex:none;font-size:13px;line-height:1.5}
+.issues li .btn{flex:none}
+.issues .lv-bad{background:#FEF3F2;border-color:#FECDCA}
+.issues .lv-warn{background:#FFFAEB;border-color:#FEF0C7}
+.ats-hero{background:linear-gradient(135deg,#fff 55%,#F5F3FF)}
+.pill-tag{display:inline-block;margin-top:5px;font-size:11.5px;font-weight:650;color:#5B21B6;background:#EDE9FE;border-radius:999px;padding:2px 9px}
+.cats{display:grid;gap:7px;margin-top:14px}
+.cat{display:grid;grid-template-columns:118px 1fr 30px;align-items:center;gap:8px;font-size:13px}
+.cat span{color:#344054;font-weight:600}
+.cat b{text-align:right;font-size:13px}
+.cat .bar{height:9px;border-radius:999px;background:#EEF0F5;overflow:hidden}
+.cat .bar i{display:block;height:100%;border-radius:999px}
+.kw .neutral{background:#F2F4F7;border-color:#E4E7EC;color:#344054}
+.kw .warnc{background:#FFFAEB;border-color:#FEDF89;color:#93370D}
+.kw em{font-style:normal;font-size:11px;opacity:.75;margin-left:2px}
+.req{list-style:none;margin:0;padding:0}
+.req li{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+.req li:last-child{border-bottom:0}
+.req li>i{font-style:normal;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:12px;font-weight:800;color:#fff;background:#98A2B3}
+.req li.ok>i{background:var(--ok)}.req li.part>i{background:var(--warn)}.req li.no>i{background:var(--bad)}
+.req li b{display:block}
+.req li span{color:var(--muted);font-size:12.5px;word-break:break-word}
+.ptable{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:4px}
+.ptable th{text-align:left;color:var(--muted);font-weight:600;padding:5px 8px 5px 0;white-space:nowrap;vertical-align:top;width:1%}
+.ptable td{padding:5px 0;word-break:break-word}
+.ptable.grid{border:1px solid var(--line);border-radius:10px;overflow:hidden;display:table}
+.ptable.grid th{background:#F8F9FC;padding:6px 8px;width:auto;border-bottom:1px solid var(--line)}
+.ptable.grid td{padding:6px 8px;border-bottom:1px solid #F0F2F7}
+.ptable.grid tr:last-child td{border-bottom:0}
+.ptable.grid td:not(:first-child){white-space:nowrap}
+.miss-t{color:var(--bad);font-style:normal;font-weight:600}
+.plain-pre{white-space:pre-wrap;background:#0F172A;color:#E2E8F0;border-radius:10px;padding:12px;font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;margin:10px 0 0;max-height:420px;overflow:auto}
+.ev-chip{display:inline-flex;align-items:center;gap:4px;margin:5px 6px 0 0;font-style:normal;font-size:12px;font-weight:600;color:#9D174D;background:#FDF2F8;border:1px solid #FBCFE8;border-radius:999px;padding:2px 9px}
+.ev-chip .ui-ico{width:13px;height:13px}
+.coming{list-style:none;margin:0;padding:0}
+.coming li{display:flex;gap:12px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+.coming li:last-child{border-bottom:0}
+.coming .when{flex:none;width:78px;font-weight:700;color:#9D174D;font-size:13px}
+.coming .when small{display:block;color:var(--muted);font-weight:500}
+.ins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:6px}
+.ins{border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;background:#FBFCFE}
+.ins b{display:block;font-size:22px;color:var(--ink)}
+.ins span{font-size:12px;color:var(--muted)}
+.wk-chart{display:grid;grid-template-columns:repeat(8,1fr);gap:2px;align-items:end;height:128px;padding-top:16px}
+.wk{position:relative;display:flex;flex-direction:column;align-items:stretch;height:100%;cursor:default}
+.wk-bar{flex:1;display:flex;align-items:flex-end;justify-content:center;position:relative;border-bottom:1px solid #D0D5DD;margin:0 3px}
+.wk-bar i{display:block;width:100%;max-width:26px;background:#4F46E5;border-radius:4px 4px 0 0}
+.wk-bar em{position:absolute;bottom:calc(100% + 2px);font-style:normal;font-size:11.5px;font-weight:700;color:var(--ink)}
+.wk span{font-size:10.5px;color:var(--muted);text-align:center;height:16px;line-height:16px;white-space:nowrap}
+.wk:hover .wk-bar i{background:#3730A3}
+.wk[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% - 6px);left:50%;transform:translateX(-50%);background:#172033;color:#fff;font-size:12px;padding:5px 8px;border-radius:7px;white-space:nowrap;z-index:5;pointer-events:none}
+.ats-link{background:linear-gradient(135deg,#fff 55%,#F5F3FF)}
+@media (max-width: 900px){
+  .icon-btn.top{padding:0 8px}
+  .quick{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width: 520px){
+  .home-actions{grid-template-columns:1fr}
+  .brand small,.brand-name{display:none}
+  .cat{grid-template-columns:96px 1fr 28px}
+  .ptable.grid{font-size:12px}
+  .ins b{font-size:19px}
+}
+
 /* ================= CV paper ================= */
 .cv{
   --accent:#1F3A5F; --tint:#eef2f7; --font:Helvetica,Arial,sans-serif; --fs:10.5pt;
@@ -372,6 +468,8 @@ button{cursor:pointer}
 .cv-title{font-size:1.15em;color:#3b4252;margin-top:1.2mm;font-weight:500}
 .cv-contact{display:flex;flex-wrap:wrap;gap:1.2mm 5mm;margin-top:2.4mm;font-size:.92em;color:#3b4252}
 .cv-contact span{white-space:nowrap;display:inline-flex;align-items:center}
+.cv-contact.plain{gap:1.2mm 0}
+.cv-contact.plain span+span::before{content:'|';margin:0 2.6mm;opacity:.55}
 .cv-ico{width:1.05em;height:1.05em;flex:none;margin-right:1.3mm;color:var(--accent)}
 .cv-photo{overflow:hidden;flex:none;background:#eef0f4;width:31mm;height:31mm}
 .cv-photo img{width:100%;height:100%;object-fit:cover;display:block}
@@ -502,8 +600,9 @@ button{cursor:pointer}
 <div id="welcome" hidden></div>
 <div id="app" hidden>
   <header class="topbar">
-    <div class="brand"><span class="brand-logo" data-logo></span><span class="brand-name">CV Builder</span><small>Free · Offline · Private</small></div>
+    <button class="brand" data-act="home" title="Home"><span class="brand-logo" data-logo></span><span class="brand-name">CV Builder</span><small>Free · Offline · Private</small></button>
     <div class="top-actions">
+      <button class="icon-btn top" data-act="home" title="Home" aria-label="Home"><span data-ico="home"></span><em>Home</em></button>
       <button class="icon-btn top" id="undoBtn" data-act="undo" title="Undo (Ctrl+Z)" aria-label="Undo" disabled><span data-ico="undo"></span><em>Undo</em></button>
       <button class="icon-btn top" data-act="history" title="Earlier versions" aria-label="Earlier versions"><span data-ico="clock"></span></button>
       <button class="cv-switch" data-act="cv-menu" title="My CVs"><span data-ico="doc"></span><span id="cvName">My CV</span><span aria-hidden="true">▾</span></button>
@@ -516,11 +615,13 @@ button{cursor:pointer}
       <nav class="tabs">
         <button class="tab active" data-act="tab" data-tab="write" style="--tc:#4F46E5"><span data-ico="write"></span>Write</button>
         <button class="tab" data-act="tab" data-tab="design" style="--tc:#DB2777"><span data-ico="palette"></span>Design</button>
+        <button class="tab" data-act="tab" data-tab="ats" style="--tc:#7C3AED"><span data-ico="scan"></span>ATS</button>
         <button class="tab" data-act="tab" data-tab="download" style="--tc:#0D9488"><span data-ico="download"></span>Download</button>
         <button class="tab" data-act="tab" data-tab="jobs" style="--tc:#D97706"><span data-ico="target"></span>Jobs</button>
       </nav>
       <div class="panel" id="panel-write"></div>
       <div class="panel" id="panel-design" hidden></div>
+      <div class="panel" id="panel-ats" hidden></div>
       <div class="panel" id="panel-download" hidden></div>
       <div class="panel" id="panel-jobs" hidden></div>
     </section>
@@ -1174,7 +1275,15 @@ const UI_ICONS = {
   trash: '<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>',
   sparkle: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/>',
   eye: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
-  lock: '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/>'
+  lock: '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/>',
+  home: '<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>',
+  scan: '<path d="M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3"/><path d="M8 9h8M8 12h8M8 15h5"/>',
+  cal: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M8 14h2v2H8z"/>',
+  share: '<circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/>',
+  upload: '<path d="M12 16V4M7 9l5-5 5 5"/><path d="M5 20h14"/>',
+  wand: '<path d="M4 20L15 9"/><path d="M13 7l4 4"/><path d="M18 3v3M16.5 4.5h3M7 3v2M6 4h2M20 12v2M19 13h2"/>',
+  chart: '<path d="M4 20V11M10 20V5M16 20v-6M2 20h20"/>',
+  fix: '<path d="M14.7 6.3a4 4 0 00-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 005.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>'
 };
 const uiIcon = (name, cls = '') => `<svg class="ui-ico ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${UI_ICONS[name] || ''}</svg>`;
 
@@ -1450,7 +1559,7 @@ function sectionTitle(key, cv) {
 /* ---------- building blocks ---------- */
 function photoHTML(cv) {
   const p = cv.personal;
-  if (!STYLE_FIELDS[cv.style].photo || !/^data:image\//.test(p.photo || '')) return '';
+  if (!STYLE_FIELDS[cv.style].photo || cv.design.hidePhoto || !/^data:image\//.test(p.photo || '')) return '';
   const x = +p.photoX || 50, y = +p.photoY || 50, z = Math.max(1, +p.photoZoom || 1);
   return `<div class="cv-photo ${esc(p.photoShape || 'circle')}"><img alt="" src="${p.photo}" style="object-position:${x}% ${y}%;transform:scale(${z});transform-origin:${x}% ${y}%"></div>`;
 }
@@ -1629,9 +1738,10 @@ function renderCV(cv) {
   }
 
   // contact line (Europe adds date of birth + nationality here)
-  let contact = contactItems(cv).map(([, v, k]) => `<span>${ico(k)}${v}</span>`);
-  if (cv.style === 'euro' && !hidden.personal) contact = contact.concat(euroHeaderItems(cv));
-  const contactHTML = contact.length ? `<div class="cv-contact">${contact.join('')}</div>` : '';
+  const plain = !!d.plainContact;
+  let contact = contactItems(cv).map(([, v, k]) => `<span>${plain ? '' : ico(k)}${v}</span>`);
+  if (cv.style === 'euro' && !hidden.personal) contact = contact.concat(plain ? euroHeaderItems(cv).map(x => x.replace(/<svg[\s\S]*?<\/svg>/, '')) : euroHeaderItems(cv));
+  const contactHTML = contact.length ? `<div class="cv-contact${plain ? ' plain' : ''}">${contact.join('')}</div>` : '';
 
   let header;
   if (tpl === 'modern') header = `<div class="cv-band">${photo}<div class="cv-header-text">${nameHTML(cv)}${contactHTML}</div>${qr}</div>`;
@@ -1661,8 +1771,9 @@ function renderLetter(cv) {
   const side = d.template === 'sidebar';
   const tpl = side ? 'classic' : (TEMPLATES[d.template] ? d.template : 'classic');
   const cls = ['cv', 'cv-letter', 't-' + tpl, side ? 'letter-side' : '', 'size-' + (d.size || 'm'), 'no-photo', 'st-' + cv.style, d.bw ? 'bw' : ''].join(' ');
-  const contact = contactItems(cv).map(([, v, k]) => `<span>${ico(k)}${v}</span>`);
-  const contactHTML = contact.length ? `<div class="cv-contact">${contact.join('')}</div>` : '';
+  const plain = !!d.plainContact;
+  const contact = contactItems(cv).map(([, v, k]) => `<span>${plain ? '' : ico(k)}${v}</span>`);
+  const contactHTML = contact.length ? `<div class="cv-contact${plain ? ' plain' : ''}">${contact.join('')}</div>` : '';
   const header = tpl === 'modern'
     ? `<div class="cv-band"><div class="cv-header-text">${nameHTML(cv)}${contactHTML}</div></div>`
     : `<header class="cv-header"><div class="cv-header-text">${nameHTML(cv)}${contactHTML}</div></header>`;
@@ -1863,34 +1974,41 @@ function collectWeak(cv) {
 /* ---------- Job ad keyword checker ---------- */
 const SHORT_OK = new Set(['sap', 'erp', 'gst', 'crm', 'sql', 'kpi', 'kpis', 'wms', 'tms', 'hr', 'it', 'bi', 'ai', 'qa', 'qc', 'mba', 'bba', 'cpa', 'ca', 'po', 'b2b', 'b2c', 'ux', 'ui', 'r', 'c#', 'c++', 'aws', 'seo', 'mis', 'exim', 'mrp', 's&op']);
 function stem(w) { return w.length > 5 ? w.replace(/(ies|ing|ed|es|s|ment|ation)$/, '') : w.replace(/s$/, ''); }
-function extractKeywords(text) {
-  const sentences = String(text || '').split(/[.!?;:\n••()\[\]|\/]+/);
-  const uni = new Map(), bi = new Map();
+function extractKeywords(text, opts = {}) {
+  const sentences = String(text || '').split(/[.!?;:,\n••()\[\]|\/]+/);
+  const uni = new Map(), bi = new Map(), tri = new Map();
+  const VSTART = new Set('plan lead manage build ensure support drive develop maintain create design deliver handle prepare coordinate monitor track review train work use help improve reduce increase implement conduct analyse analyze perform provide assist oversee report define own run set establish identify'.split(' '));
   let pos = 0;
   const bump = (map, k, v) => { const e = map.get(k) || { n: 0, first: pos, boost: 0 }; e.n += 1; e.boost = Math.max(e.boost, v); map.set(k, e); };
   sentences.forEach(s => {
     const raw = s.split(/[\s,"“”'’]+/).map(t => t.replace(/^[^A-Za-z0-9#+&]+|[^A-Za-z0-9#+&]+$/g, '')).filter(Boolean);
-    let prev = null;
+    let prev = null, prev2 = null;
     raw.forEach((orig, idx) => {
       pos++;
       const w = orig.toLowerCase();
       const good = !STOPWORDS.has(w) && !/^\d+$/.test(w) && (w.length >= 3 || SHORT_OK.has(w));
-      if (!good) { prev = null; return; }
-      const caps = idx > 0 && /[A-Z]/.test(orig) ? 0.8 : 0;
+      if (!good) { prev = null; prev2 = null; return; }
+      const caps = /^[A-Z0-9&+#]{2,}$/.test(orig) && /[A-Z]/.test(orig) ? 1 : (idx > 0 && /[A-Z]/.test(orig) ? 0.8 : 0);
       bump(uni, w, caps);
       if (prev) bump(bi, prev + ' ' + w, 0);
-      prev = w;
+      if (prev2 && prev) bump(tri, prev2 + ' ' + prev + ' ' + w, 0);
+      prev2 = prev; prev = w;
     });
   });
   const bigrams = [], used = new Set();
-  [...bi.entries()].filter(([, e]) => e.n >= 2).sort((a, b) => b[1].n - a[1].n || a[1].first - b[1].first).forEach(([k]) => {
+  const maxBi = opts.dense ? 14 : 8, max = opts.dense ? 24 : 20;
+  if (opts.dense) [...tri.entries()].filter(([k]) => !VSTART.has(k.split(' ')[0])).sort((a, b) => b[1].n - a[1].n || a[1].first - b[1].first).forEach(([k]) => {
     const ws = k.split(' ');
-    if (bigrams.length < 8 && !ws.some(w => used.has(w))) { bigrams.push(k); ws.forEach(w => used.add(w)); }
+    if (bigrams.length < 4 && ws.every(w => w.length > 2) && !ws.some(w => used.has(w)) && (bi.get(ws[0] + ' ' + ws[1]) || {}).n >= 1) { bigrams.push(k); ws.forEach(w => used.add(w)); }
+  });
+  [...bi.entries()].filter(([, e]) => e.n >= (opts.dense ? 1 : 2)).sort((a, b) => b[1].n - a[1].n || a[1].first - b[1].first).forEach(([k]) => {
+    const ws = k.split(' ');
+    if (bigrams.length < maxBi && !ws.some(w => used.has(w)) && !(opts.dense && VSTART.has(ws[0]))) { bigrams.push(k); ws.forEach(w => used.add(w)); }
   });
   const score = (k, e) => e.n + e.boost + (SHORT_OK.has(k) ? 1 : 0);
-  const unis = [...uni.entries()].filter(([k, e]) => !used.has(k) && score(k, e) >= 1.8)
+  const unis = [...uni.entries()].filter(([k, e]) => !used.has(k) && !(opts.dense && VSTART.has(k)) && (score(k, e) >= 1.8 || (opts.dense && (k.length >= 4 || e.boost >= 1))))
     .sort((a, b) => score(b[0], b[1]) - score(a[0], a[1]) || a[1].first - b[1].first)
-    .slice(0, 20 - bigrams.length).map(([k]) => k);
+    .slice(0, max - bigrams.length).map(([k]) => k);
   return bigrams.concat(unis);
 }
 function matchKeywords(cv, ad) {
@@ -1901,6 +2019,739 @@ function matchKeywords(cv, ad) {
     const found = hay.includes(' ' + t + ' ') || words.every(w => hay.includes(' ' + stem(w)));
     return { term: t, found };
   });
+}
+
+/* ================= Analysis: improver, proofreading, ATS, import, tailoring, calendar ================= */
+
+/* ---------- shared ---------- */
+const lowerWord = s => (String(s || '').split(/\s+/)[0] || '').toLowerCase().replace(/[^a-z]/g, '');
+const capFirst = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+function skillList(cv) {
+  return lines(cv.skills).flatMap(l => (/^[^,:]{2,40}:/.test(l) ? l.slice(l.indexOf(':') + 1) : l).split(',')).map(s => s.trim()).filter(Boolean);
+}
+const ymNum = s => { if (!s) return null; const [y, m] = String(s).split('-').map(Number); return y ? y * 12 + ((m || 1) - 1) : null; };
+const nowYM = () => { const d = new Date(); return d.getFullYear() * 12 + d.getMonth(); };
+const entryName = (list, e) => ({ experience: e.role || e.org, responsibilities: e.role || e.org, volunteering: e.role || e.org, education: e.degree || e.school }[list]) || 'entry';
+function experienceMonths(cv) {
+  const now = nowYM();
+  const ranges = (cv.experience || []).filter(e => e.start).map(e => [ymNum(e.start), e.current ? now : (ymNum(e.end) ?? ymNum(e.start))]).filter(r => r[1] >= r[0]).sort((a, b) => a[0] - b[0]);
+  let total = 0, cs = null, ce = null;
+  ranges.forEach(([s, e]) => { if (cs === null) { cs = s; ce = e; } else if (s <= ce + 1) ce = Math.max(ce, e); else { total += ce - cs + 1; cs = s; ce = e; } });
+  if (cs !== null) total += ce - cs + 1;
+  return total;
+}
+
+/* ================= 1. One-tap bullet improver ================= */
+const GERUND_PAST = {
+  managing: 'Managed', handling: 'Handled', preparing: 'Prepared', coordinating: 'Coordinated', maintaining: 'Maintained', leading: 'Led',
+  supervising: 'Supervised', creating: 'Created', developing: 'Developed', planning: 'Planned', organising: 'Organised', organizing: 'Organized',
+  conducting: 'Conducted', monitoring: 'Monitored', tracking: 'Tracked', processing: 'Processed', reviewing: 'Reviewed', training: 'Trained',
+  teaching: 'Taught', selling: 'Sold', building: 'Built', making: 'Made', writing: 'Wrote', running: 'Ran', assisting: 'Assisted',
+  supporting: 'Supported', analysing: 'Analysed', analyzing: 'Analyzed', ensuring: 'Ensured', overseeing: 'Oversaw', delivering: 'Delivered',
+  negotiating: 'Negotiated', purchasing: 'Purchased', sourcing: 'Sourced', recruiting: 'Recruited', designing: 'Designed', implementing: 'Implemented',
+  improving: 'Improved', reducing: 'Reduced', increasing: 'Increased', updating: 'Updated', generating: 'Generated', scheduling: 'Scheduled',
+  answering: 'Answered', resolving: 'Resolved', checking: 'Checked', counting: 'Counted', ordering: 'Ordered', dispatching: 'Dispatched',
+  receiving: 'Received', recording: 'Recorded', reporting: 'Reported', filing: 'Filed', reconciling: 'Reconciled', testing: 'Tested',
+  serving: 'Served', guiding: 'Guided', mentoring: 'Mentored', evaluating: 'Evaluated', presenting: 'Presented', calculating: 'Calculated',
+  inspecting: 'Inspected', operating: 'Operated', controlling: 'Controlled', loading: 'Loaded', packing: 'Packed', collecting: 'Collected',
+  arranging: 'Arranged', booking: 'Booked', drafting: 'Drafted', editing: 'Edited', publishing: 'Published', researching: 'Researched',
+  forecasting: 'Forecast', budgeting: 'Budgeted', auditing: 'Audited', invoicing: 'Invoiced', billing: 'Billed', onboarding: 'Onboarded',
+  hiring: 'Hired', interviewing: 'Interviewed', launching: 'Launched', promoting: 'Promoted', marketing: 'Marketed', advising: 'Advised',
+  counselling: 'Counselled', counseling: 'Counseled', nursing: 'Nursed', administering: 'Administered', documenting: 'Documented', coding: 'Coded',
+  programming: 'Programmed', debugging: 'Debugged', installing: 'Installed', repairing: 'Repaired', servicing: 'Serviced', cleaning: 'Cleaned',
+  stocking: 'Stocked', storing: 'Stored', shipping: 'Shipped', distributing: 'Distributed', allocating: 'Allocated', approving: 'Approved'
+};
+const PHRASE_PAST = [[/^taking care of\s+/i, 'Managed '], [/^looking after\s+/i, 'Managed '], [/^dealing with\s+/i, 'Handled '], [/^following up (?:on|with)\s+/i, 'Followed up on '], [/^setting up\s+/i, 'Set up '], [/^keeping track of\s+/i, 'Tracked '], [/^keeping\s+/i, 'Kept '], [/^giving\s+/i, 'Gave ']];
+const BASE_GERUND = { reduce: 'reducing', improve: 'improving', increase: 'increasing', build: 'building', cut: 'cutting', grow: 'growing', create: 'creating', develop: 'developing', plan: 'planning', organise: 'organising', organize: 'organizing', prepare: 'preparing', manage: 'managing', deliver: 'delivering', design: 'designing', launch: 'launching', set: 'setting', run: 'running', sell: 'selling', train: 'training', solve: 'solving', save: 'saving', raise: 'raising', streamline: 'streamlining', implement: 'implementing', achieve: 'achieving', complete: 'completing', meet: 'meeting', win: 'winning', open: 'opening', close: 'closing' };
+
+const IRREG_PAST = { lead: 'led', teach: 'taught', sell: 'sold', build: 'built', make: 'made', write: 'wrote', run: 'ran', oversee: 'oversaw', drive: 'drove', forecast: 'forecast', set: 'set', cut: 'cut', give: 'gave', keep: 'kept', win: 'won', meet: 'met', grow: 'grew', take: 'took', speak: 'spoke', bring: 'brought', buy: 'bought', think: 'thought', find: 'found', hold: 'held', send: 'sent', spend: 'spent', begin: 'began', do: 'did', go: 'went', see: 'saw', get: 'got', pay: 'paid', put: 'put' };
+function basePast(w) {
+  const l = w.toLowerCase(); let r;
+  if (IRREG_PAST[l]) r = IRREG_PAST[l];
+  else if (/e$/.test(l)) r = l + 'd';
+  else if (/[^aeiou]y$/.test(l)) r = l.slice(0, -1) + 'ied';
+  else if (/^(plan|ship|stop|map|scan|log|tag|plug|chat|drop|grab|step)$/.test(l)) r = l + l.slice(-1) + 'ed';
+  else r = l + 'ed';
+  return w[0] === w[0].toUpperCase() ? capFirst(r) : r;
+}
+function improveLine(raw, bullet, past) {
+  let s = String(raw || '').trim();
+  if (!s) return s;
+  let stripped = false;
+  if (bullet) s = s.replace(/^(?:i\s+(?:was|am|have been|had been|had)\s+|i\s+|my\s+(?:role|job|duty|duties|responsibilities|responsibility)\s+(?:was|were|is|are|included|include)\s+(?:to\s+)?)/i, () => { stripped = true; return ''; });
+  if (bullet && (stripped || past)) { const w = (s.match(/^[A-Za-z]+/) || [''])[0]; if (w && PRESENT_VERBS.has(w.toLowerCase())) s = basePast(w) + s.slice(w.length); }
+  const resp = s.match(/^(?:was\s+|am\s+)?(?:responsible for|in charge of|duties (?:included|include)|tasked with|accountable for)\s+(.*)$/i);
+  if (resp) {
+    let rest = resp[1], done = false;
+    for (const [re, rep] of PHRASE_PAST) if (re.test(rest)) { rest = rest.replace(re, rep); done = true; break; }
+    if (!done) {
+      const g = rest.match(/^(\w+ing)\b\s*(.*)$/i);
+      if (g && GERUND_PAST[g[1].toLowerCase()]) rest = `${GERUND_PAST[g[1].toLowerCase()]} ${g[2]}`;
+      else if (g && /ing$/i.test(g[1])) rest = `Handled ${rest}`;
+      else rest = `Managed ${rest.replace(/^the\s+/i, '')}`;
+    }
+    s = rest;
+  }
+  s = s.replace(/^worked on\s+/i, 'Delivered ');
+  s = s.replace(/^helped\s+(?:to\s+)?(\w+)\b/i, (m, w) => BASE_GERUND[w.toLowerCase()] ? `Contributed to ${BASE_GERUND[w.toLowerCase()]}` : (w.toLowerCase() === 'with' ? 'Supported' : `Supported ${w}`));
+  s = s.replace(/^supported\s+with\s+/i, 'Supported ');
+  s = s.replace(/^(?:was\s+)?(?:involved in|participated in|took part in)\s+/i, 'Contributed to ');
+  s = s.replace(/^tried to\s+/i, 'Worked to ');
+  s = s.replace(/\bfamiliar with\b/gi, 'skilled in').replace(/\b(?:good|basic) knowledge of\b/gi, 'skilled in');
+  s = s.replace(/\bhelped\b/gi, 'supported');
+  s = s.replace(/\s*,?\s*\betc\b\.?(?=\s*$|\s*[,;)])/gi, '');
+  s = s.replace(/\bvarious\b/gi, 'several');
+  s = s.replace(/\s{2,}/g, ' ').replace(/\s+([,.;])/g, '$1').trim();
+  if (bullet) s = s.replace(/\.$/, '');
+  return capFirst(s);
+}
+function improvementFields(cv) {
+  const f = [{ path: 'summary', where: 'Summary', text: cv.summary, bullet: false }];
+  ['experience', 'responsibilities', 'volunteering'].forEach(list => (cv[list] || []).forEach(e =>
+    f.push({ path: `${list}.${e.id}.bullets`, where: `${SECTION_NAMES[list] || list} – ${entryName(list, e)}`, text: e.bullets, bullet: true, past: !e.current && !!(e.end || e.start) })));
+  (cv.projects || []).forEach(e => f.push({ path: `projects.${e.id}.desc`, where: `Projects – ${e.name || 'project'}`, text: e.desc, bullet: false }));
+  (cv.achievements || []).forEach(e => f.push({ path: `achievements.${e.id}.desc`, where: `Achievements – ${e.title || 'entry'}`, text: e.desc, bullet: false }));
+  (cv.custom || []).forEach(c => f.push({ path: `custom.${c.id}.body`, where: c.title || 'My section', text: c.body, bullet: true }));
+  return f;
+}
+function improvementsFor(text, bullet, past) {
+  const out = [];
+  if (bullet) lines(text).forEach((l, i) => { const a = improveLine(l, true, past); if (a !== l) out.push({ i, before: l, after: a }); });
+  else { const t = String(text || '').trim(); if (t) { const a = improveLine(t, false); if (a !== t) out.push({ i: 0, before: t, after: a }); } }
+  return out;
+}
+function allImprovements(cv) {
+  return improvementFields(cv).map(f => Object.assign(f, { items: improvementsFor(f.text, f.bullet, f.past) })).filter(f => f.items.length);
+}
+function applyImprovements(text, bullet, items) {
+  if (!bullet) return items.length ? items[0].after : text;
+  const ls = lines(text); items.forEach(it => { ls[it.i] = it.after; }); return ls.join('\n');
+}
+
+/* ================= 3. Proofreading ================= */
+const PRESENT_VERBS = new Set('manage lead handle prepare coordinate maintain supervise create develop plan organise organize conduct monitor track process review train teach sell build make write run assist support analyse analyze ensure oversee deliver negotiate purchase source recruit design implement improve reduce increase update generate schedule answer resolve reconcile introduce achieve drive guide mentor present evaluate operate control check inspect test serve collect pack load count dispatch receive record report advise launch forecast audit'.split(' '));
+const UKUS_STEMS = 'optimi|organi|prioriti|utili|reali|speciali|recogni|minimi|maximi|standardi|summari|finali|customi|digiti|categori|authori|capitali|moderni|stabili|visuali|centrali|emphasi|apologi'.split('|');
+const UK_RE = new RegExp(`\\b(?:(?:${UKUS_STEMS.join('|')})s(?:e|ed|es|ing|ation|ations|er|ers)|analys(?:e|ed|es|ing)|centre|centres|colour|colours|behaviour|behaviours|labour|favour|modelling|travelling|catalogue|defence|cancelled)\\b`, 'gi');
+const US_RE = new RegExp(`\\b(?:(?:${UKUS_STEMS.join('|')})z(?:e|ed|es|ing|ation|ations|er|ers)|analyz(?:e|ed|es|ing)|center|centers|color|colors|behavior|behaviors|labor|favor|modeling|traveling|catalog|defense|canceled)\\b`, 'gi');
+const WORD_SWAP = { centre: 'center', centres: 'centers', colour: 'color', colours: 'colors', behaviour: 'behavior', behaviours: 'behaviors', labour: 'labor', favour: 'favor', modelling: 'modeling', travelling: 'traveling', catalogue: 'catalog', defence: 'defense', cancelled: 'canceled' };
+const keepCase = (from, to) => from[0] === from[0].toUpperCase() ? capFirst(to) : to;
+function toUS(t) { return String(t || '').replace(UK_RE, w => { const l = w.toLowerCase(); if (WORD_SWAP[l]) return keepCase(w, WORD_SWAP[l]); return w.replace(/is(e|ed|es|ing|ation|ations|er|ers)$/i, 'iz$1').replace(/ys(e|ed|es|ing)$/i, 'yz$1'); }); }
+function toUK(t) { const back = Object.fromEntries(Object.entries(WORD_SWAP).map(([a, b]) => [b, a])); return String(t || '').replace(US_RE, w => { const l = w.toLowerCase(); if (back[l]) return keepCase(w, back[l]); return w.replace(/iz(e|ed|es|ing|ation|ations|er|ers)$/i, 'is$1').replace(/yz(e|ed|es|ing)$/i, 'ys$1'); }); }
+function textFields(cv) {
+  const f = [{ where: 'Summary', get: () => cv.summary, set: v => { cv.summary = v; } }];
+  ['experience', 'responsibilities', 'volunteering'].forEach(list => (cv[list] || []).forEach(e => f.push({ where: `${SECTION_NAMES[list]} – ${entryName(list, e)}`, get: () => e.bullets, set: v => { e.bullets = v; }, bullet: true })));
+  (cv.projects || []).forEach(e => f.push({ where: `Projects – ${e.name || 'project'}`, get: () => e.desc, set: v => { e.desc = v; } }));
+  (cv.achievements || []).forEach(e => f.push({ where: `Achievements – ${e.title || 'entry'}`, get: () => e.desc, set: v => { e.desc = v; } }));
+  (cv.custom || []).forEach(c => f.push({ where: c.title || 'My section', get: () => c.body, set: v => { c.body = v; }, bullet: true }));
+  f.push({ where: 'Skills', get: () => cv.skills, set: v => { cv.skills = v; } });
+  if (cv.letter) f.push({ where: 'Cover letter', get: () => cv.letter.body, set: v => { cv.letter.body = v; } });
+  return f;
+}
+function proofread(cv) {
+  const out = [], add = (level, text, where, fix) => out.push({ level, text, where, fix });
+  const now = nowYM();
+  ['experience', 'responsibilities', 'volunteering', 'education'].forEach(list => (cv[list] || []).forEach(e => {
+    const nm = entryName(list, e), s = ymNum(e.start), en = e.current ? now : ymNum(e.end);
+    if (s != null && en != null && en < s) add('warn', 'The end date is before the start date', nm);
+    if (list === 'experience' && (has(e.role) || has(e.org))) {
+      if (!e.start) add('warn', 'Add a start date — employers and ATS use dates to work out your experience', nm);
+      else if (!/-\d\d$/.test(e.start)) add('info', 'Add the month to the start date (for example Jun 2024)', nm);
+      if (!e.current && !e.end) add('warn', 'Add an end date, or tick “I work here now”', nm);
+      if (s != null && s > now + 1) add('warn', 'The start date is in the future', nm);
+    }
+  }));
+  const jobs = (cv.experience || []).filter(e => e.start).map(e => ({ e, s: ymNum(e.start), en: e.current ? now : (ymNum(e.end) ?? ymNum(e.start)) })).sort((a, b) => a.s - b.s);
+  for (let i = 1; i < jobs.length; i++) {
+    const a = jobs[i - 1], b = jobs[i], gap = b.s - a.en - 1;
+    if (gap > 6) add('info', `${gap}-month gap between “${entryName('experience', a.e)}” and “${entryName('experience', b.e)}” — be ready to explain it, or add a course, project or volunteering from that time`, 'Work experience');
+    else if (gap < -2 && !(a.e.current && b.e.current)) add('info', `“${entryName('experience', a.e)}” and “${entryName('experience', b.e)}” overlap by ${-gap} months — fine for part-time work, otherwise check the dates`, 'Work experience');
+  }
+  const verbCount = {}; let withDot = 0, noDot = 0, lowerStart = 0; const tense = new Set();
+  ['experience', 'responsibilities', 'volunteering'].forEach(list => (cv[list] || []).forEach(e => lines(e.bullets).forEach(l => {
+    const w = lowerWord(l);
+    if (ALL_VERBS.has(w)) verbCount[w] = (verbCount[w] || 0) + 1;
+    if (!e.current && PRESENT_VERBS.has(w)) tense.add(entryName(list, e));
+    if (/^[a-z]/.test(l)) lowerStart++;
+    if (/\.$/.test(l)) withDot++; else noDot++;
+  })));
+  if (tense.size) add('warn', `Use past tense for roles you have finished — “Managed”, not “Manage”`, [...tense].slice(0, 3).join(', '));
+  if (lowerStart) add('info', `${lowerStart} bullet point${lowerStart > 1 ? 's start' : ' starts'} with a small letter`, 'Bullet points', 'caps');
+  if (withDot && noDot) add('info', 'Some bullet points end with a full stop and some don’t — keep them the same', 'Bullet points', 'periods');
+  Object.entries(verbCount).filter(([, n]) => n >= 3).forEach(([v, n]) => add('info', `${n} bullet points start with “${capFirst(v)}” — use different verbs (see Phrase ideas)`, 'Bullet points'));
+  let dbl = 0;
+  textFields(cv).forEach(f => {
+    const t = String(f.get() || '');
+    const m = t.match(/\b(\w{2,})\s+\1\b/i);
+    if (m && !/^(\d+|that|had|bye)$/i.test(m[1])) add('warn', `Repeated word: “${m[1]} ${m[1]}”`, f.where);
+    if (/[^\s] {2,}[^\s]/.test(t)) dbl++;
+  });
+  if (dbl) add('info', 'Extra spaces between words', 'Text', 'spaces');
+  const all = textFields(cv).map(f => f.get() || '').join(' ') + ' ' + (cv.personal.title || '');
+  const uk = [...new Set((all.match(UK_RE) || []).map(w => w.toLowerCase()))], us = [...new Set((all.match(US_RE) || []).map(w => w.toLowerCase()))];
+  if (cv.style === 'usa' && uk.length) add('warn', `US employers expect US spelling: ${uk.slice(0, 3).map(w => `“${w}”`).join(', ')}`, 'Spelling', 'us-spelling');
+  else if (cv.style !== 'usa' && uk.length && us.length) add('info', `Mixed UK and US spelling (for example “${uk[0]}” and “${us[0]}”) — pick one`, 'Spelling', cv.style === 'canada' ? 'us-spelling' : 'uk-spelling');
+  const local = (cv.personal.email || '').split('@')[0] || '';
+  if (/\d{3,}|cute|cool|king|queen|angel|rock|sexy|babe|lover?|hot|sweet|smart|devil|princess/i.test(local)) add('info', 'Your email address may look informal — firstname.lastname@… looks most professional', 'Contact');
+  if (cv.style !== 'india' && has(cv.personal.phone) && !/^\s*\+/.test(cv.personal.phone)) add('info', 'Add your country code to the phone number (for example +91) when applying abroad', 'Contact');
+  const seen = {}, dupS = [];
+  skillList(cv).forEach(s => { const k = s.toLowerCase(); if (seen[k]) dupS.push(s); seen[k] = 1; });
+  if (dupS.length) add('info', `Listed twice in Skills: ${dupS.slice(0, 3).join(', ')}`, 'Skills');
+  String(cv.summary || '').split(/(?<=[.!?])\s+/).forEach(s => { if (s.split(/\s+/).length > 35) add('info', 'One sentence in your summary is very long — split it in two', 'Summary'); });
+  return out;
+}
+function applyProofFix(cv, kind) {
+  textFields(cv).forEach(f => {
+    let t = f.get(); if (!has(t)) return;
+    if (kind === 'caps' && f.bullet) t = t.split('\n').map(l => l.replace(/^(\s*[-•*–·▪●]?\s*)([a-z])/, (m, a, b) => a + b.toUpperCase())).join('\n');
+    if (kind === 'periods' && f.bullet) t = t.split('\n').map(l => l.replace(/\.\s*$/, '')).join('\n');
+    if (kind === 'spaces') t = t.split('\n').map(l => l.replace(/([^\s]) {2,}(?=[^\s])/g, '$1 ')).join('\n');
+    if (kind === 'us-spelling') t = toUS(t);
+    if (kind === 'uk-spelling') t = toUK(t);
+    f.set(t);
+  });
+  if (kind === 'us-spelling') cv.personal.title = toUS(cv.personal.title);
+  if (kind === 'uk-spelling') cv.personal.title = toUK(cv.personal.title);
+}
+
+/* ================= 5. ATS preview ================= */
+const ATS_SYNONYMS = [
+  ['scm', 'supply chain management'], ['kpi', 'key performance indicator'], ['kpis', 'key performance indicators'], ['crm', 'customer relationship management'],
+  ['erp', 'enterprise resource planning'], ['s&op', 'sales and operations planning'], ['hr', 'human resources'], ['qc', 'quality control'], ['qa', 'quality assurance'],
+  ['p&l', 'profit and loss'], ['bi', 'business intelligence'], ['ml', 'machine learning'], ['ai', 'artificial intelligence'], ['ms excel', 'excel'], ['microsoft excel', 'excel'],
+  ['advanced excel', 'excel'], ['ms office', 'microsoft office'], ['powerbi', 'power bi'], ['b2b', 'business to business'], ['fmcg', 'fast moving consumer goods'],
+  ['wms', 'warehouse management system'], ['tms', 'transportation management system'], ['mrp', 'material requirements planning'], ['3pl', 'third party logistics'],
+  ['jit', 'just in time'], ['tqm', 'total quality management'], ['gst', 'goods and services tax'], ['tds', 'tax deducted at source'], ['sql', 'structured query language'],
+  ['seo', 'search engine optimisation'], ['ehr', 'electronic health records'], ['icu', 'intensive care unit'], ['mba', 'master of business administration'],
+  ['bba', 'bachelor of business administration'], ['b com', 'bachelor of commerce'], ['m com', 'master of commerce'], ['ca', 'chartered accountant'], ['po', 'purchase order'],
+  ['pos', 'purchase orders'], ['sop', 'standard operating procedure'], ['sops', 'standard operating procedures'], ['ppc', 'production planning and control']
+];
+const STD_HEADINGS = ['summary', 'profile', 'professional summary', 'profile summary', 'personal statement', 'career objective', 'objective', 'work experience', 'experience', 'professional experience', 'employment history', 'education', 'skills', 'key skills', 'technical skills', 'projects', 'certifications', 'certifications & courses', 'certificates', 'training', 'languages', 'achievements', 'achievements & awards', 'awards', 'volunteering', 'volunteer experience', 'publications', 'interests', 'hobbies', 'references', 'positions of responsibility', 'leadership', 'extracurricular activities', 'personal details', 'declaration', 'research', 'conferences', 'workshops'];
+function atsNorm(s, variants) {
+  let t = ' ' + String(s || '').toLowerCase().replace(/[’']/g, '').replace(/b\.\s?com/g, 'b com').replace(/m\.\s?com/g, 'm com').replace(/[^a-z0-9#+&]+/g, ' ') + ' ';
+  if (variants) t = t.replace(/([a-z])z(e|ed|es|ing|ation|ations|er|ers) /g, '$1s$2 ').replace(/yz(e|ed|es|ing) /g, 'ys$1 ').replace(/ (cent|met|fib|lit)er(s?) /g, ' $1re$2 ').replace(/ (col|behavi|lab|fav)or(s?) /g, ' $1our$2 ');
+  return t.replace(/\s+/g, ' ');
+}
+function atsVariants(term, variants) {
+  const t = atsNorm(term, variants).trim(); const out = new Set([t]);
+  if (variants) ATS_SYNONYMS.forEach(([a, b]) => { const na = atsNorm(a, true).trim(), nb = atsNorm(b, true).trim(); if (t === na) out.add(nb); if (t === nb) out.add(na); });
+  return [...out];
+}
+function atsFind(term, hay, variants) {
+  return atsVariants(term, variants).some(v => {
+    if (!v) return false;
+    if (hay.includes(' ' + v + ' ')) return true;
+    const ws = v.split(' ');
+    if (ws.length === 1) return v.length > 3 && hay.includes(' ' + stem(v));
+    return ws.every(w => hay.includes(' ' + (w.length > 3 ? stem(w) : w + ' ')));
+  });
+}
+function splitAd(ad) {
+  const parts = { must: [], nice: [], general: [] }; let mode = 'general';
+  String(ad || '').split(/\n/).forEach(l => {
+    const t = l.trim().toLowerCase().replace(/[:*#•\-–]+/g, ' ').trim();
+    if (!t) return;
+    if (t.length < 60 && /^(requirements?|qualifications?|must haves?|what you(?:ll| will) need|what were looking for|what we are looking for|essential|required|key skills|skills required|who you are|your profile|desired candidate profile|eligibility|skills and experience)\b/.test(t.replace(/[’']/g, ''))) { mode = 'must'; return; }
+    if (t.length < 60 && /^(preferred|nice to haves?|desirable|bonus|good to have|advantageous|plus points?|preferred qualifications)\b/.test(t)) { mode = 'nice'; return; }
+    if (t.length < 60 && /^(responsibilities|key responsibilities|what you(?:ll| will) do|duties|about (?:us|the role|the company|the job)|benefits|what we offer|perks|job description|role overview|the role)\b/.test(t.replace(/[’']/g, ''))) { mode = 'general'; return; }
+    if (/\b(preferred|nice to have|is a plus|an advantage|desirable|bonus|good to have)\b/i.test(l)) parts.nice.push(l);
+    else if (/\b(must|required|essential|mandatory|minimum)\b/i.test(l)) parts.must.push(l);
+    else parts[mode].push(l);
+  });
+  return parts;
+}
+function detectAdTitle(ad) {
+  const first = String(ad || '').split(/\n/).map(s => s.trim()).find(s => s.length > 2);
+  if (!first || first.length > 70 || /\b(we are|we're|about|company|description)\b/i.test(first)) return '';
+  return first.split(/\s[–—|-]\s|\s\(|,/)[0].trim();
+}
+function titleMatch(target, cv) {
+  const STOPT = new Set(['senior', 'junior', 'trainee', 'and', 'the', 'for', 'with', 'associate', 'level', 'entry']);
+  const tok = s => atsNorm(s, true).trim().split(' ').filter(w => w.length > 2 && !STOPT.has(w));
+  const want = tok(target); if (!want.length) return { level: 'none', text: '' };
+  const have = atsNorm([cv.personal.title, ...(cv.experience || []).map(e => e.role)].join(' '), true);
+  const hit = want.filter(w => have.includes(' ' + stem(w)) || have.includes(' ' + w + ' ')).length / want.length;
+  return { level: hit >= 0.67 ? 'full' : hit >= 0.34 ? 'part' : 'none', ratio: hit };
+}
+const EDU_LEVELS = [
+  { key: 'phd', label: 'PhD / doctorate', re: /\b(ph\.?\s?d|doctorate|doctoral)\b/i, rank: 4 },
+  { key: 'master', label: 'Master’s degree / MBA', re: /\b(master'?s?|mba|m\.?\s?com|m\.?\s?tech|m\.?\s?sc|msc|m\.?\s?a\b|pgdm|post[- ]?graduat\w*|m\.?\s?e\b)\b/i, rank: 3 },
+  { key: 'bachelor', label: 'Bachelor’s degree', re: /\b(bachelor'?s?|graduat\w*|degree|b\.?\s?com|bba|b\.?\s?tech|b\.?\s?e\b|b\.?\s?sc|bsc|b\.?\s?a\b|b\.?\s?pharm|bca|llb|b\.?\s?ed)\b/i, rank: 2 },
+  { key: 'diploma', label: 'Diploma', re: /\b(diploma|iti|polytechnic)\b/i, rank: 1 }
+];
+const eduRank = text => EDU_LEVELS.reduce((r, l) => l.re.test(text) ? Math.max(r, l.rank) : r, 0);
+function atsAnalyze(cv, pages) {
+  const S = Object.assign({ strict: 'standard', title: '', must: '', ignore: '', variants: true, expWeight: true }, cv.ats || {});
+  const issues = [], add = (cat, level, text, fix) => issues.push({ cat, level, text, fix });
+  const pen = { info: 0, warn: 8, bad: 15 };
+  const lvl = (lenient, standard, strict) => ({ lenient, standard, strict })[S.strict];
+  const F = STYLE_FIELDS[cv.style], p = cv.personal, d = cv.design;
+
+  /* --- format --- */
+  let fmt = 100;
+  const fpush = (level, text, fix) => { if (!level) return; fmt -= pen[level]; add('format', level, text, fix); };
+  if (d.template === 'sidebar') fpush(lvl('info', 'warn', 'bad'), 'Two-column (Sidebar) layout — some ATS read across both columns and mix up your sections. Classic is the safest.', 'tpl-classic');
+  if (d.template === 'timeline') fpush(lvl(null, 'info', 'warn'), 'Dates in a separate left column — older ATS may not link them to the right job.', 'tpl-classic');
+  if (!d.plainContact && d.template !== 'sidebar') fpush(lvl(null, 'info', 'warn'), 'Icons in the contact line — ATS ignore them, but strict systems prefer plain text with separators.', 'plain-contact');
+  if (F.photo && p.photo && !d.hidePhoto) fpush(lvl(null, 'info', 'warn'), 'Photo on the CV — ATS ignore images, and many UK/US employers prefer no photo.', 'hide-photo');
+  if (cv.qr && cv.qr.show) fpush(lvl(null, 'info', 'warn'), 'QR code — ATS cannot read it. Make sure the same link is also written as text.', 'no-qr');
+  if (cv.style === 'euro' && d.headingLang === 'de') fpush('warn', 'Headings are in German — use English headings for English-language job portals.', 'heading-en');
+  const allText = textFields(cv).map(f => f.get() || '').join(' ') + ' ' + (p.title || '') + ' ' + (p.fullName || '');
+  if (/\p{Extended_Pictographic}|[★☆✓✔✗✘➤➢►▶◆◇■□]/u.test(allText)) fpush('warn', 'Emojis or special symbols in your text — ATS may turn them into strange characters.');
+  if (pages > 2) fpush('warn', `Your CV is ${pages} pages — keep it to 1–2 pages.`);
+  if (d.size === 's' && S.strict === 'strict') fpush('info', 'Small text — fine for people, but keep it readable if the CV is printed.', 'size-m');
+  (cv.custom || []).filter(c => has(c.body)).forEach(c => { if (!STD_HEADINGS.includes(String(c.title || '').trim().toLowerCase())) fpush(lvl(null, 'info', 'warn'), `Unusual heading “${c.title || 'My section'}” — ATS may not recognise it. Standard names like “Certifications” or “Training” work best.`); });
+  fmt = Math.max(0, fmt);
+
+  /* --- parsing (what the ATS can extract) --- */
+  const pc = [];
+  const chk = (ok, w, good, bad, level = 'warn') => { pc.push({ ok, w }); if (!ok) add('parsing', level, bad); else if (good) add('parsing', 'ok', good); };
+  chk(has(p.fullName), 12, 'Name found', 'No name found — add your full name');
+  chk(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((p.email || '').trim()), 14, 'Email found', 'No valid email found — recruiters cannot contact you', 'bad');
+  chk((p.phone || '').replace(/\D/g, '').length >= 10, 10, 'Phone number found', 'No full phone number found');
+  chk(has(p.city), 5, 'Location found', 'No location found — many ATS filter by city', 'info');
+  chk(/linkedin\.com\/in\//i.test(p.linkedin || ''), 4, 'LinkedIn link found', 'No LinkedIn link in the form linkedin.com/in/your-name', 'info');
+  const jobs = (cv.experience || []).filter(e => has(e.role) || has(e.org));
+  if (jobs.length) {
+    const noDates = jobs.filter(e => !e.start || (!e.end && !e.current)), noMonth = jobs.filter(e => e.start && !/-\d\d$/.test(e.start));
+    const noTitle = jobs.filter(e => !has(e.role) || !has(e.org));
+    chk(!noDates.length, 14, 'Every job has start and end dates', `${noDates.length} job${noDates.length > 1 ? 's have' : ' has'} missing dates — ATS cannot calculate your experience`);
+    chk(!noMonth.length, 6, 'Dates include months', 'Add months to your dates (Jun 2024, not just 2024)', 'info');
+    chk(!noTitle.length, 10, 'Every job has a title and a company', 'Each job needs both a job title and a company name');
+  } else chk(cv.projects.some(x => has(x.name)) || cv.responsibilities.some(x => has(x.role)), 10, 'No jobs yet, but projects or positions are listed', 'No work experience found — add internships, projects or volunteering', 'warn');
+  chk(cv.education.some(e => has(e.degree)), 10, 'Education found', 'No education found');
+  const sk = skillList(cv);
+  chk(sk.length >= 6, 10, `${sk.length} skills found`, sk.length ? `Only ${sk.length} skills found — list 6–15 specific skills` : 'No skills section found — ATS rely on it heavily');
+  const pTot = pc.reduce((s, x) => s + x.w, 0), pGot = pc.reduce((s, x) => s + (x.ok ? x.w : 0), 0);
+  const parsing = Math.round(pGot / pTot * 100);
+
+  /* --- content quality --- */
+  const bullets = jobs.flatMap(e => lines(e.bullets));
+  const verbR = bullets.length ? bullets.filter(b => ALL_VERBS.has(lowerWord(b))).length / bullets.length : 0;
+  const numR = bullets.length ? bullets.filter(b => /\d/.test(b)).length / bullets.length : 0;
+  const weak = collectWeak(cv).length, sl = (cv.summary || '').trim().length;
+  let content = 0;
+  content += sl >= 150 && sl <= 750 ? 25 : sl ? 12 : 0;
+  content += bullets.length ? Math.round(25 * Math.min(1, verbR / 0.7)) : 10;
+  content += bullets.length ? Math.round(25 * Math.min(1, numR / 0.4)) : 10;
+  content += weak ? Math.max(0, 25 - weak * 5) : 25;
+  if (!sl) add('content', 'warn', 'No summary — ATS and recruiters use it for keywords and a quick overview');
+  if (bullets.length && numR < 0.3) add('content', 'info', 'Few numbers in your bullet points — results like “20%” or “40 suppliers” rank better with recruiters');
+  if (bullets.length && verbR < 0.6) add('content', 'info', 'Start more bullet points with action verbs (Managed, Improved, Reduced)');
+  if (weak) add('content', 'info', `${weak} weak phrase${weak > 1 ? 's' : ''} — use “Improve wording” in the Download tab`);
+
+  /* --- keywords vs job advert --- */
+  let keywords = null, kwScore = null;
+  const ad = String(cv.jobAd || '').trim();
+  if (ad) {
+    const V = !!S.variants, ignore = new Set(String(S.ignore || '').toLowerCase().split(/[,\n]/).map(s => s.trim()).filter(Boolean));
+    const firstLine = (ad.split(/\n/).find(x => x.trim()) || ''), tPart = detectAdTitle(ad);
+    if (tPart && firstLine.length < 80) firstLine.replace(tPart, ' ').toLowerCase().split(/[^a-z]+/).filter(w => w.length > 2).forEach(w => ignore.add(w));
+    const titleWords = new Set(atsNorm(tPart, false).trim().split(' ').filter(Boolean)), titleFull = atsNorm(tPart, false).trim();
+    const parts = splitAd(ad);
+    const mustText = atsNorm(parts.must.join(' '), V), niceText = atsNorm(parts.nice.join(' '), V);
+    const GENERIC = new Set(['bachelor', 'bachelors', 'degree', 'degrees', 'master', 'masters', 'graduate', 'graduates', 'graduation', 'diploma', 'certification', 'certifications', 'certified', 'certificate', 'knowledge', 'experience', 'years', 'year', 'plus', 'preferred', 'required', 'strong', 'ability', 'hands', 'proven', 'excellent', 'good', 'minimum', 'related', 'field', 'similar', 'role', 'hiring', 'join', 'growing']);
+    let merged = [];
+    [extractKeywords(ad), extractKeywords(parts.must.join('\n'), { dense: true }), extractKeywords(parts.nice.join('\n'), { dense: true }), extractKeywords(parts.general.filter(l => l.trim() !== firstLine.trim()).join('\n'), { dense: true }).slice(0, 10)].forEach(list => list.forEach(x0 => {
+      const x = x0.split(' ').filter(w => !GENERIC.has(w) && !ignore.has(w)).join(' ');
+      if (!x || ignore.has(x) || merged.includes(x) || x === titleFull || (!x.includes(' ') && titleWords.has(x) && !atsNorm(parts.must.join(' '), false).includes(' ' + x + ' '))) return;
+      if (!x.includes(' ') && merged.some(m => m.split(' ').includes(x))) return;
+      if (x.includes(' ')) merged = merged.filter(m => m.includes(' ') || !x.split(' ').includes(m));
+      merged.push(x);
+    }));
+    const extracted = merged.slice(0, 32);
+    const userMust = String(S.must || '').split(/[,\n]/).map(s => s.trim()).filter(Boolean);
+    const noSections = !parts.must.length && !parts.nice.length;
+    const hay = {
+      summary: atsNorm(cv.summary, V), skills: atsNorm(cv.skills, V),
+      experience: atsNorm([...(cv.experience || []), ...(cv.responsibilities || []), ...(cv.volunteering || [])].map(e => `${e.role} ${e.org} ${e.bullets}`).join(' '), V),
+      other: atsNorm([p.title, ...(cv.education || []).map(e => `${e.degree} ${e.school} ${e.details}`), ...(cv.projects || []).map(e => `${e.name} ${e.desc}`), ...(cv.certifications || []).map(e => `${e.name} ${e.issuer}`), ...(cv.achievements || []).map(e => `${e.title} ${e.desc}`), ...(cv.custom || []).map(c => c.body), cv.publications, (cv.languages || []).map(l => l.name).join(' ')].join(' '), V)
+    };
+    const names = { summary: 'Summary', skills: 'Skills', experience: 'Experience', other: 'Other sections' };
+    const terms = [];
+    userMust.forEach(t => terms.push({ term: t, must: true, user: true }));
+    extracted.forEach((t, i) => {
+      if (terms.some(x => x.term.toLowerCase() === t)) return;
+      const inMust = atsFind(t, mustText, V), inNice = atsFind(t, niceText, V);
+      terms.push({ term: t, must: noSections ? i < 10 : (inMust || (!inNice && i < 6)) });
+    });
+    terms.forEach(t => {
+      t.where = Object.keys(hay).filter(k => atsFind(t.term, hay[k], V)).map(k => names[k]);
+      t.found = t.where.length > 0;
+      t.strong = t.where.includes('Experience') || t.where.includes('Skills');
+    });
+    const must = terms.filter(t => t.must), nice = terms.filter(t => !t.must);
+    const val = t => !t.found ? 0 : (S.expWeight && !t.strong ? 0.75 : 1);
+    const mScore = must.length ? must.reduce((s, t) => s + val(t), 0) / must.length : 1;
+    const nScore = nice.length ? nice.reduce((s, t) => s + val(t), 0) / nice.length : 1;
+    const target = has(S.title) ? S.title.trim() : detectAdTitle(ad);
+    const tm = titleMatch(target, cv);
+    const yr = ad.match(/(\d{1,2})\s*(?:\+|plus)?\s*(?:(?:-|–|to)\s*\d{1,2}\s*)?\+?\s*(?:years?|yrs?)/i);
+    const yearsReq = yr ? Math.min(30, +yr[1]) : null, yearsHave = Math.round(experienceMonths(cv) / 12 * 10) / 10;
+    const needEdu = eduRank(ad), haveEdu = eduRank((cv.education || []).map(e => e.degree).join(' '));
+    const checks = [];
+    if (target) checks.push({ label: `Job title “${target}”`, ok: tm.level === 'full', part: tm.level === 'part', text: tm.level === 'full' ? 'Your headline or a past job title matches' : tm.level === 'part' ? 'Partly matches — consider using the exact title in your headline (if it fits you)' : 'Not found in your headline or job titles' });
+    if (yearsReq != null) checks.push({ label: `${yearsReq}+ years of experience`, ok: yearsHave >= yearsReq, part: yearsHave >= yearsReq * 0.7, text: `Your CV shows about ${yearsHave} year${yearsHave === 1 ? '' : 's'} (from your job dates)` });
+    if (needEdu) { const need = EDU_LEVELS.find(l => l.rank === needEdu); checks.push({ label: need.label, ok: haveEdu >= needEdu, part: false, text: haveEdu >= needEdu ? 'Your education meets this' : 'Not clearly shown in your Education section' }); }
+    const chkScore = checks.length ? checks.reduce((s, c) => s + (c.ok ? 1 : c.part ? 0.5 : 0), 0) / checks.length : 1;
+    kwScore = Math.round((mScore * 0.6 + nScore * 0.2 + chkScore * 0.2) * 100);
+    keywords = { must, nice, checks, target, parts: { must: parts.must.length, nice: parts.nice.length } };
+    const miss = must.filter(t => !t.found);
+    if (miss.length) add('keywords', miss.length > must.length / 2 ? 'bad' : 'warn', `${miss.length} must-have key word${miss.length > 1 ? 's' : ''} missing: ${miss.slice(0, 5).map(t => t.term).join(', ')}${miss.length > 5 ? '…' : ''}`);
+    const weakPlace = must.filter(t => t.found && !t.strong);
+    if (S.expWeight && weakPlace.length) add('keywords', 'info', `Only in your summary: ${weakPlace.slice(0, 4).map(t => t.term).join(', ')} — ATS rank key words higher when they appear in Skills or Experience`);
+  }
+
+  const overall = keywords
+    ? Math.round(fmt * 0.2 + parsing * 0.25 + kwScore * 0.4 + content * 0.15)
+    : Math.round(fmt * 0.35 + parsing * 0.4 + content * 0.25);
+  const parsed = {
+    contact: [['Name', p.fullName], ['Email', p.email], ['Phone', p.phone], ['Location', [p.city, p.country].filter(has).join(', ')], ['LinkedIn', shortUrl(p.linkedin)]],
+    jobs: jobs.map(e => { const s = ymNum(e.start), en = e.current ? nowYM() : ymNum(e.end); return { title: e.role, company: e.org, from: fmtYM(e.start, { style: 'india', design: {} }), to: e.current ? 'Present' : fmtYM(e.end, { style: 'india', design: {} }), months: s != null && en != null && en >= s ? en - s + 1 : null }; }),
+    education: (cv.education || []).filter(e => has(e.degree) || has(e.school)).map(e => ({ degree: e.degree, school: e.school, year: String(e.end || e.start || '').slice(0, 4) })),
+    skills: sk,
+    sections: (cv.order || []).filter(k => !(cv.hidden || {})[k] && secContent(k, cv, 'classic', false)).map(k => { const h = sectionTitle(k, cv); return { heading: h, ok: STD_HEADINGS.includes(String(h).toLowerCase()) && !(cv.style === 'euro' && d.headingLang === 'de') }; }),
+    years: Math.round(experienceMonths(cv) / 12 * 10) / 10
+  };
+  return { score: overall, cats: { format: fmt, parsing, keywords: kwScore, content }, issues, keywords, parsed, settings: S };
+}
+
+/* ================= 2. Tailor to a job ================= */
+function termHit(text, terms) { const h = atsNorm(text, true); return terms.filter(t => atsFind(t, h, true)).length; }
+function tailorCV(cv, opts, analysis) {
+  const c = JSON.parse(JSON.stringify(cv));
+  const k = analysis.keywords || { must: [], nice: [] };
+  const terms = [...k.must, ...k.nice].map(t => t.term);
+  c.name = opts.name;
+  if (opts.title && has(opts.newTitle)) c.personal.title = opts.newTitle.trim();
+  if (opts.skills) {
+    const ls = lines(c.skills).map(l => {
+      const i = l.indexOf(':');
+      if (/^[^,:]{2,40}:/.test(l)) { const items = l.slice(i + 1).split(',').map(s => s.trim()).filter(Boolean); items.sort((a, b) => termHit(b, terms) - termHit(a, terms)); return { l: `${l.slice(0, i)}: ${items.join(', ')}`, n: termHit(l, terms) }; }
+      const items = l.split(',').map(s => s.trim()).filter(Boolean); items.sort((a, b) => termHit(b, terms) - termHit(a, terms));
+      return { l: items.join(', '), n: termHit(l, terms) };
+    });
+    c.skills = ls.map((x, i) => Object.assign(x, { i })).sort((a, b) => b.n - a.n || a.i - b.i).map(x => x.l).join('\n');
+  }
+  if (opts.bullets) ['experience', 'responsibilities', 'volunteering'].forEach(list => (c[list] || []).forEach(e => {
+    e.bullets = lines(e.bullets).map((l, i) => ({ l, i, n: termHit(l, terms) })).sort((a, b) => b.n - a.n || a.i - b.i).map(x => x.l).join('\n');
+  }));
+  if (opts.summary) {
+    const sumH = atsNorm(c.summary, true);
+    const rest = atsNorm([c.skills, ...c.experience.map(e => e.bullets)].join(' '), true);
+    const add = k.must.concat(k.nice).filter(t => t.found && !atsFind(t.term, sumH, true) && atsFind(t.term, rest, true)).slice(0, 4).map(t => t.term);
+    if (add.length) {
+      const nice = add.map(t => /^[a-z]/.test(t) && t.length <= 4 ? t.toUpperCase() : t);
+      c.summary = `${String(c.summary || '').trim().replace(/\.?$/, '.')} Skilled in ${nice.join(', ').replace(/, ([^,]*)$/, ' and $1')}.`.trim();
+    }
+  }
+  c.letter = Object.assign({}, c.letter, { jobTitle: opts.newTitle || (k.target || ''), company: opts.company || '' });
+  delete c.id;
+  return c;
+}
+
+/* ================= 6. Import an old CV ================= */
+const IMPORT_HEADINGS = {
+  summary: ['summary', 'profile', 'professional summary', 'profile summary', 'career objective', 'objective', 'about me', 'personal statement', 'career summary', 'professional profile', 'about'],
+  experience: ['experience', 'work experience', 'professional experience', 'employment history', 'work history', 'career history', 'employment', 'internships', 'internship', 'internship experience', 'relevant experience'],
+  education: ['education', 'academic qualifications', 'academic qualification', 'educational qualifications', 'educational qualification', 'qualifications', 'academic background', 'academics', 'education & qualifications', 'academic details'],
+  skills: ['skills', 'key skills', 'technical skills', 'core competencies', 'competencies', 'it skills', 'computer skills', 'skills & competencies', 'areas of expertise', 'expertise', 'soft skills', 'skill set', 'skillset', 'strengths'],
+  projects: ['projects', 'academic projects', 'key projects', 'project work', 'projects undertaken', 'project'],
+  certifications: ['certifications', 'certificates', 'certification', 'courses', 'training', 'trainings', 'certifications & courses', 'licenses & certifications', 'professional development', 'courses & certifications'],
+  achievements: ['achievements', 'awards', 'honours', 'honors', 'accomplishments', 'achievements & awards', 'awards & achievements', 'awards and achievements', 'key achievements'],
+  responsibilities: ['positions of responsibility', 'leadership', 'leadership experience', 'extra-curricular activities', 'extracurricular activities', 'extra curricular activities', 'co-curricular activities', 'activities'],
+  volunteering: ['volunteering', 'volunteer experience', 'volunteer work', 'social work', 'community service'],
+  languages: ['languages', 'languages known', 'language skills', 'language proficiency', 'language'],
+  interests: ['interests', 'hobbies', 'hobbies & interests', 'hobbies and interests', 'personal interests'],
+  publications: ['publications', 'research papers', 'papers', 'research publications'],
+  references: ['references', 'referees'],
+  personal: ['personal details', 'personal information', 'personal profile', 'personal data', 'personal particulars', 'personal info'],
+  declaration: ['declaration']
+};
+const BULLET_RE = /^\s*(?:[•\-*–▪●◦■□➢►✓o]|\d+[.)])\s+/;
+const MON_RE = 'jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?';
+const DATE_TOKEN = new RegExp(`(?:\\b(${MON_RE})\\.?\\s*'?,?\\s*(\\d{4}|'\\d{2})\\b)|(?:\\b(\\d{1,2})[\\/.-](\\d{4})\\b)|(?:\\b((?:19|20)\\d{2})\\b)`, 'gi');
+const PRESENT_RE = /\b(present|current|currently|now|till date|to date|today|ongoing|till now)\b/i;
+function monthNum(m) { const i = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'].indexOf(m.slice(0, 3).toLowerCase()); return i >= 0 ? String(i + 1).padStart(2, '0') : ''; }
+function dateTokens(line) {
+  const out = []; let m; DATE_TOKEN.lastIndex = 0;
+  while ((m = DATE_TOKEN.exec(line))) {
+    if (m[1]) { let y = m[2]; if (y.startsWith("'")) y = '20' + y.slice(1); out.push({ v: `${y}-${monthNum(m[1])}`, i: m.index, len: m[0].length }); }
+    else if (m[3]) { const mm = +m[3]; if (mm >= 1 && mm <= 12) out.push({ v: `${m[4]}-${String(mm).padStart(2, '0')}`, i: m.index, len: m[0].length }); }
+    else if (m[5]) out.push({ v: m[5], i: m.index, len: m[0].length });
+  }
+  return out;
+}
+function dateRange(line) {
+  const t = dateTokens(line); const pres = PRESENT_RE.test(line);
+  if (!t.length) return null;
+  const pm = line.match(PRESENT_RE);
+  let a = t[0].i, b = t[t.length - 1].i + t[t.length - 1].len;
+  if (pm) { a = Math.min(a, pm.index); b = Math.max(b, pm.index + pm[0].length); }
+  const rest = clean(line.slice(0, a) + ' ' + line.slice(b));
+  const ranged = t.length > 1 || pres || /[-–—]\s*$|\b(to|till|until)\s*$/i.test(line.slice(0, t[0].i + t[0].len + 4));
+  if (t.length === 1 && !pres && !/[-–—]\s*$/.test(line.slice(t[0].i + t[0].len).trim().slice(0, 2) || '')) return { single: t[0].v, rest };
+  return { start: t[0].v, end: t.length > 1 ? t[t.length - 1].v : '', current: !!pm && t.length === 1, rest, ranged };
+  function clean(s) { return s.replace(/\(\s*[-–—]?\s*\)|\[\s*[-–—]?\s*\]/g, ' ').replace(/\s+(?:to|till|until)\s*$/i, '').replace(/[\s|,:(\[–—-]+$/, '').replace(/^[\s|,:)\]–—-]+/, '').replace(/\s{2,}/g, ' ').trim(); }
+}
+function headingKey(line) {
+  const t = line.trim().toLowerCase().replace(/[:\-–—_*#|•]+$/g, '').replace(/^[\-–—_*#•\s]+/, '').replace(/\s{2,}/g, ' ').trim();
+  for (const [k, list] of Object.entries(IMPORT_HEADINGS)) if (list.includes(t)) return k;
+  const raw = line.trim().replace(/:$/, '');
+  if (raw.length >= 4 && raw.length <= 40 && raw === raw.toUpperCase() && /[A-Z]/.test(raw) && !/\d|@/.test(raw) && raw.split(/\s+/).length <= 5) return 'custom:' + raw;
+  return null;
+}
+const COMPANY_RE = /\b(ltd|limited|pvt|private|inc|llc|gmbh|company|co\.|corp|corporation|industries|hospital|university|college|school|bank|group|associates|solutions|technologies|enterprises|services|traders|institute|foundation|ngo)\b/i;
+function parseEntries(ls, edu) {
+  const entries = []; let cur = null;
+  ls.forEach(raw => {
+    const l = raw.replace(/\t+/g, '  ').trim(); if (!l) return;
+    const isB = BULLET_RE.test(l);
+    const d = !isB ? dateRange(l) : null;
+    if (edu && cur && !isB && DEGREE_RE.test(l) && cur.head.some(h => DEGREE_RE.test(h))) cur = null;
+    if (d && d.single && cur && (cur.hasDate || cur.single)) cur = null;
+    if (d && !d.single) {
+      if (cur && !cur.hasDate && !cur.bullets.length) { Object.assign(cur, d); cur.hasDate = true; if (d.rest) cur.head.push(d.rest); return; }
+      cur = { head: d.rest ? [d.rest] : [], bullets: [], start: d.start, end: d.end, current: d.current, hasDate: true }; entries.push(cur); return;
+    }
+    if (isB) { if (!cur) { cur = { head: [], bullets: [] }; entries.push(cur); } cur.bullets.push(l.replace(BULLET_RE, '')); return; }
+    if (cur && cur.bullets.length && (/^[a-z]/.test(l) || l.length > 70)) { cur.bullets[cur.bullets.length - 1] += ' ' + l; return; }
+    if (!cur || cur.bullets.length || cur.head.length >= 3) { cur = { head: [], bullets: [] }; entries.push(cur); }
+    else if (d && d.single && !cur.head.length) { /* fine: first line of a new entry */ }
+    if (d && d.single) { cur.single = d.single; if (d.rest) cur.head.push(d.rest); } else cur.head.push(l);
+  });
+  return entries;
+}
+function splitRoleOrg(head) {
+  let role = head[0] || '', org = head[1] || '', city = '';
+  const at = role.match(/^(.*?)\s+(?:at|@)\s+(.*)$/i) || role.match(/^(.*?)\s*[|–—]\s*(.*)$/) || (!org && role.match(/^(.*?),\s*(.*)$/));
+  if (at && !org) { role = at[1]; org = at[2]; }
+  if (COMPANY_RE.test(role) && org && !COMPANY_RE.test(org)) [role, org] = [org, role];
+  const sfx = org.match(/^(.*?\b(?:ltd|limited|pvt|inc|llc|gmbh|co|corp|llp|plc)\b\.?)\s*,\s*([A-Za-z .]{2,30}(?:,\s*[A-Za-z .]{2,30})?)$/i);
+  const oc = sfx || org.match(/^(.*?)(?:,|\s[–—-]\s)\s*([A-Za-z .]{2,30})$/);
+  if (oc && !COMPANY_RE.test(oc[2])) { org = oc[1]; city = oc[2]; }
+  return { role: role.trim(), org: org.trim(), city: city.trim(), extra: head.slice(2) };
+}
+const DEGREE_RE = /\b(b\.?\s?com|m\.?\s?com|bba|mba|b\.?\s?tech|m\.?\s?tech|b\.?\s?e\b|m\.?\s?e\b|b\.?\s?sc|m\.?\s?sc|bsc|msc|b\.?\s?a\b|m\.?\s?a\b|ph\.?\s?d|bachelor|master|diploma|hsc|ssc|class\s+(?:x|xii|10|12)|1[02]th|higher secondary|secondary|pgdm|ca\b|cs\b|cma|bca|mca|llb|b\.?\s?ed|b\.?\s?pharm|degree)/i;
+function parseLevel(s) {
+  const t = String(s || '').toLowerCase();
+  const c = t.match(/\b([abc][12])\b/i); if (c) return c[1].toUpperCase();
+  if (/native|mother tongue|first language/.test(t)) return 'Native';
+  if (/fluent|proficient|excellent|advanced/.test(t)) return 'C1';
+  if (/professional|very good/.test(t)) return 'B2';
+  if (/intermediate|conversational|good|working/.test(t)) return 'B1';
+  if (/basic|beginner|elementary|limited/.test(t)) return 'A2';
+  return 'B2';
+}
+function toISODate(s) {
+  const t = String(s || '').trim();
+  let m = t.match(/(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})/); if (m) return `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`;
+  m = t.match(new RegExp(`(\\d{1,2})(?:st|nd|rd|th)?\\s+(${MON_RE})\\w*,?\\s+(\\d{4})`, 'i')); if (m) return `${m[3]}-${monthNum(m[2])}-${m[1].padStart(2, '0')}`;
+  m = t.match(new RegExp(`(${MON_RE})\\w*\\s+(\\d{1,2}),?\\s+(\\d{4})`, 'i')); if (m) return `${m[3]}-${monthNum(m[1])}-${m[2].padStart(2, '0')}`;
+  return '';
+}
+function parseCVText(text) {
+  const all = String(text || '').replace(/\r/g, '').split('\n').map(l => l.replace(/\s+$/, ''));
+  const data = { personal: {}, experience: [], education: [], projects: [], certifications: [], achievements: [], responsibilities: [], volunteering: [], languages: [], custom: [], skills: '', summary: '', interests: '', publications: '', references: '', declaration: {} };
+  const blocks = { top: [] }; const order = []; let curK = 'top';
+  let seenHeading = false;
+  all.forEach(l => {
+    if (!l.trim()) { (blocks[curK] = blocks[curK] || []).push(''); return; }
+    let hk = headingKey(l);
+    if (hk && hk.startsWith('custom:') && !seenHeading && blocks.top.filter(x => x.trim()).length < 2) hk = null;
+    if (hk) seenHeading = true;
+    if (hk) { curK = hk; if (!blocks[curK]) { blocks[curK] = []; order.push(curK); } return; }
+    (blocks[curK] = blocks[curK] || []).push(l);
+  });
+  const nonEmpty = ls => (ls || []).map(s => s.trim()).filter(Boolean);
+  /* contact block */
+  const top = nonEmpty(blocks.top);
+  const txt = all.join('\n');
+  const email = (txt.match(/[\w.+-]+@[\w-]+\.[\w.-]+/) || [])[0] || '';
+  const phone = ((txt.match(/(\+?\d[\d\s\-().]{8,}\d)/g) || []).find(x => x.replace(/\D/g, '').length >= 10 && x.replace(/\D/g, '').length <= 15 && !/^(19|20)\d{2}\s*[-–]\s*(19|20)\d{2}$/.test(x.trim())) || '').trim();
+  const li = (txt.match(/(?:https?:\/\/)?(?:[a-z]{2,3}\.)?linkedin\.com\/[^\s|,;)]+/i) || [])[0] || '';
+  const web = ((txt.match(/(?:https?:\/\/)?(?:www\.)?[a-z0-9-]+\.(?:com|in|net|org|io|dev|me|co|site)(?:\/[^\s|,;)]*)?/gi) || []).find(u => !/linkedin|@/.test(u) && !email.toLowerCase().includes(u.toLowerCase().replace(/^https?:\/\//, ''))) || '');
+  data.personal.email = email; data.personal.phone = phone; data.personal.linkedin = li.replace(/^https?:\/\//, ''); data.personal.website = web;
+  const isContact = l => (email && l.includes(email)) || (phone && l.includes(phone)) || /linkedin|@|\+?\d{5,}/i.test(l);
+  const nameLine = top.find(l => !isContact(l) && /^[A-Za-z][A-Za-z .'-]{2,40}$/.test(l) && l.split(/\s+/).length >= 2 && l.split(/\s+/).length <= 5 && !/curriculum|vitae|resume|résumé/i.test(l));
+  data.personal.fullName = nameLine ? nameLine.replace(/\s+/g, ' ').trim().replace(/\b([a-z])/g, (m, c) => c.toUpperCase()).replace(/^(.)/, c => c.toUpperCase()) : '';
+  if (nameLine && nameLine === nameLine.toUpperCase()) data.personal.fullName = nameLine.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+  const afterName = nameLine ? top.slice(top.indexOf(nameLine) + 1) : top;
+  const titleLine = afterName.find(l => !isContact(l) && l.split(/\s+/).length <= 9 && l.length < 70 && !/[.]$/.test(l));
+  if (titleLine && !/,\s*[A-Z][a-z]+$/.test(titleLine) || (titleLine && /\b(engineer|analyst|manager|executive|student|graduate|officer|teacher|lecturer|nurse|accountant|developer|designer|consultant|intern|assistant|specialist|professional)\b/i.test(titleLine))) data.personal.title = titleLine;
+  const locSeg = top.flatMap(l => l.split(/[|•·]/)).map(s => s.trim()).find(s => s && s !== nameLine && s !== titleLine && !s.includes('@') && !/\d{5,}|linkedin|www\.|http/i.test(s) && /^[A-Za-z .]+,\s*[A-Za-z .]+$/.test(s) && s.split(/\s+/).length <= 5);
+  if (locSeg) { const [c1, ...r] = locSeg.split(','); data.personal.city = c1.trim(); data.personal.country = r.join(',').trim(); }
+  const topLong = afterName.filter(l => l !== titleLine && !isContact(l) && l !== locSeg && l.length > 60);
+  /* sections */
+  const found = {};
+  order.forEach(k => {
+    const ls = blocks[k]; const ne = nonEmpty(ls);
+    if (!ne.length) return;
+    if (k === 'summary') data.summary = ne.join(' ').replace(/\s+/g, ' ');
+    else if (k === 'experience' || k === 'responsibilities' || k === 'volunteering') {
+      parseEntries(ls).forEach(en => {
+        if (!en.head.length && !en.bullets.length) return;
+        const r = splitRoleOrg(en.head);
+        data[k].push({ role: r.role, org: r.org, city: r.city, start: en.start || '', end: en.end || en.single || '', current: !!en.current, bullets: [...r.extra, ...en.bullets].join('\n') });
+      });
+    } else if (k === 'education') {
+      parseEntries(ls, true).forEach(en => {
+        const allL = [...en.head, ...en.bullets];
+        const deg = allL.find(l => DEGREE_RE.test(l)) || en.head[0] || '';
+        const grade = allL.find(l => l !== deg && /(cgpa|gpa|%|percent|grade|class|distinction|division)/i.test(l)) || '';
+        const school = allL.find(l => l !== deg && l !== grade) || '';
+        const det = allL.filter(l => l !== deg && l !== grade && l !== school).join('; ');
+        let degree = deg, gradeV = grade, schoolV = school;
+        const gIn = deg.match(/((?:cgpa|gpa|percentage)\s*:?\s*[\d.]+(?:\s*\/\s*\d+)?|\d{2,3}(?:\.\d+)?\s*%)/i);
+        if (gIn && !gradeV) { gradeV = gIn[1]; degree = deg.replace(gIn[0], ' '); }
+        degree = degree.replace(/[\s|,–—-]+$/, '').replace(/\s{2,}/g, ' ').trim();
+        const sp = degree.match(/^(.*?)(?:\s[—–|-]\s|,\s*|\s{2,})(.*)$/);
+        if (sp && DEGREE_RE.test(sp[1]) && !schoolV) { degree = sp[1]; schoolV = sp[2]; }
+        const sc = schoolV.split(/,\s*/);
+        data.education.push({ degree: degree.trim(), school: (sc[0] || '').trim(), city: sc.slice(1).join(', ').trim(), start: en.start || '', end: en.end || en.single || (en.current ? '' : ''), current: !!en.current, grade: gradeV.trim(), details: det });
+      });
+    } else if (k === 'skills') data.skills = ne.map(l => l.replace(BULLET_RE, '')).join('\n');
+    else if (k === 'projects') parseEntries(ls).forEach(en => { const nm = en.head[0] || en.bullets[0] || ''; const rest = [...en.head.slice(1), ...en.bullets.filter(b => b !== nm)]; data.projects.push({ name: nm, link: '', desc: rest.join(' ') }); });
+    else if (k === 'certifications' || k === 'achievements') ne.forEach(l => {
+      const c = l.replace(BULLET_RE, ''); const y = (c.match(/\b(19|20)\d{2}\b/) || [])[0] || '';
+      const nm = c.replace(/[(\[]?\b(19|20)\d{2}\b[)\]]?/, '').replace(/[\s,–-]+$/, '').trim();
+      const [a, ...b] = nm.split(/\s[–—-]\s|,\s(?=[A-Z])/);
+      if (k === 'certifications') data.certifications.push({ name: a.trim(), issuer: b.join(', ').trim(), year: y });
+      else data.achievements.push({ title: a.trim(), org: b.join(', ').trim(), year: y, desc: '' });
+    });
+    else if (k === 'languages') ne.join(', ').replace(BULLET_RE, '').split(/,|;|\n/).map(s => s.trim()).filter(Boolean).forEach(s => {
+      const m = s.match(/^([A-Za-z]+)\s*(?:[-–:(]\s*(.*?)\)?)?$/); if (m) data.languages.push({ name: m[1], level: parseLevel(m[2] || '') });
+    });
+    else if (k === 'interests') data.interests = ne.map(l => l.replace(BULLET_RE, '')).join(', ');
+    else if (k === 'publications') data.publications = ne.map(l => l.replace(BULLET_RE, '')).join('\n');
+    else if (k === 'references') data.references = ne.join('\n');
+    else if (k === 'personal') ne.forEach(l => {
+      const m = l.match(/^\s*([A-Za-z' ]{2,30})\s*[:\-–]\s*(.+)$/); if (!m) return;
+      const key = m[1].toLowerCase().trim(), v = m[2].trim();
+      if (/birth|dob/.test(key)) data.personal.dob = toISODate(v);
+      else if (/gender|sex/.test(key)) data.personal.gender = /^f/i.test(v) ? 'Female' : /^m/i.test(v) ? 'Male' : v;
+      else if (/nationality/.test(key)) data.personal.nationality = v;
+      else if (/marital/.test(key)) data.personal.marital = /married/i.test(v) && !/un/i.test(v) ? 'Married' : 'Single';
+      else if (/father/.test(key)) data.personal.father = v;
+      else if (/language/.test(key)) v.split(/,|&|and/).map(s => s.trim()).filter(Boolean).forEach(n => data.languages.push({ name: n.replace(/\(.*\)/, '').trim(), level: parseLevel(n) }));
+      else if (/hobb|interest/.test(key)) data.interests = v;
+      else if (/passport/.test(key)) data.personal.passport = v;
+      else if (/visa/.test(key)) data.personal.visa = v;
+      else if (/licen/.test(key)) data.personal.licence = v;
+      else if (/address|location|city/.test(key) && !data.personal.city) data.personal.city = v.split(',').slice(-2, -1)[0] || v;
+    });
+    else if (k === 'declaration') {
+      const pl = ne.find(l => /^place\s*[:\-]/i.test(l)); if (pl) data.declaration.place = pl.replace(/^place\s*[:\-]\s*/i, '').trim();
+      const tx = ne.filter(l => !/^(place|date)\s*[:\-]/i.test(l) && !/^\(?[A-Z][a-z]+ [A-Z][a-z]+\)?$/.test(l)).join(' ');
+      if (tx) data.declaration.text = tx;
+    } else if (k.startsWith('custom:')) data.custom.push({ title: k.slice(7).toLowerCase().replace(/\b\w/g, c => c.toUpperCase()), body: ne.map(l => l.replace(BULLET_RE, '')).join('\n') });
+    found[k.startsWith('custom:') ? 'custom' : k] = true;
+  });
+  if (!data.summary && topLong.length) data.summary = topLong.join(' ');
+  data.style = data.personal.visa || data.personal.passport ? 'gulf' : 'india';
+  return data;
+}
+async function docxToText(buf) {
+  const u8 = new Uint8Array(buf), dv = new DataView(buf);
+  let eocd = -1; for (let i = u8.length - 22; i >= Math.max(0, u8.length - 66000); i--) if (dv.getUint32(i, true) === 0x06054b50) { eocd = i; break; }
+  if (eocd < 0) throw new Error('not a zip');
+  const count = dv.getUint16(eocd + 10, true); let off = dv.getUint32(eocd + 16, true);
+  let entry = null;
+  for (let n = 0; n < count; n++) {
+    if (dv.getUint32(off, true) !== 0x02014b50) break;
+    const method = dv.getUint16(off + 10, true), csize = dv.getUint32(off + 20, true), nlen = dv.getUint16(off + 28, true), elen = dv.getUint16(off + 30, true), clen = dv.getUint16(off + 32, true), loff = dv.getUint32(off + 42, true);
+    const name = new TextDecoder().decode(u8.subarray(off + 46, off + 46 + nlen));
+    if (name === 'word/document.xml') { entry = { method, csize, loff }; break; }
+    off += 46 + nlen + elen + clen;
+  }
+  if (!entry) throw new Error('no document.xml');
+  const lnl = dv.getUint16(entry.loff + 26, true), lel = dv.getUint16(entry.loff + 28, true);
+  const data = u8.subarray(entry.loff + 30 + lnl + lel, entry.loff + 30 + lnl + lel + entry.csize);
+  let xmlBytes;
+  if (entry.method === 0) xmlBytes = data;
+  else {
+    if (typeof DecompressionStream === 'undefined') throw new Error('no-inflate');
+    const stream = new Blob([data]).stream().pipeThrough(new DecompressionStream('deflate-raw'));
+    xmlBytes = new Uint8Array(await new Response(stream).arrayBuffer());
+  }
+  const doc = new DOMParser().parseFromString(new TextDecoder().decode(xmlBytes), 'application/xml');
+  const W = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main', out = [];
+  Array.from(doc.getElementsByTagNameNS(W, 'p')).forEach(p => {
+    let t = '';
+    Array.from(p.getElementsByTagNameNS(W, '*')).forEach(n => { if (n.localName === 't') t += n.textContent; else if (n.localName === 'tab') t += '\t'; else if (n.localName === 'br') t += '\n'; });
+    const isList = p.getElementsByTagNameNS(W, 'numPr').length > 0;
+    const runs = Array.from(p.getElementsByTagNameNS(W, 'r')).filter(r => r.getElementsByTagNameNS(W, 't').length && r.textContent.trim());
+    const allCaps = runs.length && runs.every(r => Array.from(r.getElementsByTagNameNS(W, 'caps')).some(c => c.getAttributeNS(W, 'val') !== 'false' && c.getAttributeNS(W, 'val') !== '0'));
+    if (allCaps && t.length < 50) t = t.toUpperCase();
+    t.split('\n').forEach(x => out.push((isList && x.trim() ? '• ' : '') + x));
+  });
+  return out.join('\n');
+}
+
+/* ================= 9. Calendar ================= */
+function icsEscape(s) { return String(s || '').replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n'); }
+function icsFold(line) { const out = []; let s = line; while (s.length > 74) { out.push(s.slice(0, 74)); s = ' ' + s.slice(74); } out.push(s); return out.join('\r\n'); }
+function calTimes(ev) {
+  const [y, m, d] = ev.date.split('-').map(Number);
+  const p2 = n => String(n).padStart(2, '0');
+  if (ev.time) {
+    const [hh, mm] = ev.time.split(':').map(Number);
+    const s = new Date(y, m - 1, d, hh, mm), e = new Date(s.getTime() + (ev.mins || 60) * 60000);
+    const f = t => `${t.getFullYear()}${p2(t.getMonth() + 1)}${p2(t.getDate())}T${p2(t.getHours())}${p2(t.getMinutes())}00`;
+    return { start: f(s), end: f(e), allDay: false };
+  }
+  const n = new Date(y, m - 1, d + 1);
+  return { start: `${y}${p2(m)}${p2(d)}`, end: `${n.getFullYear()}${p2(n.getMonth() + 1)}${p2(n.getDate())}`, allDay: true };
+}
+function makeICS(ev) {
+  const t = calTimes(ev), stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
+  const L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//CV Builder//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'BEGIN:VEVENT',
+    `UID:${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}@cv-builder`, `DTSTAMP:${stamp}`,
+    t.allDay ? `DTSTART;VALUE=DATE:${t.start}` : `DTSTART:${t.start}`, t.allDay ? `DTEND;VALUE=DATE:${t.end}` : `DTEND:${t.end}`,
+    `SUMMARY:${icsEscape(ev.title)}`];
+  if (has(ev.desc)) L.push(`DESCRIPTION:${icsEscape(ev.desc)}`);
+  if (has(ev.location)) L.push(`LOCATION:${icsEscape(ev.location)}`);
+  L.push('BEGIN:VALARM', 'ACTION:DISPLAY', `DESCRIPTION:${icsEscape(ev.title)}`, `TRIGGER:${t.allDay ? 'PT9H' : '-PT60M'}`, 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR');
+  return L.map(icsFold).join('\r\n') + '\r\n';
+}
+function googleCalURL(ev) {
+  const t = calTimes(ev);
+  let tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { tz = ''; }
+  const q = new URLSearchParams({ action: 'TEMPLATE', text: ev.title, dates: `${t.start}/${t.end}`, details: ev.desc || '' });
+  if (has(ev.location)) q.set('location', ev.location);
+  if (tz && !t.allDay) q.set('ctz', tz);
+  return 'https://calendar.google.com/calendar/render?' + q.toString();
+}
+
+/* ================= 10. Job search insights ================= */
+function jobInsights(jobs, cvs) {
+  const sent = jobs.filter(j => j.status !== 'todo');
+  const intv = sent.filter(j => ['interview', 'offer'].includes(j.status) || (j.hist || []).some(h => h.s === 'interview'));
+  const offers = sent.filter(j => j.status === 'offer');
+  const replied = sent.filter(j => j.status !== 'applied');
+  const days = [];
+  sent.forEach(j => {
+    const h = j.hist || [];
+    const a = h.find(x => x.s === 'applied') || (j.date ? { d: j.date } : null);
+    const r = h.find(x => ['interview', 'offer', 'rejected'].includes(x.s));
+    if (a && r) { const n = Math.round((new Date(r.d) - new Date(a.d)) / 86400000); if (n >= 0 && n < 365) days.push(n); }
+  });
+  const weeks = [];
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const monday = new Date(today); monday.setDate(today.getDate() - ((today.getDay() + 6) % 7));
+  for (let w = 7; w >= 0; w--) {
+    const s = new Date(monday); s.setDate(monday.getDate() - w * 7); const e = new Date(s); e.setDate(s.getDate() + 7);
+    const n = sent.filter(j => { if (!j.date) return false; const d = new Date(j.date + 'T00:00'); return d >= s && d < e; }).length;
+    weeks.push({ label: `${s.getDate()} ${MONTHS.en[s.getMonth()]}`, n });
+  }
+  const byCV = {};
+  sent.forEach(j => { const k = j.cvId && cvs[j.cvId] ? j.cvId : '—'; const o = byCV[k] = byCV[k] || { name: k === '—' ? 'Not recorded' : cvs[k].name, apps: 0, intv: 0 }; o.apps++; if (intv.includes(j)) o.intv++; });
+  return {
+    sent: sent.length, interviews: intv.length, offers: offers.length, replied: replied.length,
+    interviewRate: sent.length ? Math.round(intv.length / sent.length * 100) : 0,
+    replyRate: sent.length ? Math.round(replied.length / sent.length * 100) : 0,
+    avgDays: days.length ? Math.round(days.reduce((a, b) => a + b, 0) / days.length) : null,
+    weeks, byCV: Object.values(byCV).sort((a, b) => b.apps - a.apps)
+  };
 }
 
 /* ================= Word (.docx) export — built in the browser, works offline ================= */
@@ -2019,7 +2870,7 @@ const DOCX = (() => {
     let head = para(run(has(p.fullName) ? p.fullName : 'Your Name', { b: true, sz: Math.round(base * 2.2), color: accent }), { after: 40 })
       + (has(p.title) ? para(run(p.title, { sz: base + 4, color: grey }), { after: 60 }) : '')
       + (contact.length ? para(run(contact.join('   |   '), { sz: base - 2, color: grey }), { after: 60 }) : '');
-    if (kind === 'cv' && STYLE_FIELDS[cv.style].photo && /^data:image\//.test(p.photo || '')) {
+    if (kind === 'cv' && STYLE_FIELDS[cv.style].photo && !d.hidePhoto && /^data:image\//.test(p.photo || '')) {
       const png = await photoPNG(p, d.bw);
       if (png) { const im = addImg(png), size = 1560; head = twoCols(head, para(imageRun(im.rid, im.id, size * EMU, size * EMU), { align: 'right' }), W - 1800, 1800); }
     }
@@ -2139,7 +2990,8 @@ const DOCX = (() => {
   function defaults() {
     return {
       name: 'My CV', updated: Date.now(), style: 'india',
-      design: { template: 'classic', color: '#1F3A5F', font: 'sans', size: 'm', headingLang: 'en', bw: false },
+      design: { template: 'classic', color: '#1F3A5F', font: 'sans', size: 'm', headingLang: 'en', bw: false, plainContact: false, hidePhoto: false },
+      ats: { strict: 'standard', title: '', must: '', ignore: '', variants: true, expWeight: true },
       personal: { fullName: '', title: '', email: '', phone: '', city: '', country: '', linkedin: '', website: '', dob: '', gender: '', nationality: '', marital: '', father: '', visa: '', passport: '', licence: '', photo: '', photoZoom: 1, photoX: 50, photoY: 50, photoShape: 'circle' },
       summary: '', experience: [], education: [], skills: '', projects: [], achievements: [], responsibilities: [], volunteering: [], certifications: [], publications: '', languages: [], interests: '', references: '',
       custom: [], signature: '',
@@ -2164,7 +3016,7 @@ const DOCX = (() => {
   function normalize(c, keepId) {
     const d = defaults(); c = (c && typeof c === 'object') ? c : {};
     const out = Object.assign({}, d, c);
-    ['design', 'personal', 'declaration', 'qr', 'letter'].forEach(k => { out[k] = Object.assign({}, d[k], (c[k] && typeof c[k] === 'object') ? c[k] : {}); });
+    ['design', 'personal', 'declaration', 'qr', 'letter', 'ats'].forEach(k => { out[k] = Object.assign({}, d[k], (c[k] && typeof c[k] === 'object') ? c[k] : {}); });
     out.hidden = Object.assign({}, (c.hidden && typeof c.hidden === 'object') ? c.hidden : {});
     Object.keys(ENTRY_DEF).forEach(k => {
       out[k] = (Array.isArray(c[k]) ? c[k] : []).filter(e => e && typeof e === 'object').map(e => Object.assign({}, ENTRY_DEF[k], e, { id: e.id || uid() }));
@@ -2336,19 +3188,7 @@ const DOCX = (() => {
     $('#welcome').hidden = true; $('#app').hidden = false;
     $('#cvName').textContent = cur().name;
   }
-  function showWelcome() {
-    $('#app').hidden = true; const w = $('#welcome'); w.hidden = false;
-    w.innerHTML = `<div class="welcome">
-      <div class="brand brand-big"><span class="brand-logo">${logoSVG()}</span>CV Builder</div>
-      <h1>Make a professional CV in minutes</h1>
-      <p class="lead">Write your details once and your CV builds itself. Free, works offline, and nothing you type leaves your device.</p>
-      ${privacyHTML()}
-      <button class="btn primary block big-start" data-act="cv-new">${uiIcon('write')} Start with a blank CV</button>
-      <h3 class="w-h">Or start from a sample</h3>
-      ${samplesHTML()}
-      <p class="hint" style="text-align:center;margin-top:18px">Already have a backup file? <label class="btn ghost small">Open backup file<input type="file" id="importInput" accept=".json,application/json" hidden></label></p>
-    </div>`;
-  }
+  function showWelcome() { showHome(); }
   const samplesHTML = () => `<div class="sample-grid">${SAMPLE_ORDER.map(k => {
     const s = SAMPLES[k];
     return `<button class="sample-card" data-act="sample-load" data-v="${k}"><span class="s-ico" style="--c:${SAMPLE_COLORS[k]}">${uiIcon(SAMPLE_ICONS[k])}</span><span class="s-txt"><b>${esc(s.label)}</b><small>${esc(s.desc)}</small><em>${STYLES[s.cv.style].flag} ${STYLES[s.cv.style].name} style</em></span></button>`;
@@ -2359,7 +3199,7 @@ const DOCX = (() => {
   function setTab(t) {
     tab = t;
     $$('.tab').forEach(b => b.classList.toggle('active', b.dataset.tab === t));
-    ['write', 'design', 'download', 'jobs'].forEach(k => { $('#panel-' + k).hidden = k !== t; });
+    ['write', 'design', 'ats', 'download', 'jobs'].forEach(k => { $('#panel-' + k).hidden = k !== t; });
     document.body.dataset.tab = t;
     renderPanel();
     renderPreview();
@@ -2370,6 +3210,7 @@ const DOCX = (() => {
     $('#cvName').textContent = cur().name;
     if (tab === 'write') renderWrite();
     if (tab === 'design') renderDesign();
+    if (tab === 'ats') renderATS();
     if (tab === 'download') renderDownload();
     if (tab === 'jobs') renderJobs();
     updateUndoBtn();
@@ -2387,13 +3228,14 @@ const DOCX = (() => {
     if (type === 'textarea') input = `<textarea data-k="${path}" rows="${o.rows || 4}" placeholder="${esc(o.ph || '')}">${esc(v)}</textarea>`;
     else if (type === 'select') input = `<select data-k="${path}">${o.options.map(([ov, ol]) => `<option value="${esc(ov)}" ${String(ov) === String(v) ? 'selected' : ''}>${esc(ol)}</option>`).join('')}</select>`;
     else input = `<input type="${type}" data-k="${path}" value="${esc(v)}" placeholder="${esc(o.ph || '')}" ${o.attrs || ''}>`;
-    const weak = o.weak ? `<div class="weak" data-weak="${path}" data-bul="${o.weak === 'bullets' ? 1 : 0}">${weakHint(v, o.weak === 'bullets')}</div>` : '';
+    const weak = o.weak ? `<div class="weak" data-weak="${path}" data-bul="${o.weak === 'bullets' ? 1 : 0}">${weakHint(v, o.weak === 'bullets', path)}</div>` : '';
     return `<label class="field ${o.dim ? 'dim' : ''}"><span>${esc(label)} ${o.tag || ''}</span>${input}${weak}${o.hint ? `<p class="hint">${o.hint}</p>` : ''}</label>`;
   }
-  function weakHint(text, bullets) {
+  function weakHint(text, bullets, path) {
     const w = weakInField(text, bullets);
-    if (!w.length) return '';
-    return w.slice(0, 3).map(x => `<span><b>“${esc(x.phrase)}”</b> → ${esc(x.tip)}</span>`).join('');
+    const canFix = path && improvementsFor(text, bullets).length > 0;
+    if (!w.length && !canFix) return '';
+    return w.slice(0, 3).map(x => `<span><b>“${esc(x.phrase)}”</b> → ${esc(x.tip)}</span>`).join('') + (canFix ? `<button class="btn small improve-btn" data-act="improve" data-path="${path}">${uiIcon('wand')} Improve wording</button>` : '');
   }
   function datePick(path, value, disabled) {
     const [y, m] = String(value || '').split('-');
@@ -2550,7 +3392,7 @@ const DOCX = (() => {
     const cv = cur();
     const styleGrid = `<div class="style-grid">${STYLE_ORDER.map(k => { const s = STYLES[k]; return `<button data-act="style" data-v="${k}" class="style-opt ${cv.style === k ? 'on' : ''}"><span class="flag">${s.flag}</span><b>${s.name}</b><small>${s.paper}</small></button>`; }).join('')}</div>`;
     $('#panel-write').innerHTML = `
-      ${isEmpty(cv) ? `<div class="card card-static hello"><div><h3>New here?</h3><p class="hint" style="margin:0">Start from a ready-made example, then replace the text with your own.</p></div><button class="btn primary small" data-act="samples">Start from a sample</button></div>` : ''}
+      ${isEmpty(cv) ? `<div class="card card-static hello"><div><h3>New here?</h3><p class="hint" style="margin:0">Start from a ready-made example, then replace the text with your own.</p></div><div class="btn-row"><button class="btn primary small" data-act="samples">Start from a sample</button><button class="btn small" data-act="import">${uiIcon('upload')} Import my old CV</button></div></div>` : ''}
       <div class="card card-static"><h3 class="card-h">${secIco('style')}Where are you applying?</h3><p class="hint">Your CV follows the normal rules of each region automatically.</p>${styleGrid}<p class="style-note">${esc(STYLES[cv.style].note)}</p></div>
       ${acc(cv, 'personal', 'Personal details', personalBody(cv))}
       ${acc(cv, 'summary', sectionTitle('summary', cv), `${fld('3–4 lines about you', 'summary', cv.summary, { type: 'textarea', rows: 5, weak: 'text', ph: 'Who you are, your key skills and what kind of job you want.' })}<button class="btn small soft" data-act="phrases" data-target="summary">${uiIcon('sparkle')} Example summaries</button>`)}
@@ -2578,6 +3420,281 @@ const DOCX = (() => {
     const cv = cur(); if (!cv || tab !== 'write') return;
     $$('[data-dot]').forEach(d => d.classList.toggle('done', filledSec(cv, d.dataset.dot)));
     $$('[data-meta]').forEach(m => { m.textContent = metaFor(cv, m.dataset.meta); });
+  }
+
+/* ================= App (part 1b: Home, ATS, improver, proofreading, import, tailoring, calendar, insights, sharing) ================= */
+
+  /* ---------- Home page ---------- */
+  function showHome() {
+    $('#app').hidden = true; document.body.classList.remove('show-preview');
+    const w = $('#welcome'); w.hidden = false;
+    const any = db.order.length > 0;
+    const cvCard = id => {
+      const c = db.cvs[id], st = STYLES[c.style], col = accentOf(c);
+      return `<button class="mycv" data-act="cv-open" data-id="${id}" style="--c:${col}"><span class="mycv-thumb"><i></i><i></i><i></i><i></i></span><span class="mycv-txt"><b>${esc(c.name)}</b><small>${esc(c.personal.fullName || 'No name yet')}</small><em>${st.flag} ${st.name} · ${ago(c.updated)}</em></span></button>`;
+    };
+    w.innerHTML = `<div class="welcome">
+      <div class="brand brand-big"><span class="brand-logo">${logoSVG()}</span>CV Builder</div>
+      <h1>${any ? 'Welcome back' : 'Make a professional CV in minutes'}</h1>
+      <p class="lead">${any ? 'Pick up where you left off, or start something new.' : 'Write your details once and your CV builds itself. Free, works offline, and nothing you type leaves your device.'}</p>
+      ${any ? '' : privacyHTML()}
+      ${any ? `<h3 class="w-h">Your CVs</h3><div class="mycv-grid">${db.order.map(cvCard).join('')}</div>
+        <div class="quick">${[['write', 'write', 'Keep writing', '#4F46E5'], ['ats', 'scan', 'ATS check', '#7C3AED'], ['download', 'download', 'Download', '#0D9488'], ['jobs', 'target', 'Job tracker', '#D97706']].map(([t, i, l, c]) => `<button class="quick-btn" data-act="go-tab" data-tab="${t}" style="--c:${c}">${uiIcon(i)}<span>${l}</span></button>`).join('')}</div>` : ''}
+      <div class="home-actions">
+        <button class="btn primary big-start" data-act="cv-new">${uiIcon('write')} New blank CV</button>
+        <button class="btn big-start" data-act="import">${uiIcon('upload')} Import an existing CV</button>
+      </div>
+      <h3 class="w-h">${any ? 'Start from a sample' : 'Or start from a sample'}</h3>
+      ${samplesHTML()}
+      <p class="hint" style="text-align:center;margin-top:18px">Have a backup file? <label class="btn ghost small">Open backup file<input type="file" id="importInput" accept=".json,application/json" hidden></label></p>
+      ${any ? privacyHTML() : ''}
+    </div>`;
+    window.scrollTo(0, 0);
+  }
+
+  /* ---------- sharing ---------- */
+  function canShareFiles() {
+    try { return !!(navigator.canShare && navigator.canShare({ files: [new File(['x'], 'x.json', { type: 'application/json' })] })); } catch (e) { return false; }
+  }
+  async function shareFile(blob, name, title) {
+    try {
+      const file = new File([blob], name, { type: blob.type || 'application/octet-stream' });
+      await navigator.share({ files: [file], title, text: title });
+    } catch (e) {
+      if (e && e.name === 'AbortError') return;
+      downloadBlob(blob, name); toast('Sharing is not available here — the file was downloaded instead.');
+    }
+  }
+
+  /* ---------- ATS tab ---------- */
+  let atsSettingsOpen = false, atsShowText = false;
+  const FIX_LABEL = { 'tpl-classic': 'Use Classic', 'plain-contact': 'Remove icons', 'hide-photo': 'Hide photo', 'no-qr': 'Remove QR', 'heading-en': 'English headings', 'size-m': 'Normal size' };
+  const LEVEL_ICON = { bad: '⛔', warn: '⚠️', info: 'ℹ️', ok: '✅' };
+  const scoreCol = v => v >= 80 ? 'var(--ok)' : v >= 55 ? 'var(--warn)' : 'var(--bad)';
+  function renderATS() {
+    const cv = cur(), S = Object.assign({ strict: 'standard', title: '', must: '', ignore: '', variants: true, expWeight: true }, cv.ats || {});
+    const strictHint = { lenient: 'For modern job portals that read most layouts well.', standard: 'Recommended — balanced checks for most company job portals.', strict: 'For older systems and large companies. Flags anything that could confuse a scanner.' }[S.strict];
+    $('#panel-ats').innerHTML = `
+      <div id="atsHero"></div>
+      <details class="card" id="atsSettings" ${atsSettingsOpen ? 'open' : ''}><summary>${tile('fix', '#475569')}<span class="sec-title">ATS settings<span class="meta">Strictness: ${{ lenient: 'Lenient', standard: 'Standard', strict: 'Strict' }[S.strict]}${has(S.must) ? ` · ${S.must.split(/[,\n]/).filter(x => x.trim()).length} must-have words` : ''}</span></span></summary><div class="card-body">
+        <div class="field"><span>How strict should the check be?</span><div class="seg">${[['lenient', 'Lenient'], ['standard', 'Standard'], ['strict', 'Strict']].map(([v, l]) => `<button data-act="ats-set" data-f="strict" data-v="${v}" class="${S.strict === v ? 'on' : ''}">${l}</button>`).join('')}</div><p class="hint" style="margin-top:6px">${strictHint}</p></div>
+        <label class="field"><span>Target job title</span><input class="input" data-ats="title" value="${esc(S.title)}" placeholder="Taken from the job advert if empty"></label>
+        <label class="field"><span>Must-have key words</span><textarea class="input" data-ats="must" rows="2" placeholder="e.g. SAP, demand planning, GST — separated by commas">${esc(S.must)}</textarea><p class="hint">Words the employer is sure to search for. They always count as must-haves.</p></label>
+        <label class="field"><span>Ignore these words</span><input class="input" data-ats="ignore" value="${esc(S.ignore)}" placeholder="e.g. company name, city"></label>
+        <label class="check"><input type="checkbox" data-ats="variants" ${S.variants ? 'checked' : ''}> Match UK/US spellings and abbreviations (optimise = optimize, SCM = supply chain management)</label>
+        <label class="check"><input type="checkbox" data-ats="expWeight" ${S.expWeight ? 'checked' : ''}> Give extra weight to key words in Skills and Work experience</label>
+      </div></details>
+      <div class="card card-static"><h3 class="card-h">${tile('target', '#D97706')}Job advert</h3><p class="hint">Paste the full job advert. Headings like “Requirements” and “Preferred” help the check tell must-haves from nice-to-haves.</p>
+        <label class="field"><textarea data-k="jobAd" rows="7" placeholder="Paste the job advert here…">${esc(cv.jobAd)}</textarea></label>
+        <div class="btn-row"><button class="btn primary small" data-act="ats-run">${uiIcon('scan')} Check my CV</button>${has(cv.jobAd) ? `<button class="btn small soft" data-act="tailor">${uiIcon('wand')} Tailor my CV to this job</button>` : ''}</div></div>
+      <div id="atsResults"></div>`;
+    refreshATS();
+  }
+  function refreshATS() {
+    const cv = cur(); if (!cv || tab !== 'ats') return;
+    const a = atsAnalyze(cv, lastPages);
+    const cats = [['format', 'Format & layout', '#2563EB'], ['parsing', 'Readability', '#0D9488'], ['keywords', 'Keyword match', '#7C3AED'], ['content', 'Content', '#D97706']];
+    const label = a.score >= 85 ? 'Strong — ready for job portals' : a.score >= 70 ? 'Good — a few fixes below' : a.score >= 50 ? 'Needs work — see the fixes below' : 'Low — follow the fixes below';
+    $('#atsHero').innerHTML = `<div class="card card-static ats-hero">
+      <div class="score"><div class="ring" style="--p:${a.score};--c:${scoreCol(a.score)}"><b>${a.score}</b></div><div><h3>ATS score</h3><p class="hint" style="margin:0">${label}</p><span class="pill-tag">${{ lenient: 'Lenient', standard: 'Standard', strict: 'Strict' }[a.settings.strict]} check${a.keywords ? ' · with job advert' : ''}</span></div></div>
+      <div class="cats">${cats.map(([k, l, c]) => { const v = a.cats[k]; return `<div class="cat"><span>${l}</span><div class="bar">${v == null ? '' : `<i style="width:${v}%;background:${c}"></i>`}</div><b>${v == null ? '—' : v}</b></div>`; }).join('')}</div>
+      ${a.keywords ? '' : '<p class="hint" style="margin:10px 0 0">Paste a job advert below to add <b>Keyword match</b> — it counts for 40% of the score.</p>'}</div>`;
+
+    let html = '';
+    if (a.keywords) {
+      const k = a.keywords;
+      const chip = t => `<span class="${t.found ? 'hit' : 'miss'}" title="${t.found ? 'Found in: ' + esc(t.where.join(', ')) : 'Not found in your CV'}">${t.found ? '✓' : '✕'} ${esc(t.term)}${t.found && !t.strong && a.settings.expWeight ? ' <em>summary only</em>' : ''}${t.user ? ' <em>your must-have</em>' : ''}</span>`;
+      const mf = k.must.filter(t => t.found).length, nf = k.nice.filter(t => t.found).length;
+      html += `<div class="card card-static"><h3 class="card-h">${tile('scan', '#7C3AED')}Keyword match</h3>
+        <p class="hint">${k.parts.must || k.parts.nice ? `Found ${k.parts.must ? `a “requirements” part (${k.parts.must} lines)` : ''}${k.parts.must && k.parts.nice ? ' and ' : ''}${k.parts.nice ? `a “preferred” part (${k.parts.nice} lines)` : ''} in the advert.` : 'No “Requirements” heading found — the most frequent words are treated as must-haves.'}</p>
+        <h4 class="subhead">Must-have <span class="tag">${mf} of ${k.must.length}</span></h4><div class="kw">${k.must.map(chip).join('') || '<span class="hint">None found</span>'}</div>
+        ${k.nice.length ? `<h4 class="subhead">Nice to have <span class="tag">${nf} of ${k.nice.length}</span></h4><div class="kw">${k.nice.map(chip).join('')}</div>` : ''}
+        ${k.checks.length ? `<h4 class="subhead">Requirements</h4><ul class="req">${k.checks.map(c => `<li class="${c.ok ? 'ok' : c.part ? 'part' : 'no'}"><i>${c.ok ? '✓' : c.part ? '◐' : '✕'}</i><div><b>${esc(c.label)}</b><span>${esc(c.text)}</span></div></li>`).join('')}</ul>` : ''}
+        <p class="hint" style="margin-top:10px">Add missing words only where they are true for you — ideally in <b>Skills</b> or your <b>Work experience</b> bullet points.</p>
+        <div class="btn-row"><button class="btn small primary" data-act="tailor">${uiIcon('wand')} Tailor my CV to this job</button></div></div>`;
+    }
+    const groups = [['format', 'Format & layout'], ['parsing', 'Readability'], ['keywords', 'Keywords'], ['content', 'Content']];
+    const probs = a.issues.filter(i => i.level !== 'ok');
+    html += `<div class="card card-static"><h3 class="card-h">${tile('fix', '#DC2626')}Fixes</h3>
+      ${probs.length ? groups.map(([g, l]) => { const its = probs.filter(i => i.cat === g); return its.length ? `<h4 class="subhead">${l}</h4><ul class="issues">${its.map(i => `<li class="lv-${i.level}"><i>${LEVEL_ICON[i.level]}</i><span>${esc(i.text)}</span>${i.fix ? `<button class="btn small soft" data-act="ats-fix" data-v="${i.fix}">${FIX_LABEL[i.fix]}</button>` : ''}</li>`).join('')}</ul>` : ''; }).join('') : `<p class="good-box">${uiIcon('check')} Nothing to fix at this strictness level.</p>`}
+      <div class="help">Want a version that's as safe as possible for job portals, without changing this one? <button class="btn small" data-act="ats-safe-copy" style="margin-left:4px">${uiIcon('copy')} Make an ATS-safe copy</button></div></div>`;
+    const P = a.parsed, ok = v => has(v) ? esc(v) : '<em class="miss-t">not found</em>';
+    html += `<div class="card card-static"><h3 class="card-h">${tile('eye', '#0D9488')}How an ATS reads your CV</h3><p class="hint">This is roughly what a job portal pulls out of your CV and saves in its database.</p>
+      <table class="ptable"><tbody>${P.contact.map(([k, v]) => `<tr><th>${k}</th><td>${ok(v)}</td></tr>`).join('')}<tr><th>Experience</th><td><b>${P.years}</b> years in total (from your job dates)</td></tr></tbody></table>
+      <h4 class="subhead">Work history</h4>${P.jobs.length ? `<table class="ptable grid"><thead><tr><th>Job title</th><th>Company</th><th>From</th><th>To</th><th>Months</th></tr></thead><tbody>${P.jobs.map(j => `<tr><td>${ok(j.title)}</td><td>${ok(j.company)}</td><td>${ok(j.from)}</td><td>${ok(j.to)}</td><td>${j.months == null ? '<em class="miss-t">?</em>' : j.months}</td></tr>`).join('')}</tbody></table>` : '<p class="hint">No jobs found.</p>'}
+      <h4 class="subhead">Education</h4>${P.education.length ? `<table class="ptable grid"><thead><tr><th>Degree</th><th>School</th><th>Year</th></tr></thead><tbody>${P.education.map(e => `<tr><td>${ok(e.degree)}</td><td>${ok(e.school)}</td><td>${ok(e.year)}</td></tr>`).join('')}</tbody></table>` : '<p class="hint">No education found.</p>'}
+      <h4 class="subhead">Skills <span class="tag">${P.skills.length}</span></h4><div class="kw">${P.skills.map(s => `<span class="neutral">${esc(s)}</span>`).join('') || '<span class="hint">None found</span>'}</div>
+      <h4 class="subhead">Section headings</h4><div class="kw">${P.sections.map(s => `<span class="${s.ok ? 'hit' : 'warnc'}" title="${s.ok ? 'Standard heading — recognised' : 'Unusual heading — may not be recognised'}">${s.ok ? '✓' : '?'} ${esc(s.heading)}</span>`).join('')}</div>
+      <button class="btn small" data-act="ats-text" style="margin-top:12px">${atsShowText ? 'Hide' : 'Show'} the plain text an ATS sees</button>
+      ${atsShowText ? `<pre class="plain-pre">${esc(plainText(cv))}</pre>` : ''}</div>`;
+    $('#atsResults').innerHTML = html;
+  }
+  const scheduleATS = debounce(() => { if (tab === 'ats') refreshATS(); }, 350);
+  function applyAtsFix(kind) {
+    const cv = cur(); checkpoint();
+    if (kind === 'tpl-classic') cv.design.template = 'classic';
+    if (kind === 'plain-contact') cv.design.plainContact = true;
+    if (kind === 'hide-photo') cv.design.hidePhoto = true;
+    if (kind === 'no-qr') cv.qr.show = false;
+    if (kind === 'heading-en') cv.design.headingLang = 'en';
+    if (kind === 'size-m') cv.design.size = 'm';
+    touch(); renderPreview(); refreshATS(); toast('Fixed. Tap Undo if you want it back.');
+  }
+  function atsSafeCopy() {
+    const c = clone(cur()); delete c.id;
+    c.name = newName(c.name + ' (ATS-safe)');
+    Object.assign(c.design, { template: 'classic', plainContact: true, hidePhoto: true, headingLang: 'en', font: 'sans' });
+    c.qr = Object.assign({}, c.qr, { show: false });
+    addCV(c); setTab('ats'); toast('ATS-safe copy created: one column, no icons, photo or QR code.');
+  }
+
+  /* ---------- Tailor to a job ---------- */
+  function openTailor() {
+    const cv = cur(), a = atsAnalyze(cv, lastPages);
+    if (!a.keywords) { toast('Paste a job advert in the ATS tab first.'); return; }
+    const t = a.keywords.target || '';
+    const miss = a.keywords.must.filter(x => !x.found).map(x => x.term);
+    openModal('Tailor your CV to this job', `
+      <p class="hint">This makes a <b>copy</b> of “${esc(cv.name)}” for this job — your original stays as it is. Nothing untrue is added: the copy only reorders and highlights what is already in your CV.</p>
+      <div class="row"><label class="field"><span>Company</span><input class="input" id="t-company" placeholder="e.g. Example Logistics"></label><label class="field"><span>Name of the copy</span><input class="input" id="t-name" value="${esc(`${cv.name} – ${t || 'tailored'}`)}"></label></div>
+      <label class="check"><input type="checkbox" id="t-title" ${t ? 'checked' : ''}> Use this job title as my headline</label>
+      <input class="input" id="t-newTitle" value="${esc(t)}" placeholder="Job title" style="margin:-4px 0 10px">
+      <label class="check"><input type="checkbox" id="t-skills" checked> Put matching skills first</label>
+      <label class="check"><input type="checkbox" id="t-bullets" checked> Put matching bullet points first in each job</label>
+      <label class="check"><input type="checkbox" id="t-summary" checked> Add matching skills from my CV to my summary</label>
+      <label class="check"><input type="checkbox" id="t-track" checked> Add this job to my application tracker</label>
+      ${miss.length ? `<div class="help">Still missing: <b>${miss.slice(0, 6).map(esc).join(', ')}</b>. Add them yourself only if they are true for you.</div>` : ''}`,
+      `<button class="btn" data-act="modal-close">Cancel</button><button class="btn primary" id="tailorGo">${uiIcon('wand')} Create tailored copy</button>`);
+    $('#tailorGo').onclick = () => {
+      const v = id => $('#' + id), company = v('t-company').value.trim();
+      const opts = { name: newName(v('t-name').value.trim() || `${cv.name} – tailored`), title: v('t-title').checked, newTitle: v('t-newTitle').value.trim(), skills: v('t-skills').checked, bullets: v('t-bullets').checked, summary: v('t-summary').checked, company };
+      const track = v('t-track').checked;
+      const data = tailorCV(cv, opts, a);
+      closeModal();
+      const nc = addCV(data);
+      if (track) { db.jobs.push({ id: uid(), created: Date.now(), company, role: opts.newTitle || t, link: '', date: todayISO(), status: 'todo', cvId: nc.id, notes: 'Tailored CV created', hist: [{ s: 'todo', d: todayISO() }], events: [] }); save(); }
+      setTab('ats'); toast('Tailored copy created — your original CV is unchanged.');
+    };
+  }
+
+  /* ---------- One-tap improver ---------- */
+  function openImprove(path) {
+    const cv = cur();
+    let groups = allImprovements(cv);
+    if (path) groups = groups.filter(g => g.path === path);
+    if (!groups.length) { toast('No changes suggested — your wording already looks strong.'); return; }
+    const n = groups.reduce((s, g) => s + g.items.length, 0);
+    openModal('Improve wording', `<p class="hint">Suggested rewrites — untick any you don't want. Afterwards, add numbers where you can (“by 20%”, “for 40 suppliers”).</p>
+      ${groups.map((g, gi) => `<h4 class="subhead">${esc(g.where)}</h4>${g.items.map((it, ii) => `<label class="imp"><input type="checkbox" checked data-g="${gi}" data-i="${ii}"><div><s>${esc(it.before)}</s><b>${esc(it.after)}</b></div></label>`).join('')}`).join('')}`,
+      `<button class="btn" data-act="modal-close">Cancel</button><button class="btn primary" id="impGo">${uiIcon('wand')} Apply ${n} change${n > 1 ? 's' : ''}</button>`);
+    $('#impGo').onclick = () => {
+      checkpoint();
+      let done = 0;
+      groups.forEach((g, gi) => {
+        const sel = g.items.filter((it, ii) => { const b = document.querySelector(`.imp input[data-g="${gi}"][data-i="${ii}"]`); return b && b.checked; });
+        if (!sel.length) return;
+        setPath(cv, g.path, applyImprovements(getPath(cv, g.path), g.bullet, sel)); done += sel.length;
+      });
+      closeModal(); touch(); renderPanel(); toast(done ? `${done} line${done > 1 ? 's' : ''} improved. Tap Undo to go back.` : 'Nothing changed.');
+    };
+  }
+
+  /* ---------- Proofreading ---------- */
+  const PROOF_FIX = { caps: 'Capitalise all', periods: 'Remove full stops', spaces: 'Fix spaces', 'us-spelling': 'Change to US spelling', 'uk-spelling': 'Change to UK spelling' };
+  function proofHTML(cv) {
+    const list = proofread(cv);
+    if (!list.length) return `<p class="good-box">${uiIcon('check')} No proofreading problems found.</p>`;
+    return `<p class="hint">Dates, tense, spelling and consistency checks.</p><ul class="issues">${list.map(i => `<li class="lv-${i.level}"><i>${LEVEL_ICON[i.level]}</i><span>${esc(i.text)}${i.where ? `<small>${esc(i.where)}</small>` : ''}</span>${i.fix ? `<button class="btn small soft" data-act="proof-fix" data-v="${i.fix}">${PROOF_FIX[i.fix]}</button>` : ''}</li>`).join('')}</ul>`;
+  }
+
+  /* ---------- Import ---------- */
+  let pendingImport = null;
+  function openImport() {
+    pendingImport = null;
+    openModal('Import an existing CV', `
+      <p class="hint">Bring in your old CV and the app fills in the sections for you. Word files work best. For a PDF, open it, select all the text (Ctrl/Cmd + A), copy it and paste it below.</p>
+      <label class="btn primary block" style="padding:12px">${uiIcon('doc')} Choose a Word file (.docx)<input type="file" id="importDocx" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden></label>
+      <div class="or"><span>or paste the text</span></div>
+      <textarea class="input" id="importText" rows="8" placeholder="Paste the text of your CV here…"></textarea>
+      <div id="importPreview"></div>`,
+      `<button class="btn" data-act="modal-close">Cancel</button><button class="btn primary" id="importRead">${uiIcon('scan')} Read my CV</button>`);
+    $('#importRead').onclick = () => previewImport($('#importText').value);
+  }
+  function previewImport(text) {
+    if (!has(text)) { toast('Paste the text of your CV first, or choose a Word file.'); return; }
+    const d = parseCVText(text); pendingImport = d;
+    const p = d.personal, row = (l, v, okv) => `<li class="${okv ? 'ok' : 'no'}"><i>${okv ? '✓' : '–'}</i><div><b>${l}</b><span>${esc(v || 'not found')}</span></div></li>`;
+    const cnt = (l, n) => row(l, n ? `${n} found` : '', n > 0);
+    $('#importPreview').innerHTML = `<h4 class="subhead">What we found</h4><ul class="req">
+      ${row('Name', p.fullName, has(p.fullName))}${row('Email', p.email, has(p.email))}${row('Phone', p.phone, has(p.phone))}
+      ${row('Summary', d.summary ? d.summary.slice(0, 70) + (d.summary.length > 70 ? '…' : '') : '', has(d.summary))}
+      ${cnt('Jobs', d.experience.length)}${cnt('Education', d.education.length)}${cnt('Skills', skillList(d).length)}${cnt('Languages', d.languages.length)}
+      ${d.projects.length + d.certifications.length + d.achievements.length + d.responsibilities.length + d.volunteering.length + d.custom.length ? row('Other sections', [d.projects.length && 'Projects', d.certifications.length && 'Certifications', d.achievements.length && 'Achievements', d.responsibilities.length && 'Positions', d.volunteering.length && 'Volunteering', ...d.custom.map(c => c.title)].filter(Boolean).join(', '), true) : ''}
+      </ul><p class="hint">Importing is never perfect — check each section after you create the CV.</p>
+      <button class="btn primary block" id="importCreate">${uiIcon('check')} Create my CV from this</button>`;
+    $('#importCreate').onclick = () => {
+      const data = Object.assign({}, pendingImport, { name: newName('Imported – ' + (pendingImport.personal.fullName || 'CV')) });
+      closeModal(); addCV(data); toast('CV imported — check each section and fix anything that looks wrong.');
+    };
+  }
+  async function importDocxFile(file) {
+    if (!file) return;
+    if (!/\.docx$/i.test(file.name)) { toast('Please choose a .docx file. Old .doc files: open in Word and “Save as” .docx.'); return; }
+    try {
+      const text = await docxToText(await file.arrayBuffer());
+      $('#importText').value = text; previewImport(text);
+    } catch (e) {
+      toast(String(e.message) === 'no-inflate' ? 'This browser cannot read Word files — copy and paste the text instead.' : 'Could not read this Word file — try copying and pasting the text instead.');
+    }
+  }
+
+  /* ---------- Calendar reminders ---------- */
+  function openCalendar(jobId) {
+    const j = db.jobs.find(x => x.id === jobId); if (!j) return;
+    const plus = n => { const d = new Date(); d.setDate(d.getDate() + n); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+    const type0 = j.status === 'interview' ? 'interview' : j.status === 'todo' ? 'deadline' : 'followup';
+    openModal('Add a reminder', `
+      <p class="hint"><b>${esc(j.role || 'Job')}</b>${j.company ? ` at ${esc(j.company)}` : ''}</p>
+      <label class="field"><span>What</span><select class="input" id="ev-type">${[['interview', 'Interview'], ['followup', 'Follow up'], ['deadline', 'Application deadline'], ['other', 'Other']].map(([v, l]) => `<option value="${v}" ${v === type0 ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+      <div class="row"><label class="field"><span>Date</span><input class="input" type="date" id="ev-date" value="${type0 === 'followup' ? plus(7) : plus(2)}"></label><label class="field"><span>Time (optional)</span><input class="input" type="time" id="ev-time" value="${type0 === 'interview' ? '10:00' : ''}"></label></div>
+      <label class="field"><span>Place or link (optional)</span><input class="input" id="ev-loc" placeholder="Office address or video-call link"></label>
+      <label class="field"><span>Notes (optional)</span><textarea class="input" id="ev-notes" rows="2" placeholder="Documents to bring, who to ask for…"></textarea></label>
+      <p class="hint">You get a reminder 1 hour before — or at 9 am for all-day reminders.</p>`,
+      `<button class="btn" id="evGoogle">Google Calendar</button><button class="btn primary" id="evIcs">${uiIcon('cal')} Add to calendar</button>`);
+    const build = () => {
+      const type = $('#ev-type').value, what = `${j.role || 'Job'}${j.company ? ' at ' + j.company : ''}`;
+      const title = { interview: `Interview – ${what}`, followup: `Follow up – ${what}`, deadline: `Apply – ${what}`, other: what }[type];
+      const desc = [$('#ev-notes').value.trim(), j.link ? `Job advert: ${urlOf(j.link)}` : ''].filter(Boolean).join('\n');
+      const ev = { id: uid(), type, title, date: $('#ev-date').value, time: $('#ev-time').value, mins: type === 'interview' ? 60 : 30, location: $('#ev-loc').value.trim(), desc };
+      if (!ev.date) { toast('Choose a date first.'); return null; }
+      j.events = (j.events || []).concat({ id: ev.id, type, date: ev.date, time: ev.time, title }); save();
+      return ev;
+    };
+    $('#evIcs').onclick = () => { const ev = build(); if (!ev) return; downloadBlob(new Blob([makeICS(ev)], { type: 'text/calendar' }), `${ev.type}-${ev.date}.ics`); closeModal(); renderJobs(); toast('Calendar file downloaded — open it to add the event to your calendar.'); };
+    $('#evGoogle').onclick = () => { const ev = build(); if (!ev) return; window.open(googleCalURL(ev), '_blank', 'noopener'); closeModal(); renderJobs(); toast('Opening Google Calendar (needs internet).'); };
+  }
+  const evLabel = e => `${{ interview: 'Interview', followup: 'Follow up', deadline: 'Deadline', other: 'Reminder' }[e.type] || 'Reminder'} · ${fmtDate(e.date)}${e.time ? ', ' + e.time : ''}`;
+  function comingUpHTML() {
+    const today = todayISO();
+    const evs = db.jobs.flatMap(j => (j.events || []).filter(e => e.date >= today).map(e => Object.assign({ job: j }, e))).sort((a, b) => (a.date + (a.time || '')).localeCompare(b.date + (b.time || ''))).slice(0, 5);
+    if (!evs.length) return '';
+    return `<div class="card card-static"><h3 class="card-h">${tile('cal', '#DB2777')}Coming up</h3><ul class="coming">${evs.map(e => `<li><span class="when">${e.date === today ? 'Today' : fmtDate(e.date)}${e.time ? `<small>${e.time}</small>` : ''}</span><span><b>${esc({ interview: 'Interview', followup: 'Follow up', deadline: 'Deadline', other: 'Reminder' }[e.type])}</b> · ${esc(e.job.role || '')}${e.job.company ? ' at ' + esc(e.job.company) : ''}</span></li>`).join('')}</ul></div>`;
+  }
+
+  /* ---------- Insights ---------- */
+  function insightsHTML() {
+    const I = jobInsights(db.jobs, db.cvs);
+    if (!I.sent) return '';
+    const max = Math.max(1, ...I.weeks.map(w => w.n));
+    const top = I.weeks.reduce((b, w, i) => w.n > I.weeks[b].n ? i : b, 0);
+    return `<div class="card card-static"><h3 class="card-h">${tile('chart', '#0D9488')}Insights</h3>
+      <div class="ins-grid"><div class="ins"><b>${I.replyRate}%</b><span>heard back</span></div><div class="ins"><b>${I.interviewRate}%</b><span>got an interview</span></div><div class="ins"><b>${I.avgDays == null ? '—' : I.avgDays}</b><span>average days to hear back</span></div></div>
+      <h4 class="subhead">Applications sent per week</h4>
+      <div class="wk-chart" role="img" aria-label="Applications per week for the last 8 weeks: ${I.weeks.map(w => `${w.label}: ${w.n}`).join(', ')}">
+        ${I.weeks.map((w, i) => `<div class="wk" data-tip="Week of ${w.label}: ${w.n} application${w.n === 1 ? '' : 's'}"><div class="wk-bar"><i style="height:${w.n ? Math.max(6, w.n / max * 100) : 0}%"></i>${i === top && w.n ? `<em>${w.n}</em>` : ''}</div><span>${i % 2 === 1 || i === I.weeks.length - 1 ? w.label : ''}</span></div>`).join('')}
+      </div>
+      ${I.byCV.length > 0 ? `<h4 class="subhead">Results by CV version</h4><table class="ptable grid"><thead><tr><th>CV</th><th>Sent</th><th>Interviews</th><th>Rate</th></tr></thead><tbody>${I.byCV.map(r => `<tr><td>${esc(r.name)}</td><td>${r.apps}</td><td>${r.intv}</td><td><b>${Math.round(r.intv / r.apps * 100)}%</b></td></tr>`).join('')}</tbody></table>` : ''}
+      ${I.avgDays == null ? '<p class="hint" style="margin-top:8px">“Average days to hear back” appears once you update an application’s status.</p>' : ''}</div>`;
   }
 
 /* ================= App (part 2: Design, Download, Jobs, preview, export, events) ================= */
@@ -2644,12 +3761,11 @@ const DOCX = (() => {
       <div class="card card-static score-card"><div class="score"><div class="ring" style="--p:${r.score};--c:${color}"><b>${r.score}</b></div><div><h3>CV score</h3><p class="hint" style="margin:0">${msg}</p></div></div>
         <ul class="tips">${todo.map(i => `<li><i>${i.half ? '◐' : '○'}</i>${esc(i.text)}</li>`).join('')}${done.map(i => `<li class="good"><i>✓</i>${esc(i.text)}</li>`).join('')}</ul></div>
       <div class="card card-static"><h3 class="card-h">${tile('pen', '#7C3AED')}Writing check</h3>
-        ${weak.length ? `<p class="hint">These phrases are weak or overused. Replacing them makes your CV sound more confident.</p><ul class="weak-list">${weak.map(w => `<li><b>“${esc(w.phrase)}”</b><span>${esc(w.where)}</span><em>${esc(w.tip)}</em></li>`).join('')}</ul>` : `<p class="good-box">${uiIcon('check')} No weak phrases found. Nice, confident writing!</p>`}</div>
+        ${weak.length ? `<p class="hint">These phrases are weak or overused. Replacing them makes your CV sound more confident.</p><ul class="weak-list">${weak.map(w => `<li><b>“${esc(w.phrase)}”</b><span>${esc(w.where)}</span><em>${esc(w.tip)}</em></li>`).join('')}</ul>` : `<p class="good-box">${uiIcon('check')} No weak phrases found. Nice, confident writing!</p>`}
+        ${allImprovements(cv).length ? `<button class="btn small primary" data-act="improve-all" style="margin-top:10px">${uiIcon('wand')} Improve wording in one tap</button>` : ''}</div>
+      <div class="card card-static"><h3 class="card-h">${tile('check', '#16A34A')}Proofreading</h3><div id="proofOut">${proofHTML(cv)}</div></div>
       <div class="card card-static"><h3 class="card-h">${tile('doc', '#0D9488')}Length</h3><p class="hint" style="margin:0" id="lenInfo">${lengthText()}</p></div>
-      <div class="card card-static"><h3 class="card-h">${tile('target', '#D97706')}Check against a job advert</h3><p class="hint">Paste a job advert to see which important words from it are missing in your CV. This helps you get past the systems that scan applications. Everything stays on your device.</p>
-        <label class="field"><textarea data-k="jobAd" rows="6" placeholder="Paste the job advert here…">${esc(cv.jobAd)}</textarea></label>
-        <button class="btn primary small" data-act="kw">Check my CV</button>
-        <div id="kwOut">${has(cv.jobAd) ? kwHTML(cv) : ''}</div></div>
+      <div class="card card-static ats-link"><h3 class="card-h">${tile('scan', '#7C3AED')}Job portals (ATS)</h3><p class="hint">See how job portals read your CV, compare it with a job advert and fix problems in one tap.</p><button class="btn small primary" data-act="tab" data-tab="ats">${uiIcon('scan')} Open the ATS check</button></div>
       <div class="card card-static"><h3 class="card-h">${tile('download', '#2563EB')}Download</h3>
         <div class="dl-grid">
           ${dlBtn('print-cv', 'pdf', '#DC2626', 'CV as PDF', `${paper.name} · ready to send`)}
@@ -2657,10 +3773,12 @@ const DOCX = (() => {
           ${dlBtn('print-letter', 'pdf', '#EA580C', 'Cover letter as PDF', 'Same design as your CV')}
           ${dlBtn('word-letter', 'doc', '#0284C7', 'Cover letter as Word', '.docx · easy to edit')}
           ${dlBtn('copy-text', 'copy', '#475569', 'Copy as plain text', 'For job portals')}
+          ${canShareFiles() ? dlBtn('share-word', 'share', '#16A34A', 'Share CV (Word)', 'WhatsApp, email, Drive…') : ''}
         </div>
         <div class="help"><b>PDF:</b> a print window opens — choose <b>Save as PDF</b>, keep margins on <b>Default</b> and turn off <b>Headers and footers</b>. On iPhone tap Share in the print screen, then <b>Save to Files</b>.<br><b>Word:</b> uses a simple one-column layout that opens well in Word, Google Docs and job portals.</div></div>
       <div class="card card-static"><h3 class="card-h">${tile('save', '#0D9488')}Backup & earlier versions</h3><p class="hint">Your CVs and job tracker are saved in this browser only. Save a backup file to keep them safe, or to open them on another phone or laptop.</p>
-        <div class="btn-row"><button class="btn" data-act="backup">${uiIcon('save')} Save backup file</button><label class="btn">${uiIcon('open')} Open backup file<input type="file" id="importInput" accept=".json,application/json" hidden></label><button class="btn" data-act="history">${uiIcon('clock')} Earlier versions</button></div></div>
+        <div class="btn-row"><button class="btn" data-act="backup">${uiIcon('save')} Save backup file</button><label class="btn">${uiIcon('open')} Open backup file<input type="file" id="importInput" accept=".json,application/json" hidden></label><button class="btn" data-act="history">${uiIcon('clock')} Earlier versions</button>${canShareFiles() ? `<button class="btn" data-act="share-backup">${uiIcon('share')} Share backup</button>` : ''}</div>
+        ${canShareFiles() ? '<p class="hint" style="margin:8px 0 0">Share backup sends the file straight to WhatsApp or email — open it on your other device with “Open backup file”.</p>' : ''}</div>
       <div class="card card-static"><h3 class="card-h">${tile('lock', '#16A34A')}Use it offline</h3><p class="hint">Add CV Builder to your home screen and it works without internet.</p>
         ${deferredPrompt ? '<button class="btn primary small" data-act="install" style="margin-bottom:8px">⬇ Install app</button>' : ''}
         <div class="help" style="margin-top:0"><b>iPhone:</b> in Safari tap Share → <b>Add to Home Screen</b>.<br><b>Android:</b> tap the ⋮ menu → <b>Install app</b> or <b>Add to Home screen</b>.<br><b>Laptop (Chrome / Edge):</b> click the install icon in the address bar.</div></div>
@@ -2682,6 +3800,7 @@ const DOCX = (() => {
     const shown = jobFilter === 'all' ? jobs : jobs.filter(j => j.status === jobFilter);
     const chips = [['all', 'All', jobs.length]].concat(Object.entries(JOB_STATUS).map(([k, s]) => [k, s.name, count(k)]));
     return `<div class="stats">${tiles.map(([l, n, c]) => `<div class="stat" style="--c:${c}"><b>${n}</b><span>${l}</span></div>`).join('')}</div>
+      ${comingUpHTML()}${insightsHTML()}
       <div class="card card-static">
         <div class="track-head"><h3 class="card-h" style="margin:0">${tile('briefcase', '#2563EB')}My applications</h3><button class="btn primary small" data-act="job-add">+ Add application</button></div>
         <div class="chips">${chips.map(([k, l, n]) => `<button class="chip ${jobFilter === k ? 'on' : ''}" data-act="job-filter" data-v="${k}" style="--c:${k === 'all' ? '#4F46E5' : JOB_STATUS[k].color}">${l} <span>${n}</span></button>`).join('')}</div>
@@ -2696,9 +3815,10 @@ const DOCX = (() => {
     return `<div class="job-card" style="--c:${st.color}">
       <div class="job-main"><b>${esc(j.role || 'Job')}</b><span>${esc(j.company || '')}</span>
         <small>${j.date ? (j.status === 'todo' ? 'Saved ' : 'Applied ') + fmtDate(j.date) : ''}${cvName ? ` · CV: ${esc(cvName)}` : ''}</small>${follow}
+        ${(j.events || []).filter(e => e.date >= todayISO()).map(e => `<em class="ev-chip">${uiIcon('cal')} ${esc(evLabel(e))}</em>`).join('')}
         ${has(j.notes) ? `<p>${esc(j.notes)}</p>` : ''}</div>
       <div class="job-side"><select class="pill-select" data-job-status="${j.id}" aria-label="Status">${Object.entries(JOB_STATUS).map(([k, s]) => `<option value="${k}" ${k === j.status ? 'selected' : ''}>${s.name}</option>`).join('')}</select>
-        <div class="btn-row">${has(j.link) ? `<a class="icon-btn" href="${esc(urlOf(j.link))}" target="_blank" rel="noopener" title="Open job advert" aria-label="Open job advert">${uiIcon('link')}</a>` : ''}<button class="icon-btn" data-act="job-edit" data-id="${j.id}" title="Edit" aria-label="Edit">${uiIcon('edit')}</button><button class="icon-btn" data-act="job-del" data-id="${j.id}" title="Delete" aria-label="Delete">${uiIcon('trash')}</button></div></div></div>`;
+        <div class="btn-row">${has(j.link) ? `<a class="icon-btn" href="${esc(urlOf(j.link))}" target="_blank" rel="noopener" title="Open job advert" aria-label="Open job advert">${uiIcon('link')}</a>` : ''}<button class="icon-btn" data-act="job-cal" data-id="${j.id}" title="Add a calendar reminder" aria-label="Add a calendar reminder">${uiIcon('cal')}</button><button class="icon-btn" data-act="job-edit" data-id="${j.id}" title="Edit" aria-label="Edit">${uiIcon('edit')}</button><button class="icon-btn" data-act="job-del" data-id="${j.id}" title="Delete" aria-label="Delete">${uiIcon('trash')}</button></div></div></div>`;
   }
   function jobModal(id) {
     const j = db.jobs.find(x => x.id === id) || { company: '', role: '', link: '', date: todayISO(), cvId: db.activeId, status: 'applied', notes: '' };
@@ -2715,7 +3835,8 @@ const DOCX = (() => {
       const v = k => $('#jf-' + k).value.trim();
       if (!v('company') && !v('role')) { toast('Add at least the company or the job title.'); return; }
       const data = { company: v('company'), role: v('role'), link: v('link'), date: v('date'), status: $('#jf-status').value, cvId: $('#jf-cvId').value, notes: v('notes') };
-      if (id) Object.assign(j, data); else db.jobs.push(Object.assign({ id: uid(), created: Date.now() }, data));
+      if (id) { if (j.status !== data.status) (j.hist = j.hist || []).push({ s: data.status, d: todayISO() }); Object.assign(j, data); }
+      else db.jobs.push(Object.assign({ id: uid(), created: Date.now(), hist: [{ s: data.status, d: data.date || todayISO() }], events: [] }, data));
       closeModal(); save(); renderJobs(); toast(id ? 'Application updated.' : 'Application added.');
     };
   }
@@ -3005,7 +4126,7 @@ const DOCX = (() => {
         <button class="icon-btn" data-act="cv-del" data-id="${id}" title="Delete" aria-label="Delete">🗑</button></div>`;
     }).join('');
     openModal('My CVs', `<p class="hint">Keep different versions — for example an Industry CV and a Teaching CV. Use ⧉ to copy one and tailor it for a specific job.</p>${items}`,
-      `<button class="btn" data-act="samples">Start from a sample</button><button class="btn primary" data-act="cv-new">+ New blank CV</button>`);
+      `<button class="btn" data-act="import">${uiIcon('upload')} Import</button><button class="btn" data-act="samples">Samples</button><button class="btn primary" data-act="cv-new">+ New blank CV</button>`);
   }
   function historyModal() {
     const all = history[db.activeId] || [];
@@ -3063,7 +4184,11 @@ const DOCX = (() => {
     const t = e.target;
     if (t.id === 'phraseField') { phraseField = t.value; $('#phraseList').innerHTML = phraseListHTML(t.value, phraseTarget === 'summary'); return; }
     if (t.id === 'prepField') { db.prep.field = t.value; openQ = null; save(); renderJobs(); return; }
-    if (t.dataset.jobStatus) { const j = db.jobs.find(x => x.id === t.dataset.jobStatus); if (j) { j.status = t.value; save(); renderJobs(); toast(`Status: ${JOB_STATUS[t.value].name}`); } return; }
+    if (t.dataset.jobStatus) { const j = db.jobs.find(x => x.id === t.dataset.jobStatus); if (j) { j.status = t.value; (j.hist = j.hist || []).push({ s: t.value, d: todayISO() }); save(); renderJobs(); toast(`Status: ${JOB_STATUS[t.value].name}`); } return; }
+    if (t.dataset.ats) {
+      const cv0 = cur(); cv0.ats = Object.assign({}, cv0.ats, { [t.dataset.ats]: t.type === 'checkbox' ? t.checked : t.value });
+      save(); scheduleATS(); return;
+    }
     if (t.dataset.prep) {
       db.prep.answers[t.dataset.prep] = t.value; save();
       const card = t.closest('.q-card'); if (card) card.classList.toggle('done', has(t.value));
@@ -3093,10 +4218,10 @@ const DOCX = (() => {
       if (parts[2] === 'current') $$(`[data-date="${list}.${parts[1]}.end"] select`).forEach(s => { s.disabled = t.checked; });
     }
     const wk = document.querySelector(`[data-weak="${k}"]`);
-    if (wk) wk.innerHTML = weakHint(v, wk.dataset.bul === '1');
+    if (wk) wk.innerHTML = weakHint(v, wk.dataset.bul === '1', k);
     if (/^personal\.photo(Zoom|X|Y)$/.test(k)) { const f = $('#photoFrame'); if (f) f.innerHTML = photoImg(cv.personal); }
     if ((k === 'qr.link' || k === 'qr.show') && (t.type === 'checkbox' || t.tagName === 'SELECT')) rerenderKeepScroll(renderWrite);
-    if (k === 'jobAd') return save();
+    if (k === 'jobAd') { save(); scheduleATS(); return; }
     touch();
   }
   function onClick(e) {
@@ -3105,6 +4230,21 @@ const DOCX = (() => {
     const act = b.dataset.act, cv = cur();
     switch (act) {
       case 'tab': setTab(b.dataset.tab); break;
+      case 'home': closeModal(); save(); showHome(); break;
+      case 'go-tab': if (cur()) { showApp(); setTab(b.dataset.tab); resetUndoBase(); } break;
+      case 'import': closeModal(); openImport(); break;
+      case 'improve': openImprove(b.dataset.path); break;
+      case 'improve-all': openImprove(null); break;
+      case 'proof-fix': checkpoint(); applyProofFix(cv, b.dataset.v); touch(); renderPanel(); toast('Fixed. Tap Undo to go back.'); break;
+      case 'ats-set': cv.ats = Object.assign({}, cv.ats, { [b.dataset.f]: b.dataset.v }); save(); atsSettingsOpen = true; renderATS(); break;
+      case 'ats-run': refreshATS(); { const r = $('#atsResults'); if (r && window.innerWidth <= 900) r.scrollIntoView({ behavior: 'smooth', block: 'start' }); } toast('ATS check updated.'); break;
+      case 'ats-fix': applyAtsFix(b.dataset.v); break;
+      case 'ats-safe-copy': atsSafeCopy(); break;
+      case 'ats-text': atsShowText = !atsShowText; refreshATS(); break;
+      case 'tailor': openTailor(); break;
+      case 'job-cal': openCalendar(b.dataset.id); break;
+      case 'share-backup': { const data = { app: 'cv-builder', version: 2, exported: new Date().toISOString(), cvs: db.order.map(id => db.cvs[id]), jobs: db.jobs, prep: db.prep }; shareFile(new Blob([JSON.stringify(data)], { type: 'application/json' }), `cv-backup-${todayISO()}.json`, 'My CV Builder backup'); break; }
+      case 'share-word': toast('Preparing your Word file…'); DOCX.build(cv, 'cv').then(blob => shareFile(blob, fileBase(cv, 'cv') + '.docx', `${cv.personal.fullName || 'My'} – CV`)).catch(() => toast('Sorry — the Word file could not be created.')); break;
       case 'undo': undo(); break;
       case 'history': historyModal(); break;
       case 'hist-restore': {
@@ -3233,6 +4373,7 @@ const DOCX = (() => {
     const t = e.target;
     if (t.id === 'photoInput') { loadPhoto(t.files && t.files[0]); t.value = ''; return; }
     if (t.id === 'sigInput') { loadSignatureImage(t.files && t.files[0]); t.value = ''; return; }
+    if (t.id === 'importDocx') { importDocxFile(t.files && t.files[0]); t.value = ''; return; }
     if (t.id === 'importInput') { importBackup(t.files && t.files[0]); t.value = ''; return; }
     if (t.id === 'customColor') { cur().design.color = safeHex(t.value); rerenderKeepScroll(renderDesign); touch(); }
   }
@@ -3244,6 +4385,7 @@ const DOCX = (() => {
     const d = e.target; if (!d.dataset) return;
     if (d.dataset.acc) { if (d.open) openSet.add(d.dataset.acc); else openSet.delete(d.dataset.acc); }
     if (d.dataset.q) { if (d.open) openQ = d.dataset.q; else if (openQ === d.dataset.q) openQ = null; }
+    if (d.id === 'atsSettings') atsSettingsOpen = d.open;
   }, true);
   document.addEventListener('focusin', e => {
     const k = e.target.dataset && e.target.dataset.k; if (!k || window.innerWidth <= 900) return;
@@ -3267,7 +4409,7 @@ const DOCX = (() => {
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
     window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
   }
-  window.__cvb = { db: () => db, cur, renderPreview, checkCV: () => checkCV(cur(), lastPages), plainText: () => plainText(cur()), history: () => history, undoDepth: () => (undoStacks[db.activeId] || []).length };
+  window.__cvb = { ats: () => atsAnalyze(cur(), lastPages), proof: () => proofread(cur()), db: () => db, cur, renderPreview, checkCV: () => checkCV(cur(), lastPages), plainText: () => plainText(cur()), history: () => history, undoDepth: () => (undoStacks[db.activeId] || []).length };
 })();
 
 </script>
