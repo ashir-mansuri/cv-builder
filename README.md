@@ -1,3 +1,5 @@
+<p align="center"><img src="icon-512.png" width="112" alt="CV Builder logo"></p>
+
 # CV Builder
 
 A free CV and resume maker that works offline. Nothing you type leaves your device.

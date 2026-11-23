@@ -2,8 +2,8 @@
    The page itself: always checks GitHub for the newest version first (when online),
    and falls back to the saved copy when offline or on a very slow connection.
    Icons and other files: served from the saved copy, refreshed in the background. */
-const VERSION = 'cvb-v2';
-const FILES = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
+const VERSION = 'cvb-v3';
+const FILES = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png', './icon-maskable-512.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));
